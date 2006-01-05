@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>The CImg Library - C++ Template Image Processing Library : Screenshots</title>
+    <meta content="David Tschumperle" name="author">
+
+    <script language="JavaScript">
+      <!-- Original:  Eric King (eric_andrew_king@hotmail.com) is used to display images in popup windows -->
+      <!-- Web Site:  http://redrival.com/eak/ -->
+      <!-- This script and many more are available free online at -->
+      <!-- The JavaScript Source!! http://javascript.internet.com -->      
+      <!-- Begin
+      function NewWindow(mypage, myname, w, h, scroll) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+      win = window.open(mypage, myname, winprops)
+      if (parseInt(navigator.appVersion) >= 4) { win.window.focus(); }
+      }
+      //  End -->
+    </script>
+  </head>
+  <body bgcolor="#ffffff" alink="#ff0000" link="#0000ee" vlink="#551a8b">
+    <!--#include file="head.html" -->
+
+    <font face="Arial,Helvetica" size="-1">
+      <img src="img/screenshots_item.jpg">
+      <blockquote>
+        The screenshots presented below have been taken from the different example programs distributed
+        within the CImg package (sources available in the directory <tt>examples/</tt>).<br>
+	Click on an image to enlarge it. Note that it is only a
+        small panel of the demo programs available in the
+        CImg Library package.
+      </blockquote>
+    </font>
+    
+    <center>
+      <table bgcolor="#e0e0e0" border="1" cellpadding="16" cellspacing="0" width="900">
+        <tbody>
+          <tr>
+            <td>
+              <center><a href="img/ss_bump.jpg" onclick="NewWindow(this.href,'name','470','230','yes');return false;">
+                  <img src="img/ss_mini_000000.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A 2D bump-mapping effect (30 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i><br><br>
+                You can move the light source using the mouse.
+                This sample shows how to handle mouse motion and create an animation in a window.
+                It demonstrates also that the CImg library is quite fast !
+                Everything is computed from scratch here, including the logo, the background and the light.
+                <a href="img/mov_bump.mpg">&lt;Click here to see the corresponding animation (MPEGformat)&gt;</a>
+                
+              </font></td>
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_demomenu.jpg" onclick="NewWindow(this.href,'name','350','280','yes');return false;">
+                  <img src="img/ss_mini_000001.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : 
+                The selection menu of the CImg_test sample (length = 41 lines of code)<br>
+                <i><font color="#3333ff"><b>File</b> : CImg_test.cpp</font></i><br><br>
+                Containing a nice blurred cursor effect, it shows also
+                how to use mouse motion to create user-friendly menus.
+              </font></td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_hough.jpg" onclick="NewWindow(this.href,'name','1030','540','yes');return false;">
+                  <img src="img/ss_mini_000002.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : Computation of the Hough Transform. (length = 95 lines of code)<br>
+                <i><font color="#3333ff"><b>File</b> : hough_transform.cpp</font></i> <br><br>
+                Illustrate the computation of the Hough transform to detect lines in 2D images. Provide also simple user
+                interface to select and display lines.
+              </font></td>
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_imgfade.jpg" onclick="NewWindow(this.href,'name','280','280','yes');return false;">
+                  <img src="img/ss_mini_000003.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : Show how to do a fading between two images. (length = 35 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: imgfade.cpp</font></i> <br><br>
+                Very small code to perform a funny effect. Also demonstrate how to easily deal with command line arguments.
+              </font></td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_mandelbrot.jpg" onclick="NewWindow(this.href,'name','660','520','yes');return false;">
+                  <img src="img/ss_mini_000004.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A fully functional Mandelbrot fractal explorer.
+                (length = 51 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+                Show how to use the predefined feature selection function present in the CImg library.
+              </font></td>
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_odykill.jpg" onclick="NewWindow(this.href,'name','660','520','yes');return false;">
+                  <img src="img/ss_mini_000005.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A simple shoot-em-up game, featuring the people of the
+                Robotvis/Odyssee Lab. (length = 180 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: odykill.cpp</font></i> <br><br>
+                Another demonstration of handling mouse and creating animation for pedagogic purposes.
+              </font></td>
+          </tr>
+          
+          <tr>
+            <td>
+              <center><a href="img/ss_optflow.jpg" onclick="NewWindow(this.href,'name','980','470','yes');return false;">
+                  <img src="img/ss_mini_000006.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An implementation of an image registration algorithm, with
+                multiscale capability. (length = 201 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: image_registration.cpp</font></i> <br><br>
+                Compute a motion map between two images, and warp one into the another through a smooth animation.
+              </font></td>
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_paint.jpg" onclick="NewWindow(this.href,'name','280','370','yes');return false;">
+                  <img src="img/ss_mini_000007.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A mini-painting program. (length = 30 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+                This is not a replacement to Photoshop, but it already includes a filling algorithm
+                as well as a color selection tool.
+              </font></td>
+          </tr>
+
+          <tr >
+            <td>
+              <center><a href="img/ss_rotozoom.jpg" onclick="NewWindow(this.href,'name','350','250','yes');return false;">
+                  <img src="img/ss_mini_000008.jpg" height="64" width="80"></a></center>
+            </td>
+            <td ><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A classical demomaking-effect, called 'rotozoom'.
+                (length = 20 lines of code). <br>
+                <i><font color="#3333ff"><b>File</b> : CImg_test.cpp</font></i> <br><br>
+                Smell the old school parfume of the atari/amiga demos.
+              </font></td>
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_triangle.jpg" onclick="NewWindow(this.href,'name','670','530','yes');return false;">
+                  <img src="img/ss_mini_000009.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An animation featuring triangles that are rotating.
+                (length = 50 lines of code). <br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+                Could be a replacement to your classical screen saver.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_volume3d.jpg" onclick="NewWindow(this.href,'name','290','370','yes');return false;">
+                  <img src="img/ss_mini_000010.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> :  A tool to select sub-images/volumes in bigger images/volumes.
+                (length = 70 lines of code). <br>
+                <i><font color="#3333ff"><b>File</b>: inrcast.cpp</font></i> <br><br>
+                Show that the CImg library is perfectly working with 3D vector-valued volumes.
+            </td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_render3d.jpg" onclick="NewWindow(this.href,'name','670','530','yes');return false;">
+                  <img src="img/ss_mini_000011.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An example of real-time 3D rendering (length=180 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: render3d.cpp</font></i> <br><br>
+                No use of OpenGL or VTK in this example, only pure CImg software functions are used ! <br>
+                <a href="img/mov_head3d.mpg">&lt;Click here to see another 3D animation rendered by this program (MPG)&gt;</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_bubble.jpg" onclick="NewWindow(this.href,'name','350','300','yes');return false;">
+                  <img src="img/ss_mini_000012.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An example of the ellipse drawing function, used to
+                bounce an elastic bubble (length = 25 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+            </td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_landscape.jpg" onclick="NewWindow(this.href,'name','430','350','yes');return false;">
+                  <img src="img/ss_mini_000013.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An real-time 3D virtual landscape explorer (length = 40 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+                The altitude map is based on a 'fractal plasma' generator.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_plasma.jpg" onclick="NewWindow(this.href,'name','430','350','yes');return false;">
+                  <img src="img/ss_mini_000014.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : A nice plasma effect with a sinus scroller (length = 70 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+            </td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_tetris.jpg" onclick="NewWindow(this.href,'name','220','370','yes');return false;">
+                  <img src="img/ss_mini_000015.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An implementation of the well known Tetris game (length = 130 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: tetris.cpp</font></i> <br><br>
+                Very small code for a complete version of the Tetris game.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <center><a href="img/ss_restoration.jpg" onclick="NewWindow(this.href,'name','570','450','yes');return false;">
+                  <img src="img/ss_mini_000016.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : The implementation of the Tschumperlé-Deriche algorithm for image restoration and Inpainting. (length = 170 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: pde_TschumperleDeriche2D.cpp</font></i> <br><br>
+                See <a href="ftp://ftp-sop.inria.fr/odyssee/Publications/2003/tschumperle-deriche:03.pdf">the corresponding publication</a>
+                for more detail on the algorithm.
+            </td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td>
+              <center><a href="img/ss_shadebobs.jpg" onclick="NewWindow(this.href,'name','500','450','yes');return false;">
+                  <img src="img/ss_mini_000017.jpg" height="64" width="80"></a></center>
+            </td>
+            <td><font face="Arial,Helvetica" size="-1">
+                <b><font color="#990000">Description</font></b> : An very smart and classical demo effect called 'Shade bobs'
+		(length = 60 lines of code).<br>
+                <i><font color="#3333ff"><b>File</b>: CImg_test.cpp</font></i> <br><br>
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </center>
+
+    <hr noshade="noshade" size="1" width="100%">
+     <a href="http://sourceforge.net">
+     <img src="http://sourceforge.net/sflogo.php?group_id=96492&amp;type=3" border="0" height="37" width="125"></a>
+      
+      <!-- Begin Nedstat Basic code -->
+      <!-- Title: The CImg Library -->
+      <!-- URL: http://cimg.sourceforge.net/ -->
+      <script language="JavaScript" type="text/javascript" src="http://m1.nedstatbasic.net/basic.js">
+      </script>
+      <script language="JavaScript" type="text/javascript" >
+        <!--
+        nedstatbasic("ACipSwbGbQYzcsnqzmEo/wGVwocw", 0);
+        // -->
+      </script>
+      <noscript>
+        <a target="_blank" href="http://www.nedstatbasic.net/stats?ACipSwbGbQYzcsnqzmEo/wGVwocw"><img
+            src="http://m1.nedstatbasic.net/n?id=ACipSwbGbQYzcsnqzmEo/wGVwocw"
+            border="0" width="18" height="18"
+            alt="Nedstat Basic - Free web site statistics
+            Personal homepage website counter"></a><br>
+        <a target="_blank" href="http://www.nedstatbasic.net/">Free counter</a>
+      </noscript>
+      <!-- End Nedstat Basic code -->
+
+
+  </body>
+</html>
