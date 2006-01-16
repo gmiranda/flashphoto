@@ -2,17 +2,17 @@
 #define _Helper_h_
 
 // Copyright (C) 2005  Guillermo Miranda Alamo
-// 
+//
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation; either
 // version 2.1 of the License, or (at your option) any later version.
-// 
+//
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,7 +21,7 @@
 #include <cmath>
 
 /// Incluimos la biblioteca de CImg
-#include "CImg.h"
+#include "CImg/CImg.h"
 using namespace cimg_library;
 
 /// Cosas de la biblioteca estandar
@@ -34,12 +34,12 @@ using std::endl;
 
 /**
  * Clase de ayuda, con metodos estaticos.
- * 
+ *
  * Los metodos de esta clase son empleados por el resto
  * de las clases de la practica, pero, pese a que colaboran
  * en los metodos de las otras clases, son solo herramientas
  * que usan esos metodos.
- * 
+ *
  * Por ejemplo: la clase Shadow, utiliza el metodo
  * boxFilter (que crea un filtro similar al box) en el
  * metodo penumbra, pero la finalidad de penumbra no es
@@ -48,22 +48,22 @@ using std::endl;
 class Helper{
 	/// No hace falta instanciar :)
 	Helper();
-	
-public:	
+
+public:
 	/**
 	 * Devuelve el minimo de los dos numeros.
 	 */
 	static float min(const float a,const float b){
 		return a<=b?a:b;
 	}
-	
+
 	/**
 	 * Devuelve el maximo de los dos numeros.
 	 */
 	static float max(const float a,const float b){
 		return a>=b?a:b;
 	}
-	
+
 	/**
 	 * Calcula la longitud de la diagonal de la imagen.
 	 * @param image imagen fuente.
@@ -105,7 +105,7 @@ public:
 		return (float)(1/(sigmaG*std::sqrt(2*PI)))*(exp(-0.5f*((fabs(diff)/sigmaG)*(fabs(diff)/sigmaG))));
 		//return (float)exp(-0.5f*((fabs(diff)/sigmaG)*(fabs(diff)/sigmaG)));
 	}
-	
+
 	/**
 	 * Aplica un truncamiento a los valores de los pixeles
 	 * de la imagen para que esten en el rango [0,1].
@@ -117,7 +117,7 @@ public:
 	static void truncate(CImg<float>& image, float max=1.0f, float min=0.0f){
 		// Obtenemos el array de datos de la imagen
 		float* data = image.ptr();
-		
+
 		// Recorremos el array
 		for(unsigned int i=0;i<image.size();i++){
 			// Si el valor es < 0 (o el minimo)
@@ -134,10 +134,10 @@ public:
 			}
 		}
 	}
-	
+
 	/**
 	 * Aplica un truncamiento a los valores de los pixeles
-	 * de la imagen para que esten en el rango [0,1], y 
+	 * de la imagen para que esten en el rango [0,1], y
 	 * devuelve el resultado.
 	 * @param image Imagen con valores reales.
 	 * @param max Valor maximo a truncar.
@@ -173,7 +173,7 @@ public:
 		}
 		return *imageT;
 	}
-	
+
 	/**
 	 * Devuelve el gradiente (magnitud) de una imagen.
 	 * @param image Imagen origen.
@@ -182,8 +182,8 @@ public:
 	static CImg<>& get_magnitude_gradient(const CImg<>& image){
 		// Calculamos el gradiente horizontal y vertical
 		CImgl<> gradiente = image.get_gradientXY();
-		gradiente[0].pow(2); 
-		gradiente[1].pow(2); 
+		gradiente[0].pow(2);
+		gradiente[1].pow(2);
 		// Y ahora un puntero al gradiente en magnitud
 		CImg<>* mag = new CImg<>((gradiente[0]+gradiente[1]).sqrt());
 		// Devolvemos referencia
@@ -197,7 +197,7 @@ public:
 	static CImg<> boxFilter(){
 		return CImg<>(3,3,1,1,1.0f/9.0f);
 	}
-	
+
 	/**
 	 * Devuelve un filtro similar a box filter,
 	 * pero de tamaño segun la diagonal de la imagen.
@@ -209,7 +209,7 @@ public:
 	 * para que el filtro tenga la forma correcta. Es decir, si
 	 * 1% de la diagonal es 4, las dimensiones del filtro tipo box
 	 * serian de 5x5.
-	 * 
+	 *
 	 * La otra opcion,quizas menos deseable, seria restarle uno.
 	 */
 	static CImg<> boxFilter(const CImg<> image, float percentage){
@@ -219,7 +219,7 @@ public:
 		// Multiplicamos el tamaño de la diagonal por el porcentaje
 		// y redondeamos
 		unsigned int num = (unsigned int)round(diagonal*percentage);
-		
+
 		// Miramos si es par
 		if(num%2==0){
 			// Si es par, le sumamos uno
@@ -231,7 +231,7 @@ public:
 			// No hace falta sumarle
 			//cerr << "Es impar (" << num << ")" << endl;
 		}
-		
+
 		/*
 		 * Creamos el filtro y lo devolvemos
 		 * El filtro ha de hacer un suavizado uniforme:
@@ -241,11 +241,11 @@ public:
 		 */
 		return CImg<>(num,num,1,1,1.0f/(num*num));
 	}
-	
+
 	/**
 	 * Este metodo calcula el numero potencia de dos inmediatamente
 	 * superior al dado.
-	 * 
+	 *
 	 * Es util para poder redimensionar imagenes antes de hacer su FFT,
 	 * ya que el requisito es que las dimensiones sean potencia de 2.
 	 * @param num Numero.
@@ -257,7 +257,7 @@ public:
 		// Y devolvemos 2 elevado a ese numero
 		return (int)std::pow(2.0f,exp);
 	}
-	
+
 	/**
 	 * Metodo que calcula la FFT de cualquier imagen.
 	 * Rellena con ceros la imagen para que tenga las dimensiones
@@ -273,7 +273,7 @@ public:
 		imageP.display("Imagen redimensionada");
 		return imageP.get_FFT();
 	}
-	
+
 	/**
 	 * Este metodo devuelve la FFT inversa, a partir de una lista de imagenes
 	 * en dominio frecuenial.
@@ -286,7 +286,7 @@ public:
 	static CImg<>& getiFFT(const CImgl<>& imageFFT, const int dimx, const int dimy){
 		// Se calcula la inversa de la FFT
 		CImgl<> intenFFTi = imageFFT.get_FFT(true);
-		
+
 		/*
 		 * Se hace la suma de las dos imagenes
 		 * y se recorta al tamaño original

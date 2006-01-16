@@ -1,15 +1,15 @@
 // Copyright (C) 2005  Guillermo Miranda Alamo
-// 
+//
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation; either
 // version 2.1 of the License, or (at your option) any later version.
-// 
+//
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -17,7 +17,7 @@
 #include <iostream>
 
 // Libreria de CImg
-#include "CImg.h"
+#include "CImg/CImg.h"
 /// Usamos su namespace
 using namespace cimg_library;
 
@@ -56,8 +56,8 @@ typedef enum {CROSS='c',DETAILS_CORRECTION='d',NORMAL='n'};
 int main(int argc, char* argv[]){
 	// Mensaje de bienvenida
 	cout << "Flash photography enhancement via intrinsic relighting" << endl << endl;
-	cout << "Implementation by Guillermo Miranda Alamo - guillermo.miranda01@campus.upf.es" << endl << endl;
-	
+	cout << "Implementation by Guillermo Miranda Alamo - gmiranda@teleline.es" << endl << endl;
+
 	// Comprobamos el nº de argumentos
 	if(argc<4){
 		cerr << "[ERROR] This program requires at least two source images and you must choose an option" << endl;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]){
 			<< "Use this for the best results"<< endl;
 		return -2;
 	}
-	
+
 	// Cargamos la imagen con flash
 	CImg<> image(FLASH_FILE);
 	image/=255.0f;
@@ -91,13 +91,13 @@ int main(int argc, char* argv[]){
 	// Ahora la que esta hecha sin flash
 	CImg<> imageNoFlash(NOFLASH_FILE);
 	imageNoFlash/=255.0f;
-	
-	
+
+
 	// Preparamos Image Decoupling a partir de la imagen "image"
-	Decoupling deco(image,imageNoFlash); 
+	Decoupling deco(image,imageNoFlash);
 	image.display("Fotografia con flash original");
 	imageNoFlash.display("Fotografia sin flash original");
-	
+
 	// Obtenemos la intensidad
 	CImg<float> inten=deco.getIntensity(image);
 	(inten*255.0f).display("inten");
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]){
 	// Sumamos para no tener un menos infinito al calcular el logaritmo
 	// Tambien se podria hacer en la imagen directamente
 	inten+=0.001f;
-	
+
 	// Intensidad de la sin flash
 	CImg<float> intenNF =deco.getIntensity(imageNoFlash);
 	intenNF+=0.001f;
@@ -117,9 +117,9 @@ int main(int argc, char* argv[]){
 	kernelG.resize(inten,0);
 	kernelG.display("kernelG redimensionada");
 	CImgl<> kernelFFT = Helper::getFFT(kernelG);
-	
+
 	//inten.get_convolve(kernelG).display();
-		
+
 	CImgl<> intenFFT = Helper::getFFT(inten);
 	cimgl_map(intenFFT,l) intenFFT[l].mul(kernelFFT[l]);
 	//CImgl<> intenFFTi = (intenFFT[0].mul(kernelFFT[0])+intenFFT[1].mul(kernelFFT[1])).get_FFT(true);
@@ -131,11 +131,11 @@ int main(int argc, char* argv[]){
 	//CImg<> inteni=Helper::getiFFT(intenFFT,inten.dimx(),inten.dimy());
 	cout << "Crop" << endl;
 	inteni.display("intensidad suavizada ifft");
-	
-	
 
-	
-	
+
+
+
+
 	// FIN DE PRUEBAS
 
 	// Deteccion de sombras
@@ -143,7 +143,7 @@ int main(int argc, char* argv[]){
 	// Solo se detectan y corrigen si no hacemos cross bilateral
 	if(OPTIONS!=CROSS)
 		shadow=Shadow::shadow(inten,intenNF);
-	
+
 
 	CImg<> largeScale;
 	// Si hacemos no cross bilateral filter
@@ -166,7 +166,7 @@ int main(int argc, char* argv[]){
 
 
 	CImg<float> color = deco.getColor(image.get_log10(),inten.get_log10());
-	
+
 	// Correccion de la capa de color
 	if(OPTIONS!=CROSS){
 		CImg<float> colorNF = deco.getColor(imageNoFlash.get_log10(),intenNF.get_log10());
@@ -182,11 +182,11 @@ int main(int argc, char* argv[]){
 		color=colorCor;
 		color.log10();colorNF.log10();
 	}
-	
+
 	// Hago la diferencia de inten y largeScale
 	CImg<float> details= (inten.get_log10()-largeScale.get_log10());
 
-	
+
 	CImg<float> largeScaleNF;
 	// Si se quiere hacer filtro bilateral cruzado
 	if(OPTIONS==CROSS){
@@ -206,7 +206,7 @@ int main(int argc, char* argv[]){
 	//largeScaleNF.display("Large Scale no flash");
 	// Convertimos la capa largeScale a log10
 	largeScaleNF.log10();
-	
+
 	// Si se quiere que se corrija la capa de detalles
 	if(OPTIONS==DETAILS_CORRECTION){
 		// Cojo los detalles de la imagen sin flash.
@@ -215,7 +215,7 @@ int main(int argc, char* argv[]){
 		details = Shadow::detailsCorrection(details.pow10(),detailsNF.pow10(),shadow).log10();
 	}
 
-	
+
 	CImg<> recons = deco.reconstruct(color,details,largeScaleNF);
 	recons.display("Reconstruccion");
 	// Preparamos para guardar como enteros

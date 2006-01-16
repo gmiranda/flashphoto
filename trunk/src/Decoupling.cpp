@@ -1,17 +1,17 @@
 #include "Decoupling.h"
 
 // Copyright (C) 2005  Guillermo Miranda Alamo
-// 
+//
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation; either
 // version 2.1 of the License, or (at your option) any later version.
-// 
+//
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -20,7 +20,7 @@
  * Constructor.
  * @param imageFlash Imagen sacada con flash.
  * Los valores de esta imagen debe estar en [0,1].
- * @param imageNoFlash Imagen sin flash, mismas condiciones que la anterior. 
+ * @param imageNoFlash Imagen sin flash, mismas condiciones que la anterior.
  *
  * @ToDo: comprobar si tiene que estar YA en formato LUV
  */
@@ -73,7 +73,7 @@ CImg<float>& Decoupling::getIntensity(const CImg<float>& image)const{
 					(image(x,y,2)/(image(x,y,0)+image(x,y,1)+image(x,y,2)))*image(x,y,2);
 		}
 	}
-	
+
 	//inten->RGBtoLuv();
 	inten->channel(0);
 	Helper::truncate(*inten,255,0);
@@ -113,18 +113,18 @@ CImg<float>& Decoupling::bilateralFilter(const CImg<float>& I)const{
 					Pixel Ip((float)x2/I.dimx(),(float)y2/I.dimy());
 					// Producto de las gaussianas
 					register float prod = Helper::gaussianF(Ip.euclidean(Is),_sigmaF);
-					
+
 					// Si el producto es 0, saltamos (mas rapido)
 					if(prod==0.0f)
 						continue;
-					
+
 					// Ahora multiplicamos por la gaussiana de similitud de intensidad
 					prod*=Helper::gaussianG(I(x2,y2)-I(x,y),_sigmaG);
-					
+
 					// Lo mismo
 					if(prod==0.0f)
 						continue;
-					
+
 					// Le sumamos el producto a K
 					k+=prod;
 					// Y al sumatorio le sumamos el producto por la intensidad de p
@@ -136,7 +136,7 @@ CImg<float>& Decoupling::bilateralFilter(const CImg<float>& I)const{
 		}
 	}
 	cerr << endl;
-	
+
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
 	return *J;
@@ -162,11 +162,11 @@ CImg<float>& Decoupling::bilateralFilterAlt(const CImg<float>& I)const{
 	float c_r=1.0/(2.0f*(_sigmaG*_sigmaG));
 	// Y Esta para la espacial
 	float c_d=1.0/(2.0f*(_sigmaF*_sigmaF));
-	
+
 	// Esto es la mitad del tamaño de la ventana
 	int hwin=(int)Helper::max(1,std::ceil(2.1*_sigmaF));
 	cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
-	
+
 	// Construimos squares y gaussian a la vez
 	CImg<> gaussian(2*hwin+1);
 	for(unsigned int p=0;p<gaussian.size();p++){
@@ -182,11 +182,11 @@ CImg<float>& Decoupling::bilateralFilterAlt(const CImg<float>& I)const{
 	/// @ToDo comprobar como son en matlab
 	CImg<> gaussian_d=gaussian.get_transpose()*gaussian;
 	gaussian_d.display("gaussian d");
-	
+
 	// Creamos la imagen en blanco K, que se corresponde con la d
 	// del codigo original en matlab
 	CImg<> K(I,false);
-	
+
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
 		cerr << "\rR=" << r <<" ";
@@ -194,25 +194,25 @@ CImg<float>& Decoupling::bilateralFilterAlt(const CImg<float>& I)const{
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
 			float g=gaussian_d(c+hwin,r+hwin);
-			
+
 			// Imagen con la suma
 			CImg<> s(I,false);
 			// Imagen con algo...
 			CImg<> is(I,false);
-			
+
 			// Aqui tampoco sumamos 1
 			int rs=(int)Helper::max(0,r);
 			// Creo que tendria que restar -1
 			int re=I.dimy()+(int)Helper::min(0,r)-1;
 			int cs=(int)Helper::max(0,c);
 			int ce=I.dimx()+(int)Helper::min(0,c)-1;
-			
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					is(c2,r2)=I(c2-c,r2-r);
 				}
 			}
-			
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					// Calculamos la diferencia
@@ -221,19 +221,19 @@ CImg<float>& Decoupling::bilateralFilterAlt(const CImg<float>& I)const{
 					s(c2,r2)=exp(-c_r*(diferencia*diferencia))*g;
 				}
 			}
-			
+
 			// Ahora incrementamos la K
 			K+=s;
 			// Y añadimos los nuevos pixeles a la imagen resultante
 			(*J)+=s.mul(is);
 		}
 	}
-	
+
 	cerr << endl;
-	
+
 	// Dividimos la imagen por el factor corrector K
 	(*J).div(K);
-	
+
 	((*J)+K).display("J+K");
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
@@ -276,18 +276,18 @@ CImg<float>& Decoupling::bilateralFilter(const CImg<float>& I, const CImg<bool>&
 					// Producto de las gaussianas
 					//cerr << "euclidean p - s="<< Ip.euclidean(Is) << endl;
 					register float prod = Helper::gaussianF(Ip.euclidean(Is),_sigmaF);
-					
+
 					// Si el producto es 0, saltamos (mas rapido)
 					if(prod==0.0f)
 						continue;
-					
+
 					// Ahora multiplicamos por la gaussiana de similitud de intensidad
 					prod*=Helper::gaussianG(I(x2,y2)-I(x,y),_sigmaG);
-					
+
 					// Lo mismo de antes
 					if(prod==0.0f)
 						continue;
-					
+
 					// Le sumamos el producto a K
 					k+=prod;
 					// Y al sumatorio le sumamos el producto por la intensidad de p
@@ -299,7 +299,7 @@ CImg<float>& Decoupling::bilateralFilter(const CImg<float>& I, const CImg<bool>&
 		}
 	}
 	cerr << endl;
-	
+
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
 	return *J;
@@ -337,17 +337,17 @@ CImg<float>& Decoupling::crossBilateralFilter(const CImg<float>& iNF,const CImg<
 					Pixel Ip((float)x2/iNF.dimx(),(float)y2/iNF.dimy());
 					// Producto de las gaussianas
 					register float prod = Helper::gaussianF(Ip.euclidean(Is),_sigmaF);
-					
+
 					// Si el producto es 0, saltamos (mas rapido)
 					if(prod==0.0f)
 						continue;
-					
+
 					prod*=Helper::gaussianG(iF(x2,y2)-iF(x,y),_sigmaG);
-					
+
 					// Lo mismo de antes
 					if(prod==0.0f)
 						continue;
-					
+
 					// Le sumamos el producto a K
 					k+=prod;
 					// Y al sumatorio le sumamos el producto por la intensidad de p
@@ -359,11 +359,11 @@ CImg<float>& Decoupling::crossBilateralFilter(const CImg<float>& iNF,const CImg<
 		}
 	}
 	cerr << endl;
-	
+
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
 	return *J;
-	
+
 }
 
 /**
@@ -384,11 +384,11 @@ CImg<float>& Decoupling::crossBilateralFilterAlt(const CImg<float>& iNF,const CI
 	float c_r=1.0/(2.0f*(_sigmaG*_sigmaG));
 	// Y Esta para la espacial
 	float c_d=1.0/(2.0f*(_sigmaF*_sigmaF));
-	
+
 	// Esto es la mitad del tamaño de la ventana
 	int hwin=(int)Helper::max(1,std::ceil(2.1*_sigmaF));
 	cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
-	
+
 	// Construimos squares y gaussian a la vez
 	CImg<> gaussian(2*hwin+1);
 	for(unsigned int p=0;p<gaussian.size();p++){
@@ -404,11 +404,11 @@ CImg<float>& Decoupling::crossBilateralFilterAlt(const CImg<float>& iNF,const CI
 	/// @ToDo comprobar como son en matlab
 	CImg<> gaussian_d=gaussian.get_transpose()*gaussian;
 	gaussian_d.display("gaussian d");
-	
+
 	// Creamos la imagen en blanco K, que se corresponde con la d
 	// del codigo original en matlab
 	CImg<> K(iNF,false);
-	
+
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
 		cerr << "\rR=" << r <<" ";
@@ -416,25 +416,25 @@ CImg<float>& Decoupling::crossBilateralFilterAlt(const CImg<float>& iNF,const CI
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
 			float g=gaussian_d(c+hwin,r+hwin);
-			
+
 			// Imagen con la suma
 			CImg<> s(iNF,false);
 			// Imagen con algo...
 			CImg<> is(iNF,false);
-			
+
 			// Aqui tampoco sumamos 1
 			int rs=(int)Helper::max(0,r);
 			// Creo que tendria que restar -1
 			int re=iNF.dimy()+(int)Helper::min(0,r)-1;
 			int cs=(int)Helper::max(0,c);
 			int ce=iNF.dimx()+(int)Helper::min(0,c)-1;
-			
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					is(c2,r2)=iF(c2-c,r2-r);
 				}
 			}
-			
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					// Calculamos la diferencia
@@ -443,19 +443,19 @@ CImg<float>& Decoupling::crossBilateralFilterAlt(const CImg<float>& iNF,const CI
 					s(c2,r2)=exp(-c_r*(diferencia*diferencia))*g;
 				}
 			}
-			
+
 			// Ahora incrementamos la K
 			K+=s;
 			// Y añadimos los nuevos pixeles a la imagen resultante
 			(*J)+=s.mul(/*is*/iNF);
 		}
 	}
-	
+
 	cerr << endl;
-	
+
 	// Dividimos la imagen por el factor corrector K
 	(*J).div(K);
-	
+
 	((*J)+K).display("J+K");
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
@@ -499,8 +499,8 @@ CImg<>& Decoupling::gaussianKernel(const int size, const float sigma){
  */
 CImg<>& Decoupling::interpolationWeight(const CImg<>& I, const float ij)const{
 	CImg<>* res=new CImg<>(I,false);
-	
-	for(unsigned int p=0;p<I.size();p++){	
+
+	for(unsigned int p=0;p<I.size();p++){
 		if((I[p]<=ij-1.0f)||(I[p]>=ij+1.0f))
 			(*res)[p]=0.0f;
 		else if((I[p]>ij-1.0f)&&(I[p]<=ij))
@@ -508,7 +508,7 @@ CImg<>& Decoupling::interpolationWeight(const CImg<>& I, const float ij)const{
 		else if((ij>0.0f)&&(ij<1.0f))
 			(*res)[p]=1.0f-I[p];
 	}
-	
+
 	return *res;
 }
 
@@ -528,16 +528,16 @@ CImg<>& Decoupling::piecewiseBilateralFilter(const CImg<float>& I)const{
 
 	// Maximos y minimos de la imagen
 	float maxI=I.max(),minI=I.min();
-	
+
 	// Kernel gaussiano espacial
 	CImg<> f = gaussianKernel(5,_sigmaF);
 	// Y su fft
 	CImgl<> fFFT = Helper::getFFT(f);
-	
+
 	// Se calcula el numero de segmentos
 	int NB_SEGMENTS = /*static_cast<int>( (maxI-minI)/_sigmaG)*/17;
 	cerr << "NB_SEGMENTS = " << NB_SEGMENTS << endl;
-	
+
 	// Para todas las Xs
 	/*for(int y=0;y<I.dimy();y++){
 		cerr << "\rY=" << y;
@@ -567,29 +567,29 @@ CImg<>& Decoupling::piecewiseBilateralFilter(const CImg<float>& I)const{
 				CImg<> K = G.get_convolve(f);
 				//K.display("K");
 				/*CImgl<> kFFT = Helper::getFFT(G);
-				
+
 				kFFT[0].mul(fFFT[0]);
 				kFFT[1].mul(fFFT[1]);
 				CImg<> K = Helper::getiFFT(kFFT,G.dimx(),G.dimy());*/
-				
-				
+
+
 				/*
 				 * Calculo la H, que es la multiplicacion pixel a pixel
 				 * de G por la intensidad
 				 */
 				CImg<> H = G.get_mul(I);
 				//H.display("H");
-				
-				
+
+
 				// Ahora H estrella, que es la convolucion entre H y f
 				CImg<> Hstar = H.convolve(f);
 				/*CImgl<> HstarFFT = Helper::getFFT(H);
-				
+
 				HstarFFT[0].mul(fFFT[0]);
 				//HstarFFT[1].mul(fFFT[1]);
 				CImg<> Hstar = Helper::getiFFT(HstarFFT,H.dimx(),H.dimy());*/
-				
-				
+
+
 				// Ahora J', que es normalizar la H estrella con K
 				CImg<> Jp = Hstar.div(K);
 				//Jp.display("J'");
@@ -600,12 +600,12 @@ CImg<>& Decoupling::piecewiseBilateralFilter(const CImg<float>& I)const{
 					/((maxI-minI)/NB_SEGMENTS);
 					(*J)[pixel]+=Jp[pixel]*wi;
 				}
-				
+
 			}
 		/*}
 }*/
 	cerr << endl;
-	
+
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
 	return *J;
@@ -638,13 +638,13 @@ CImg<float>& Decoupling::getColor(const CImg<float>& intensity)const{
 CImg<float>& Decoupling::getColor(const CImg<>& image, const CImg<float>& intensity)const{
 
 	CImg<float>* color = new CImg<float>(image);
-	
+
 	// La capa de color es la diferencia de la imagen
 	// original y la intensidad en dominio log10
-	color->ref_channel(0)=color->get_channel(0)-intensity;
-	color->ref_channel(1)=color->get_channel(1)-intensity;
-	color->ref_channel(2)=color->get_channel(2)-intensity;
-	
+	color->channelset(0)=color->get_channel(0)-intensity;
+	color->channelset(1)=color->get_channel(1)-intensity;
+	color->channelset(2)=color->get_channel(2)-intensity;
+
 
 	return *color;
 }
@@ -659,23 +659,23 @@ CImg<float>& Decoupling::getColor(const CImg<>& image, const CImg<float>& intens
 CImg<float>& Decoupling::reconstruct(const CImg<>& color, const CImg<>& details, const CImg<> largeScaleNF)const{
 	// Creamos la reconstruccion empezando por el color
 	CImg<>* recons=new CImg<>(color);
-	
+
 	// Al color le sumamos los detalles (hay que hacerlo capa a capa)
-	recons->ref_channel(0)+=details;
-	recons->ref_channel(1)+=details;
-	recons->ref_channel(2)+=details;
-	
+	recons->channelset(0)+=details;
+	recons->channelset(1)+=details;
+	recons->channelset(2)+=details;
+
 	// Ahora sumamos la capa large scale sin flash
-	recons->ref_channel(0)+=largeScaleNF;
-	recons->ref_channel(1)+=largeScaleNF;
-	recons->ref_channel(2)+=largeScaleNF;
-	
+	recons->channelset(0)+=largeScaleNF;
+	recons->channelset(1)+=largeScaleNF;
+	recons->channelset(2)+=largeScaleNF;
+
 	// Volvemos al dominio "normal"
 	recons->pow10();
-	
+
 	// Hago una normalizacion, el resultado es mucho mejor que con truncamiento
 	recons->normalize(0,1);
-	
+
 	// Devolvemos el resultado
 	return *recons;
 }
