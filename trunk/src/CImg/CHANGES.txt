@@ -8,95 +8,11 @@
 
 *-----------------------------
 *-----------------------------
-* Changes from 1.1.0 to 1.1.1 
-*-----------------------------
-*-----------------------------
-
-* Bug corrections :
-    - in 'CImgl<T>::insert()' : Insertion at non-last position was bugged.
-    - in 'greycstoration.cpp' : Corrected some bugs in the algorithm and improved user interface.
-    - in 'CImg<T>::blur_anisotropic()' : Abusive vector normalization was done before. Now it is corrected.
-    - And many other bugs...
-    
-* Optimizations / Modifications :  
-    - Removed macros 'cimg_test*()' and modified argument checking in most of the functions, so that trying to act
-    on an empty image does nothing instead of an error.
-    - Renamed all static methods CImg<T>::load*() into CImg<T>::get_load*(). This has been done to be coherent with
-    the naming convention of other CImg methods. Also, added new functions CImg<T>::load*() (non static) that corresponds
-    to in-place image loading.
-    - Renamed CImg RAW extension from .raw to .cimg. .raw files are not considered as real raw data without
-    header. New functions 'CImg<T>::load_get_raw()' and 'CImg<T>::save_raw()' have been added to load and save .raw files.
-    - In 'greycstoration.cpp' : improved algorithm and parameters. Also add improved visualization tool at the end
-      of the image regularization.
-    - Replaced some cimg:: static functions to inlined one, to prevent compiler bug on VS7.1, when trying
-      to link multiple CImg-based modules.
-    - Replaced parameter 'linear' to 'scheme' in 'CImg<T>::blur_anisotropic()', allowing the use of 2nd order
-      Runge-Kutta integration, instead of just nearest-neighbor or linear ones.
-
-* New features :
-    - Introduced a trait 'cimg::largest' that allows to find the largest data type between two types. CImg functions
-    use it for instance to return a CImg<float>, when trying to compute the gradient of an CImg<unsigned char>.
-    It was not the case before, needing an explicit case, as in 'CImg<float>(img).get_gradientXY()'.
-    - Added 'CImg<T>::operator<<', 'CImgl<T>::operator<<' and 'CImgl<T>::operator>>' that allows to
-    insert images in list or append an image to another one.
-    - New project file for using with X-Code (on Mac OS X) has been added to the 'compilation/' directory.
-     Thanks to Werner Jainek who made it possible.
-
-*-----------------------------
-*-----------------------------
-* Changes from 1.0.9 to 1.1.0 
-*-----------------------------
-*-----------------------------
-
-* Bug corrections :
-    - in 'CImg<T>::load_raw()' : possible buffer overflow corrected.
-    - in 'CImg<T>::load_dlm()' : the use of std::rewind() didn't work when reading the standart input. Function has been
-      recoded so it reads the file in one pass.
-    - Corrected 'CImg<T>::anisotropic_blur()'.
-    - Corrected 'CImg<T>::symeigen()' : corrected computation bugs.
-    - Corrected 'CImg<T>::get_resize()' : linear and bicubic interpolations were not correctly handled (minor).
-    - Corrected 'CImgDisplay' to avoid malloc/dealloc problem with newer versions of X11.
-    - Corrected 'CImgDisplay' to handle better thread termination under X11 (Unix and MacOSX).
-    - Corrected 'greycstoration.cpp' (small bug in inpainting and non-curvature scheme).
-
-* Optimizations / Modifications :
-    - Updated documentation.
-    - Modified Makefile for direct compilation of executables under Linux (ex : make CImg_test).	
-    - Modified Exceptions error messages for more simplicity and clarity.
-    - Removed parameter 'alpha' in 'CImg<T>::get_gradientXY()' and 'CImg<T>::get_gradientXYZ()'.
-    - Renamed 'CImg<T>::flip()' to 'CImg<T>::mirror()'.
-    - Renamed 'CImg<T>::get_3dplanes()' to 'CImg<T>::get_2dprojections()'.
-    - Renamed 'CImgROI<T>' to 'CImgSubset<T>'. Also removed functions 'CImg<T>::ref_*' and replaced it by
-    'CImg<T>::pointset()', 'CImg<T>::lineset', 'CImg<T>::planeset' and 'CImg<T>::channelset'.
-
-* New features :   
-    - Added 'CImg<T>::RGBtoLUT()' and 'CImg<T>::LUTtoRGB()' that convert an RGB image to an indexed image (using a palette).
-    - Added 8 bits display mode support in CImgDisplay. 
-    - Added 'CImg<T>::RGBtoHSV()' and 'CImg<T>::HSVtoRGB()' that handle the conversion from and to HSV color space.
-    - Added 'CImg<T>::kth_smallest()' and 'CImg<T>::median()' that find respectively the kth smallest
-      element and the median of values in a CImg<T> instance.
-    - Added 'CImg<T>::blur_median()' and 'CImg<T>::get_blur_median()' that apply a median filter on an image.
-    - Added 'CImg<T>::load_parrec()' able to read PAR-REC (Philips) image file formats.
-    - Added 'CImgDisplay::title()' that can be used to change the display window title.
-    - Added 'CImg<T>::RGBtoYUV()' and 'CImg<T>::YUVtoRGB()' that convert between RGB and YUV color spaces.
-    - Added 'CImg<T>::RGBtoYCbCr8()' and 'CImg<T>::YCbCr8toRGB()' that convert between RGB and YCbCr color spaces (for unsigned char
-    pixels).
-    - Added 'CImg<T>::has_same*()' where * can be 'X','Y','Z','XY','XYZ','XYZV' to compare image dimensions.
-    - Added 'CImg<T>::is_empty()' that returns 'true' is the image is empty.
-    - Added 'CImg<T>::load_dicom()' that loads an image in Dicom file format. This function uses the tool 'medcon' that
-    has to be installed (http://xmedcon.sourceforge.net/).
-    - Added 'CImg<T>::load_yuv()', 'CImgl<T>::load_yuv()' and 'CImg<T>::save_yuv()', 'CImgk<T>::save_yuv()'
-     that load and save respectively one frame or the entire movie from a .yuv file.
-    - Added 'CImglSubset<T>' which is a class that sub-references an image list 'CImgl<T>'.
-
-*-----------------------------
-*-----------------------------
 * Changes from 1.0.8 to 1.0.9
 *-----------------------------
 *-----------------------------
 
 * Bug corrections :
-    - Memory leak corrected in 'CImg<T>::load_bmp()'.
     - CImg now supports the MIPS compiler on SGI (Thanks to Matt Hanson who made it possible).
     - Corrected non-global X11 variables in multi-module projects using CImg.h (thanks also to Matt Hanson for
     his precise bug report).

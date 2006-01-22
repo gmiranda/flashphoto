@@ -17,7 +17,7 @@
 #include <iostream>
 
 // Libreria de CImg
-#include "CImg/CImg.h"
+#include "CImg.h"
 /// Usamos su namespace
 using namespace cimg_library;
 
@@ -150,8 +150,8 @@ int main(int argc, char* argv[]){
 	if(OPTIONS!=CROSS){
 		// Utilizamos la sombra para calcular la large scale
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
-		//largeScale=CImg<>("largeScaleF.png");
-		largeScale= deco.bilateralFilter(inten,shadow);
+		largeScale=CImg<>("largeScaleF.bmp");
+		//largeScale= deco.bilateralFilter(inten,shadow);
 	}
 	// Si lo hacemos
 	else{
@@ -160,12 +160,13 @@ int main(int argc, char* argv[]){
 		//largeScale= deco.bilateralFilterAlt(inten);
 		largeScale.display("Large Scale");
 	}
-	//largeScale/=255.0f;	// Descomenta si cargas de archivo
-	(largeScale*255.0f).save("largeScaleF.png");
+	largeScale/=255.0f;	// Descomenta si cargas de archivo
+	(largeScale*255.0f).save("largeScaleF.bmp");
 	//largeScale.display("Large Scale Flash");
 
 
 	CImg<float> color = deco.getColor(image.get_log10(),inten.get_log10());
+
 
 	// Correccion de la capa de color
 	if(OPTIONS!=CROSS){
@@ -174,7 +175,7 @@ int main(int argc, char* argv[]){
 		CImg<> colorCor=Shadow::colorCorrection(colorNF,color,shadow);
 		// Hay que normalizar para devolver los valores a su rango
 		colorCor.normalize(0.0f,1.0f);
-		(colorCor*255.0f).save("colorcor.png");
+		(colorCor*255.0f).save("colorcor.bmp");
 		// Descomenta esta linea para cargar la correccion de color,
 		//y comenta hasta Shadow::colorCorrection()
 		//CImg<> colorCor("colorcor.png");colorCor/=255.0f;
@@ -199,10 +200,10 @@ int main(int argc, char* argv[]){
 	else{
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
 		//largeScaleNF=CImg<>("largeScaleNF.png");
-		largeScaleNF= deco.bilateralFilterAlt(intenNF);
+		largeScaleNF= deco.bilateralFilter/*Alt*/(intenNF);
 	}
 	//largeScaleNF/=255.0f;	// Descomenta esto si cargas de archivo
-	(largeScaleNF*255.0f).save("largeScaleNF.png");
+	(largeScaleNF*255.0f).save("largeScaleNF.bmp");
 	//largeScaleNF.display("Large Scale no flash");
 	// Convertimos la capa largeScale a log10
 	largeScaleNF.log10();
@@ -221,7 +222,7 @@ int main(int argc, char* argv[]){
 	// Preparamos para guardar como enteros
 	recons*=255.0f;
 	// Guardamos
-	recons.save("reconstruccion.png");
+	recons.save("reconstruccion.bmp");
 
 	return 0;
 }

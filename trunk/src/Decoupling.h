@@ -24,7 +24,7 @@ using std::endl;
 #include <cmath>
 
 // Biblioteca de CImg
-#include "CImg/CImg.h"
+#include "CImg.h"
 // Usamos su namespace
 using namespace cimg_library;
 

@@ -10,7 +10,7 @@
 
                                    ( http://cimg.sourceforge.net )
 
-				              v.1.1.1
+                                               v.1.0.9
 
 ------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@
  The CImg Library project started during the year 2000, at the INRIA-Sophia Antipolis/France
  (http://www-sop.inria.fr) when I did my PhD thesis.
  Since October 2004, it is maintained and developed in the Image group of the GREYC Lab (CNRS, UMR 6072),
- in Caen/France ( http://www.greyc.ensicaen.fr/EquipeImage/ ).
+ in Caen/France (http://www.greyc.ensicaen.fr/EquipeImage).
 
 # License
 #---------
@@ -43,9 +43,9 @@
  The CeCiLL license is a free-software license, created under the supervision of the three biggest 
  research institutions on computer sciences in France :
 
-   - CNRS  ( http://www.cnrs.fr/ )
-   - CEA   ( http://www.cea.fr/ )
-   - INRIA ( http://www.inria.fr/ )
+   - CNRS  (http://www.cnrs.fr)
+   - CEA   (http://www.cea.fr)
+   - INRIA (http://www.inria.fr)
 
  The CeCiLL license is compatible with the GNU GPL : you can legally redistribute CImg-based programs in GPL.
  You have to RESPECT this license. Particularly, all distributed programs using parts of the CImg Library MUST
@@ -83,11 +83,12 @@
    * pde_heatflow2D.cpp           : An implementation of the Heat Flow PDE applied on a 2D image.
    * pde_TschumperleDeriche2D.cpp : An implementation of the restoration/inpainting PDE, as described 
                                     in Tschumperle-Deriche:CVPR'03 (monoscale).
+   * pde_TschumperleDeriche3D.cpp : Same as 'pde_TschumperleDeriche2D.cpp' for 3D volumes of data.
    * pslider.cpp                  : A tool to generate and view presentations from Postscript files.
    * render3d.cpp                 : An example of 3D object rendering using CImg drawing functions.
    * tetris.cpp                   : An implementation of the well-known tetris game in few lines.
    * tutorial.cpp                 : A very simple code to get started with the CImg library.
-   * wavelet_atrous.cpp           : An example of wavelet transform.
+   * wavelet_atrous.cpp           : An exemple of wavelet transform.
 
   - documentation/ : Directory containing a copy of the CImg web page in html format. To generate the 
                      reference documentation, you have to use the tool 'doxygen' 

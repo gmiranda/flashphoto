@@ -298,7 +298,11 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 CImg<>& Shadow::detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& detailsNoFlash, const CImg<bool>& shadow){
 	// Escalamos los detalles de la imagen no flash
 	CImg<> detailsNFscaled(detailsNoFlash);
-	detailsNFscaled.normalize(detailsCorrected.min(),detailsCorrected.max());
+	// Image statistics (for min and max)
+	const CImgStats stats(detailsCorrected); 
+	
+	// Adjust the details image
+	detailsNFscaled.normalize(stats.min,stats.max);
 	
 	// La nueva imagen, no se le dan valores todavia
 	CImg<>* details = new CImg<>(/*detailsCorrected,false*/detailsNFscaled);

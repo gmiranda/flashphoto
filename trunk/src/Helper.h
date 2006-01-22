@@ -21,7 +21,7 @@
 #include <cmath>
 
 /// Incluimos la biblioteca de CImg
-#include "CImg/CImg.h"
+#include "CImg.h"
 using namespace cimg_library;
 
 /// Cosas de la biblioteca estandar

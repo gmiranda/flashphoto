@@ -526,8 +526,11 @@ CImg<>& Decoupling::piecewiseBilateralFilter(const CImg<float>& I)const{
 	// La imagen J que devolvemos
 	CImg<>* J = new CImg<>(I,false);
 
-	// Maximos y minimos de la imagen
-	float maxI=I.max(),minI=I.min();
+	
+	// Image statistics (for min and max)
+	const CImgStats stats(I); 
+	// Maximum and min pixel of the image
+	float maxI=stats.min,minI=stats.min;
 
 	// Kernel gaussiano espacial
 	CImg<> f = gaussianKernel(5,_sigmaF);
@@ -641,16 +644,16 @@ CImg<float>& Decoupling::getColor(const CImg<>& image, const CImg<float>& intens
 
 	// La capa de color es la diferencia de la imagen
 	// original y la intensidad en dominio log10
-	color->channelset(0)=color->get_channel(0)-intensity;
-	color->channelset(1)=color->get_channel(1)-intensity;
-	color->channelset(2)=color->get_channel(2)-intensity;
+	color->ref_channel(0)=color->get_channel(0)-intensity;
+	color->ref_channel(1)=color->get_channel(1)-intensity;
+	color->ref_channel(2)=color->get_channel(2)-intensity;
 
 
 	return *color;
 }
 
 /**
- * Reconstruye la imagen a partir de las imágenes descompuestas.
+ * Reconstruye la imagen a partir de las imagenes descompuestas.
  * @param color Capa de color. Ha de estar en log10.
  * @param details Capa de detalles. Ha de estar en log10.
  * @param largeScaleNF capa large scale sin flash. Ha de estar en log10.
@@ -661,17 +664,27 @@ CImg<float>& Decoupling::reconstruct(const CImg<>& color, const CImg<>& details,
 	CImg<>* recons=new CImg<>(color);
 
 	// Al color le sumamos los detalles (hay que hacerlo capa a capa)
-	recons->channelset(0)+=details;
-	recons->channelset(1)+=details;
-	recons->channelset(2)+=details;
+	recons->ref_channel(0)+=details;
+	recons->ref_channel(1)+=details;
+	recons->ref_channel(2)+=details;
+
+	//pruebas
+	recons->pow10();
+	recons->display("color+details");
+	recons->log10();
+	//pruebas
 
 	// Ahora sumamos la capa large scale sin flash
-	recons->channelset(0)+=largeScaleNF;
-	recons->channelset(1)+=largeScaleNF;
-	recons->channelset(2)+=largeScaleNF;
+	recons->ref_channel(0)+=largeScaleNF;
+	recons->ref_channel(1)+=largeScaleNF;
+	recons->ref_channel(2)+=largeScaleNF;
 
 	// Volvemos al dominio "normal"
 	recons->pow10();
+	//pruebas
+	recons->display("color+details+largescaleNF");
+	//pruebas
+
 
 	// Hago una normalizacion, el resultado es mucho mejor que con truncamiento
 	recons->normalize(0,1);
