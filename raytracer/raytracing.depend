@@ -1,0 +1,74 @@
+# depslib dependency file v1.0
+1144359160 d:\mis documentos\uni\imagen sintetica\raytracing\src\camera.cpp
+	"raytracer.h"
+	<math.h>
+
+1144358506 d:\mis documentos\uni\imagen sintetica\raytracing\src\raytracer.h
+	<iostream>
+	"geometry.h"
+	"material.h"
+	"rtobject.h"
+	"camera.h"
+	"light.h"
+
+1113210296 d:\mis documentos\uni\imagen sintetica\raytracing\src\geometry.h
+	"vector_template.h"
+
+1144083072 d:\mis documentos\uni\imagen sintetica\raytracing\src\vector_template.h
+	<cmath>
+
+1082065912 d:\mis documentos\uni\imagen sintetica\raytracing\src\material.h
+	<map>
+	<string>
+
+1049382946 d:\mis documentos\uni\imagen sintetica\raytracing\src\rtobject.h
+	"line.h"
+	<list>
+
+1049383418 d:\mis documentos\uni\imagen sintetica\raytracing\src\line.h
+	"geometry.h"
+
+1144084208 d:\mis documentos\uni\imagen sintetica\raytracing\src\camera.h
+
+1049383196 d:\mis documentos\uni\imagen sintetica\raytracing\src\light.h
+	<list>
+
+1082065862 d:\mis documentos\uni\imagen sintetica\raytracing\src\image.cpp
+	<cassert>
+	"image.h"
+
+1082065584 d:\mis documentos\uni\imagen sintetica\raytracing\src\image.h
+	<string.h>
+	<cstdio>
+	"geometry.h"
+
+1049276026 d:\mis documentos\uni\imagen sintetica\raytracing\src\io.cpp
+	"raytracer.h"
+
+1082066196 d:\mis documentos\uni\imagen sintetica\raytracing\src\line.cpp
+	<stdio.h>
+	"line.h"
+
+1049382522 d:\mis documentos\uni\imagen sintetica\raytracing\src\material.cpp
+	"raytracer.h"
+
+1049458112 d:\mis documentos\uni\imagen sintetica\raytracing\src\plane.cpp
+	"plane.h"
+
+1049385148 d:\mis documentos\uni\imagen sintetica\raytracing\src\plane.h
+	"raytracer.h"
+
+1049383346 d:\mis documentos\uni\imagen sintetica\raytracing\src\rtobject.cpp
+	"raytracer.h"
+
+1082065200 d:\mis documentos\uni\imagen sintetica\raytracing\src\sphere.cpp
+	"sphere.h"
+
+1049384876 d:\mis documentos\uni\imagen sintetica\raytracing\src\sphere.h
+	"raytracer.h"
+
+1144358166 d:\mis documentos\uni\imagen sintetica\raytracing\src\main.cpp
+	"raytracer.h"
+	"sphere.h"
+	"plane.h"
+
