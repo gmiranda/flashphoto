@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="src\main.cpp" open="1" top="0">
+		<Cursor position="530" topLine="0"/>
+	</File>
+	<File name="src\raytracer.cpp" open="1" top="1">
+		<Cursor position="279" topLine="0"/>
+	</File>
+</CodeBlocks_layout_file>

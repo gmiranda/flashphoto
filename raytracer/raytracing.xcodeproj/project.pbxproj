@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DD76F6A0486A84900D96B5E /* raytracing.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* raytracing.1 */; };
+		B311C41A09E96C3700670206 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40509E96C3700670206 /* camera.cpp */; };
+		B311C41B09E96C3700670206 /* camera.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C40609E96C3700670206 /* camera.h */; };
+		B311C41C09E96C3700670206 /* geometry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C40709E96C3700670206 /* geometry.h */; };
+		B311C41D09E96C3700670206 /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40809E96C3700670206 /* image.cpp */; };
+		B311C41E09E96C3700670206 /* image.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C40909E96C3700670206 /* image.h */; };
+		B311C41F09E96C3700670206 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40A09E96C3700670206 /* io.cpp */; };
+		B311C42009E96C3700670206 /* light.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C40B09E96C3700670206 /* light.h */; };
+		B311C42109E96C3700670206 /* line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40C09E96C3700670206 /* line.cpp */; };
+		B311C42209E96C3700670206 /* line.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C40D09E96C3700670206 /* line.h */; };
+		B311C42309E96C3700670206 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40E09E96C3700670206 /* main.cpp */; };
+		B311C42409E96C3700670206 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C40F09E96C3700670206 /* material.cpp */; };
+		B311C42509E96C3700670206 /* material.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41009E96C3700670206 /* material.h */; };
+		B311C42609E96C3700670206 /* plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C41109E96C3700670206 /* plane.cpp */; };
+		B311C42709E96C3700670206 /* plane.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41209E96C3700670206 /* plane.h */; };
+		B311C42809E96C3700670206 /* raytracer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C41309E96C3700670206 /* raytracer.cpp */; };
+		B311C42909E96C3700670206 /* raytracer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41409E96C3700670206 /* raytracer.h */; };
+		B311C42A09E96C3700670206 /* rtobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C41509E96C3700670206 /* rtobject.cpp */; };
+		B311C42B09E96C3700670206 /* rtobject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41609E96C3700670206 /* rtobject.h */; };
+		B311C42C09E96C3700670206 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B311C41709E96C3700670206 /* sphere.cpp */; };
+		B311C42D09E96C3700670206 /* sphere.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41809E96C3700670206 /* sphere.h */; };
+		B311C42E09E96C3700670206 /* vector_template.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B311C41909E96C3700670206 /* vector_template.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		014CEA460018CE2711CA2923 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		014CEA470018CE2711CA2923 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76F690486A84900D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				8DD76F6A0486A84900D96B5E /* raytracing.1 in CopyFiles */,
+				B311C41B09E96C3700670206 /* camera.h in CopyFiles */,
+				B311C41C09E96C3700670206 /* geometry.h in CopyFiles */,
+				B311C41E09E96C3700670206 /* image.h in CopyFiles */,
+				B311C42009E96C3700670206 /* light.h in CopyFiles */,
+				B311C42209E96C3700670206 /* line.h in CopyFiles */,
+				B311C42509E96C3700670206 /* material.h in CopyFiles */,
+				B311C42709E96C3700670206 /* plane.h in CopyFiles */,
+				B311C42909E96C3700670206 /* raytracer.h in CopyFiles */,
+				B311C42B09E96C3700670206 /* rtobject.h in CopyFiles */,
+				B311C42D09E96C3700670206 /* sphere.h in CopyFiles */,
+				B311C42E09E96C3700670206 /* vector_template.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DD76F6C0486A84900D96B5E /* raytracing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracing; sourceTree = BUILT_PRODUCTS_DIR; };
+		B311C40509E96C3700670206 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = src/camera.cpp; sourceTree = "<group>"; };
+		B311C40609E96C3700670206 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = camera.h; path = src/camera.h; sourceTree = "<group>"; };
+		B311C40709E96C3700670206 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = geometry.h; path = src/geometry.h; sourceTree = "<group>"; };
+		B311C40809E96C3700670206 /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = image.cpp; path = src/image.cpp; sourceTree = "<group>"; };
+		B311C40909E96C3700670206 /* image.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = image.h; path = src/image.h; sourceTree = "<group>"; };
+		B311C40A09E96C3700670206 /* io.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = io.cpp; path = src/io.cpp; sourceTree = "<group>"; };
+		B311C40B09E96C3700670206 /* light.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = light.h; path = src/light.h; sourceTree = "<group>"; };
+		B311C40C09E96C3700670206 /* line.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = line.cpp; path = src/line.cpp; sourceTree = "<group>"; };
+		B311C40D09E96C3700670206 /* line.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = line.h; path = src/line.h; sourceTree = "<group>"; };
+		B311C40E09E96C3700670206 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		B311C40F09E96C3700670206 /* material.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = material.cpp; path = src/material.cpp; sourceTree = "<group>"; };
+		B311C41009E96C3700670206 /* material.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = material.h; path = src/material.h; sourceTree = "<group>"; };
+		B311C41109E96C3700670206 /* plane.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = plane.cpp; path = src/plane.cpp; sourceTree = "<group>"; };
+		B311C41209E96C3700670206 /* plane.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = plane.h; path = src/plane.h; sourceTree = "<group>"; };
+		B311C41309E96C3700670206 /* raytracer.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = raytracer.cpp; path = src/raytracer.cpp; sourceTree = "<group>"; };
+		B311C41409E96C3700670206 /* raytracer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = raytracer.h; path = src/raytracer.h; sourceTree = "<group>"; };
+		B311C41509E96C3700670206 /* rtobject.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = rtobject.cpp; path = src/rtobject.cpp; sourceTree = "<group>"; };
+		B311C41609E96C3700670206 /* rtobject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = rtobject.h; path = src/rtobject.h; sourceTree = "<group>"; };
+		B311C41709E96C3700670206 /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = sphere.cpp; path = src/sphere.cpp; sourceTree = "<group>"; };
+		B311C41809E96C3700670206 /* sphere.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = sphere.h; path = src/sphere.h; sourceTree = "<group>"; };
+		B311C41909E96C3700670206 /* vector_template.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = vector_template.h; path = src/vector_template.h; sourceTree = "<group>"; };
+		C6859E8B029090EE04C91782 /* raytracing.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = raytracing.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F660486A84900D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* raytracing */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6859E8C029090F304C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = raytracing;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B311C40509E96C3700670206 /* camera.cpp */,
+				B311C40609E96C3700670206 /* camera.h */,
+				B311C40709E96C3700670206 /* geometry.h */,
+				B311C40809E96C3700670206 /* image.cpp */,
+				B311C40909E96C3700670206 /* image.h */,
+				B311C40A09E96C3700670206 /* io.cpp */,
+				B311C40B09E96C3700670206 /* light.h */,
+				B311C40C09E96C3700670206 /* line.cpp */,
+				B311C40D09E96C3700670206 /* line.h */,
+				B311C40E09E96C3700670206 /* main.cpp */,
+				B311C40F09E96C3700670206 /* material.cpp */,
+				B311C41009E96C3700670206 /* material.h */,
+				B311C41109E96C3700670206 /* plane.cpp */,
+				B311C41209E96C3700670206 /* plane.h */,
+				B311C41309E96C3700670206 /* raytracer.cpp */,
+				B311C41409E96C3700670206 /* raytracer.h */,
+				B311C41509E96C3700670206 /* rtobject.cpp */,
+				B311C41609E96C3700670206 /* rtobject.h */,
+				B311C41709E96C3700670206 /* sphere.cpp */,
+				B311C41809E96C3700670206 /* sphere.h */,
+				B311C41909E96C3700670206 /* vector_template.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76F6C0486A84900D96B5E /* raytracing */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6859E8C029090F304C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				C6859E8B029090EE04C91782 /* raytracing.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F620486A84900D96B5E /* raytracing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "raytracing" */;
+			buildPhases = (
+				8DD76F640486A84900D96B5E /* Sources */,
+				8DD76F660486A84900D96B5E /* Frameworks */,
+				8DD76F690486A84900D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+			};
+			dependencies = (
+			);
+			name = raytracing;
+			productInstallPath = "$(HOME)/bin";
+			productName = raytracing;
+			productReference = 8DD76F6C0486A84900D96B5E /* raytracing */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "raytracing" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				014CEA460018CE2711CA2923 /* Debug */,
+				014CEA470018CE2711CA2923 /* Release */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* raytracing */;
+			projectDirPath = "";
+			targets = (
+				8DD76F620486A84900D96B5E /* raytracing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F640486A84900D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B311C41A09E96C3700670206 /* camera.cpp in Sources */,
+				B311C41D09E96C3700670206 /* image.cpp in Sources */,
+				B311C41F09E96C3700670206 /* io.cpp in Sources */,
+				B311C42109E96C3700670206 /* line.cpp in Sources */,
+				B311C42309E96C3700670206 /* main.cpp in Sources */,
+				B311C42409E96C3700670206 /* material.cpp in Sources */,
+				B311C42609E96C3700670206 /* plane.cpp in Sources */,
+				B311C42809E96C3700670206 /* raytracer.cpp in Sources */,
+				B311C42A09E96C3700670206 /* rtobject.cpp in Sources */,
+				B311C42C09E96C3700670206 /* sphere.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB923208733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "$(HOME)/bin";
+				PRODUCT_NAME = raytracing;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB923308733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "$(HOME)/bin";
+				PRODUCT_NAME = raytracing;
+			};
+			name = Release;
+		};
+		1DEB923608733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB923708733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "raytracing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923208733DC60010E9CD /* Debug */,
+				1DEB923308733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "raytracing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923608733DC60010E9CD /* Debug */,
+				1DEB923708733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
