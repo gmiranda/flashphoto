@@ -27,6 +27,7 @@ void CRayTracer::render() {
 	{
 	  printf("\b=>");
 	  fflush(stdout);
+	  // TODO (Guille#9#): para que compile en win32 :P
 	  //sleep(1); //pq es vegi
 	}
       for(int j=0;j<camera.getYRes();j++)
@@ -64,9 +65,9 @@ bool CRayTracer::intersects(CLine &line) {
 		// Si la linea intersecta al objeto
 		if(obj->hits(line,t)){
 			// Guardamos el objeto con el que chocamos
-			line->obj=obj;
+			line.obj=obj;
 			// Guardamos la distancia de intersección
-			line->t=t;
+			line.t=t;
 			// Guay
 			return true;
 		}
@@ -80,7 +81,11 @@ bool CRayTracer::intersects(CLine &line) {
 / Returns in line.color the color captured by the line.
 /----------------------------------------------------------------------*/
 void CRayTracer::trace(CLine &line) {
-	// ...
+	// Obtenemos el material del objeto
+	CMaterial* mat = line.obj->getMaterial();
+
+	// Cogemos el color difuso que da esta linea
+	line.color=mat->getDiffuseColor(line.loc);
 }
 
 /*-<==>-----------------------------------------------------------------
