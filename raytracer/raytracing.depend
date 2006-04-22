@@ -94,7 +94,7 @@
 	<map>
 	<string>
 
-1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.h
+1145728984 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.h
 	"line.h"
 	<list>
 
@@ -122,7 +122,7 @@
 	<stdio.h>
 	"line.h"
 
-1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+1145728793 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
 	"raytracer.h"
 	"sphere.h"
 	"plane.h"
@@ -136,12 +136,17 @@
 1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.cpp
 	"raytracer.h"
 
-1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.cpp
+1145728313 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.cpp
 	"plane.h"
 
-1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.cpp
+1145728807 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.cpp
 	"raytracer.h"
 
 1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\sphere.cpp
 	"sphere.h"
+
+1145728559 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+	<assert.h>
+	"raytracer.h"
+	"image.h"
 

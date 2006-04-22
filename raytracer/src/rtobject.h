@@ -10,7 +10,7 @@ class CRTObject {
 
 protected:
   VECTOR 		loc;						// Position of the object
-  CMaterial *material;      // Current material of the object. The materil 
+  CMaterial	*material;      // Current material of the object. The materil
                             // object pointed is not owned by the this CRTObject
 
 public:
@@ -19,6 +19,10 @@ public:
   virtual ~CRTObject();
 
 	// Get/Set members common to all objects
+	// TODO (Guille#1#): Esto peta, hay que arreglarlo.\
+	He investigado y tiene una direccion de memoria.\
+	He mirado si es cosas de casting, pero tampoco.\
+	A lo mejor tu tienes mas suerte
   CMaterial *getMaterial() const { return material; }
   void    setMaterial (CMaterial *new_material);
   void    setLocation (const VECTOR &loc);

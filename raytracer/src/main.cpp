@@ -14,17 +14,17 @@ void CRayTracer::load () {
   // Define some materials
   materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0);
   materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0);
- 
+
   // Add a sphere
-  CSphere *sph = new CSphere(50);
+  /*CSphere *sph = new CSphere(50);
   sph->setLocation (VECTOR(0,50,0));
   sph->setMaterial (materials["blue"]);
-  objects.push_back (sph); 
+  objects.push_back (sph); */
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
   plane->setMaterial (materials["orange"]);
-  objects.push_back (plane); 
+  objects.push_back (plane);
 
   // Add a single white light
   CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
@@ -35,7 +35,7 @@ void CRayTracer::load () {
 /*-<==>-----------------------------------------------------------------
 / MAIN
 /----------------------------------------------------------------------*/
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
   printf("GayTracer is tracing...\n");
   CRayTracer rt;

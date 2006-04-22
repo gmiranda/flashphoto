@@ -33,6 +33,9 @@ void CRayTracer::render() {
       for(int j=0;j<camera.getYRes();j++)
 	{
 	  raig=new CLine(camera.getLineAt(i,j));
+	  // Buscamos interseccion
+	  intersects(*raig);
+	  trace(*raig);
 
 	  resultat.setPixel(i, j,raig->color);
 	  delete raig;
@@ -64,6 +67,7 @@ bool CRayTracer::intersects(CLine &line) {
 		SCALAR t;
 		// Si la linea intersecta al objeto
 		if(obj->hits(line,t)){
+			//std::cerr << "Inteseccion, amigo conductor" << std::endl;
 			// Guardamos el objeto con el que chocamos
 			line.obj=obj;
 			// Guardamos la distancia de intersección
@@ -83,7 +87,8 @@ bool CRayTracer::intersects(CLine &line) {
 void CRayTracer::trace(CLine &line) {
 	// Obtenemos el material del objeto
 	CMaterial* mat = line.obj->getMaterial();
-
+	std::cerr << "mat=" << mat << std::endl;
+	assert(mat!=0);
 	// Cogemos el color difuso que da esta linea
 	line.color=mat->getDiffuseColor(line.loc);
 }
