@@ -27,7 +27,7 @@ void CRayTracer::render() {
 	{
 	  printf("\b=>");
 	  fflush(stdout);
-	  sleep(1); //pq es vegi
+	  //sleep(1); //pq es vegi
 	}
       for(int j=0;j<camera.getYRes();j++)
 	{
@@ -46,18 +46,34 @@ void CRayTracer::render() {
 / Find which object and at which 't' the line hits and object
 / from the scene.
 / Returns true if the object hits some object
+\ Nota: sera 'if the line hits some object' o si acaso any
+http://www.amazon.com/gp/product/B00004R8L6/qid=1145724283/sr=8-1/ref=pd_bbs_1/002-8316345-3944001?%5Fencoding=UTF8&v=glance&n=229534
 /----------------------------------------------------------------------*/
 bool CRayTracer::intersects(CLine &line) {
 	// ...
-
+	// ^Que coño es esto?
 	// Example of traversing all the objects registered in the scene
 	// Same thing for lights
 	LRTObjects::iterator i = objects.begin();
 	while( i != objects.end() ) {
 		CRTObject *obj = *i++;
 		// At this point we can use obj->method...
-
+		// TODO (Guille#1#): No tengo ni idea de que pasarle como segundo param
+		// (Guille): Creo que nos devuelve donde colisiona
+		SCALAR t;
+		// Si la linea intersecta al objeto
+		if(obj->hits(line,t)){
+			// Guardamos el objeto con el que chocamos
+			line->obj=obj;
+			// Guardamos la distancia de intersección
+			line->t=t;
+			// Guay
+			return true;
+		}
 	}
+
+	// Mala suerte...
+	return false;
 }
 
 /*-<==>-----------------------------------------------------------------

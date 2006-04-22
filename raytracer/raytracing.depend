@@ -72,3 +72,70 @@
 	"sphere.h"
 	"plane.h"
 
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\camera.cpp
+	"raytracer.h"
+	<math.h>
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.h
+	<iostream>
+	"geometry.h"
+	"material.h"
+	"rtobject.h"
+	"camera.h"
+	"light.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\geometry.h
+	"vector_template.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\vector_template.h
+	<cmath>
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.h
+	<map>
+	<string>
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.h
+	"line.h"
+	<list>
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.h
+	"geometry.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\camera.h
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\light.h
+	<list>
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\image.cpp
+	<cassert>
+	"image.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\image.h
+	<string.h>
+	<cstdio>
+	"geometry.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\io.cpp
+	"raytracer.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.cpp
+	<stdio.h>
+	"line.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+	"raytracer.h"
+	"sphere.h"
+	"plane.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\sphere.h
+	"raytracer.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.h
+	"raytracer.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.cpp
+	"raytracer.h"
+
+1145721237 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.cpp
+	"plane.h"
+
