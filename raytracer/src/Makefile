@@ -40,5 +40,5 @@ $(PROGRAM): $(OBJS)
 	$(CC) $(OBJS) -o $(PROGRAM) $(LDFLAGS)
 
 clean:
-	/bin/rm -f $(OBJS) $(PROGRAM)
+	/bin/rm -f $(OBJS) $(PROGRAM) *~
 

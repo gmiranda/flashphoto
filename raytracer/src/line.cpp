@@ -21,6 +21,13 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal) {
 	// ..
 }
 
+const CLine& CLine::operator++()
+{
+  level++;
+  return *this;
+}
+
+
 /*-<==>-----------------------------------------------------------------
 / 
 /----------------------------------------------------------------------*/

@@ -23,6 +23,7 @@ public:
 	He investigado y tiene una direccion de memoria.\
 	He mirado si es cosas de casting, pero tampoco.\
 	A lo mejor tu tienes mas suerte
+
   CMaterial *getMaterial() const { return material; }
   void    setMaterial (CMaterial *new_material);
   void    setLocation (const VECTOR &loc);

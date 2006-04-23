@@ -27,6 +27,7 @@ public:
   int 	 getLevel() const;
 	// add a color amount to color of this line
   void   addColor(const VECTOR &amount);
+  const CLine& operator++();
 
   CLine getReflected(const VECTOR &nloc, const VECTOR &normal);
 };

@@ -12,6 +12,7 @@ CSolidMaterial::CSolidMaterial(const COLOR &diffuse, SCALAR reflectance) {
 / Diffuse and reflectance parameters are independent of the position
 /----------------------------------------------------------------------*/
 COLOR  CSolidMaterial::getDiffuseColor(const VECTOR &loc) const { 
+  //std::cout <<  loc << std::endl;
   return diffuse_color; 
 }
 

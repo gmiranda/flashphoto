@@ -33,10 +33,19 @@ void CRayTracer::render() {
       for(int j=0;j<camera.getYRes();j++)
 	{
 	  raig=new CLine(camera.getLineAt(i,j));
-	  // Buscamos interseccion
-	  intersects(*raig);
+	  background(*raig);
 	  trace(*raig);
-
+	  
+	  // lo que MMX ho fa sol ho fem a mà :)
+	  //saturació
+	  raig->color.x=(raig->color.x>1)?1:raig->color.x;
+	  raig->color.y=(raig->color.y>1)?1:raig->color.y;
+	  raig->color.z=(raig->color.z>1)?1:raig->color.z;
+	  //
+	  raig->color.x=(raig->color.x<0)?0:raig->color.x;
+	  raig->color.y=(raig->color.y<0)?0:raig->color.y;
+	  raig->color.z=(raig->color.z<0)?0:raig->color.z;
+	  
 	  resultat.setPixel(i, j,raig->color);
 	  delete raig;
 	}
@@ -53,50 +62,69 @@ void CRayTracer::render() {
 \ Nota: sera 'if the line hits some object' o si acaso any
 http://www.amazon.com/gp/product/B00004R8L6/qid=1145724283/sr=8-1/ref=pd_bbs_1/002-8316345-3944001?%5Fencoding=UTF8&v=glance&n=229534
 /----------------------------------------------------------------------*/
-bool CRayTracer::intersects(CLine &line) {
-	// ...
-	// ^Que coño es esto?
-	// Example of traversing all the objects registered in the scene
-	// Same thing for lights
-	LRTObjects::iterator i = objects.begin();
-	while( i != objects.end() ) {
-		CRTObject *obj = *i++;
-		// At this point we can use obj->method...
-		// TODO (Guille#1#): No tengo ni idea de que pasarle como segundo param
-		// (Guille): Creo que nos devuelve donde colisiona
-		SCALAR t;
-		// Si la linea intersecta al objeto
-		if(obj->hits(line,t)){
-			//std::cerr << "Inteseccion, amigo conductor" << std::endl;
-			// Guardamos el objeto con el que chocamos
-			line.obj=obj;
-			// Guardamos la distancia de intersección
-			line.t=t;
-			// Guay
-			return true;
-		}
-	}
-
-	// Mala suerte...
-	return false;
+bool CRayTracer::intersects(CLine &line)
+{
+  // ...
+  // ^Que coño es esto?
+  // Example of traversing all the objects registered in the scene
+  // Same thing for lights
+  LRTObjects::iterator i = objects.begin();
+  while( i != objects.end() )
+    {
+      CRTObject *obj = *i++;
+      // At this point we can use obj->method...
+      // TODO (Guille#1#): No tengo ni idea de que pasarle como segundo param
+      // (Guille): Creo que nos devuelve donde colisiona
+      SCALAR t;
+      // Si la linea intersecta al objeto
+      if(obj->hits(line,t)){
+	//std::cerr << "Inteseccion, amigo conductor" << std::endl;
+	// Guardamos el objeto con el que chocamos
+	line.obj=obj;
+	// Guardamos la distancia de intersección
+	line.t=t;
+	// Guay
+	return true;
+      }
+    }
+	
+  // Mala suerte...
+  return false;
 }
 
 /*-<==>-----------------------------------------------------------------
 / Returns in line.color the color captured by the line.
 /----------------------------------------------------------------------*/
-void CRayTracer::trace(CLine &line) {
-	// Obtenemos el material del objeto
-	CMaterial* mat = line.obj->getMaterial();
-	std::cerr << "mat=" << mat << std::endl;
-	assert(mat!=0);
-	// Cogemos el color difuso que da esta linea
-	line.color=mat->getDiffuseColor(line.loc);
+void CRayTracer::trace(CLine &line)
+{
+  //si no hem arribat al maxim de recursió
+  if (line.getLevel()>max_recursion_level)
+    return;
+  
+  //un nivell mes
+  ++line;
+  
+  //si no intersecta no ens interesa
+  if(!intersects(line))
+    return;
+  
+  VECTOR pos = line.getIntersection();
+  
+  // Obtenemos el material del objeto
+  CMaterial* mat = line.obj->getMaterial();
+  assert(mat!=0);
+  
+  // Cogemos el color difuso que da esta linea per la pos
+  line.addColor(mat->getDiffuseColor(pos));
+  
+  
 }
 
 /*-<==>-----------------------------------------------------------------
 / Default background
 /----------------------------------------------------------------------*/
-void CRayTracer::background(CLine &line) {
+void CRayTracer::background(CLine &line)
+{
   line.color = COLOR (0,0,0);
 }
 
