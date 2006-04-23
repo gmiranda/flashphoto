@@ -16,10 +16,10 @@ void CRayTracer::load () {
   materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0);
 
   // Add a sphere
-  /*CSphere *sph = new CSphere(50);
+  CSphere *sph = new CSphere(50);
   sph->setLocation (VECTOR(0,50,0));
   sph->setMaterial (materials["blue"]);
-  objects.push_back (sph); */
+  objects.push_back (sph);
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
