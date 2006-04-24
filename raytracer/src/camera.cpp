@@ -2,7 +2,7 @@
 #include <math.h>
 
 /*-<==>-----------------------------------------------------------------
-/ 
+/
 /---------------------------------------------------------------------*/
 CCamera::CCamera() {
 	// Initialize with some default parameters
@@ -14,23 +14,23 @@ CCamera::~CCamera() {
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Define render parameters 
+/ Define render parameters
 / fov is in degrees
 /---------------------------------------------------------------------*/
-void CCamera::setRenderParameters (int axres, int ayres, SCALAR afov) 
+void CCamera::setRenderParameters (int axres, int ayres, SCALAR afov)
 {
   //:)
   if(afov<0)
     {
       while(afov<0)
-	afov+=360;      
+	afov+=360;
     }
   else
     {
       while(afov>360)
 	afov-=360;
     }
-  
+
   // happy parameters
   fov=(afov*M_PI)/180; //rad
   xres=axres;
@@ -39,8 +39,8 @@ void CCamera::setRenderParameters (int axres, int ayres, SCALAR afov)
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Define the axis of the camera (front, up, left) in world coordinates 
-/ based on the current values of the vectors target & loc 
+/ Define the axis of the camera (front, up, left) in world coordinates
+/ based on the current values of the vectors target & loc
 /---------------------------------------------------------------------*/
 void CCamera::initAxis()
 {
@@ -50,8 +50,8 @@ void CCamera::initAxis()
   front=target-loc;
   front.normalize();
   //
-  VECTOR vertical=VECTOR(0,-1,0);
-  left=front.cross(vertical);
+  VECTOR vertical=VECTOR(0,1,0);
+  left=vertical.cross(front);
   left.normalize();
   //
   up=front.cross(left);
@@ -81,20 +81,20 @@ CLine CCamera::getLineAt (SCALAR x, SCALAR y)
   //
   SCALAR MIN_X=-xres/2;
   SCALAR MIN_Y=-yres/2;
-  
+
   x=((xres/2)-x);
   y=((yres/2)-y);
-  
+
   assert((x>=MIN_X)&&(x<=MAX_X));
   assert((y>=MIN_Y)&&(y<=MAX_Y));
-  
+
   VECTOR tmp=viewd*front;
-  
+
   tmp+=x*left;
   tmp+=y*up;
-  
+
   tmp.normalize();
-  
+
   return CLine(loc,tmp);
 }
 

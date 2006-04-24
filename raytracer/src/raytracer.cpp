@@ -35,7 +35,7 @@ void CRayTracer::render() {
 	  raig=new CLine(camera.getLineAt(i,j));
 	  background(*raig);
 	  trace(*raig);
-	  
+
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
 	  raig->color.x=(raig->color.x>1)?1:raig->color.x;
@@ -45,7 +45,7 @@ void CRayTracer::render() {
 	  raig->color.x=(raig->color.x<0)?0:raig->color.x;
 	  raig->color.y=(raig->color.y<0)?0:raig->color.y;
 	  raig->color.z=(raig->color.z<0)?0:raig->color.z;
-	  
+
 	  resultat.setPixel(i, j,raig->color);
 	  delete raig;
 	}
@@ -87,7 +87,7 @@ bool CRayTracer::intersects(CLine &line)
 	return true;
       }
     }
-	
+
   // Mala suerte...
   return false;
 }
@@ -100,24 +100,32 @@ void CRayTracer::trace(CLine &line)
   //si no hem arribat al maxim de recursió
   if (line.getLevel()>max_recursion_level)
     return;
-  
+
   //un nivell mes
   ++line;
-  
+
   //si no intersecta no ens interesa
   if(!intersects(line))
     return;
-  
+
   VECTOR pos = line.getIntersection();
-  
+
+  //Ambiental
+  line.addColor(COLOR(0.2,0.2,0.2));
+
   // Obtenemos el material del objeto
   CMaterial* mat = line.obj->getMaterial();
   assert(mat!=0);
-  
+
   // Cogemos el color difuso que da esta linea per la pos
   line.addColor(mat->getDiffuseColor(pos));
-  
-  
+
+  //Difusa
+/*SCALAR NL=line.obj.dot(line.dir);
+if(NL>0)
+{
+line.addColor()
+}*/
 }
 
 /*-<==>-----------------------------------------------------------------
