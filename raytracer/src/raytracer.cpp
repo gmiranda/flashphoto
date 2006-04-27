@@ -132,25 +132,22 @@ void CRayTracer::trace(CLine &line)
       
       SCALAR NL=llumLinea->dir.dot(line.obj->getNormal(pos));
       if(NL<0) NL=0;
-      //llum ...
+      //llum difosa
       line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		    *
 		    (NL)
-		    *
+		    *2*
 		    (1-line.obj->getMaterial()->getReflectance(pos))); 
-      if(true)
-	{
-	  //punt brillant
-	  
-	  VECTOR E;
-	  E=-line.dir;
-	  SCALAR RE=llumLinea->dir.dot(E);
-	  
-	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-			*pow(RE,22)*
-			0.9*
-			(1-line.obj->getMaterial()->getReflectance(pos))); 
-	}
+      //llum especular
+      VECTOR E;
+      E=-line.dir;
+      SCALAR RE=llumLinea->dir.dot(E);
+      
+      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+		    *pow(RE,321)*
+		    0.9*
+		    (1-line.obj->getMaterial()->getReflectance(pos))); 
+      
     }
 }
 

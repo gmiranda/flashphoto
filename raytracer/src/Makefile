@@ -37,7 +37,7 @@ default: all
 all: $(PROGRAM)
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(OBJS) -o $(PROGRAM) $(LDFLAGS) --ffast-math
+	$(CC) $(OBJS) -o $(PROGRAM) $(LDFLAGS) --ffast-math -msse3 -O3 -pipe
 
 clean:
 	/bin/rm -f $(OBJS) $(PROGRAM) *~
