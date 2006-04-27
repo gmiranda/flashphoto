@@ -141,10 +141,13 @@ void CRayTracer::trace(CLine &line)
       if(true)
 	{
 	  //punt brillant
+	  
+	  VECTOR E;
+	  E=-line.dir;
+	  SCALAR RE=llumLinea->dir.dot(E);
+	  
 	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-			*
-			(NL)
-			*5*
+			*pow(RE,21)*
 			(1-line.obj->getMaterial()->getReflectance(pos))); 
 	}
     }
