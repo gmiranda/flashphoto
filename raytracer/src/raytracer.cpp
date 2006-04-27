@@ -147,7 +147,8 @@ void CRayTracer::trace(CLine &line)
 	  SCALAR RE=llumLinea->dir.dot(E);
 	  
 	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-			*pow(RE,21)*
+			*pow(RE,22)*
+			0.9*
 			(1-line.obj->getMaterial()->getReflectance(pos))); 
 	}
     }
