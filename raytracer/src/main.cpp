@@ -14,24 +14,27 @@ void CRayTracer::load () {
   // Define some materials
   materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0);
   materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0);
+  //
+  materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0);
+  materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0);
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,0,0));
-  sph->setMaterial (materials["blue"]);
+  sph->setLocation (VECTOR(0,50,0));
+  sph->setMaterial (materials["red"]);
   objects.push_back (sph);
 
   // Add a sphere
   sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,1,0));
-  sph->setMaterial (materials["blue"]);
+  sph->setLocation (VECTOR(0,150,0));
+  sph->setMaterial (materials["green"]);
   objects.push_back (sph);
 
   // Add a sphere
-  sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,2,0));
-  sph->setMaterial (materials["blue"]);
-  objects.push_back (sph);
+     sph = new CSphere(50);
+     sph->setLocation (VECTOR(0,250,0));
+     sph->setMaterial (materials["blue"]);
+     objects.push_back (sph);
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
