@@ -22,13 +22,13 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // Add a sphere
-  CSphere *sph = new CSphere(50);
+  sph = new CSphere(50);
   sph->setLocation (VECTOR(0,1,0));
   sph->setMaterial (materials["blue"]);
   objects.push_back (sph);
 
   // Add a sphere
-  CSphere *sph = new CSphere(50);
+  sph = new CSphere(50);
   sph->setLocation (VECTOR(0,2,0));
   sph->setMaterial (materials["blue"]);
   objects.push_back (sph);
