@@ -69,27 +69,33 @@ bool CRayTracer::intersects(CLine &line)
   // Example of traversing all the objects registered in the scene
   // Same thing for lights
   LRTObjects::iterator i = objects.begin();
+  
+  //hem de buscar la mes propera
+  //em sembla que aquest es el problema
+  //aqui pillem el primer objecte, sigui davant o darrere,
+  //tapat per un altre o no...
+  SCALAR t=-1;
+  
   while( i != objects.end() )
     {
       CRTObject *obj = *i++;
-      // At this point we can use obj->method...
-      // TODO (Guille#1#): No tengo ni idea de que pasarle como segundo param
-      // (Guille): Creo que nos devuelve donde colisiona
-      SCALAR t;
       // Si la linea intersecta al objeto
-      if(obj->hits(line,t)){
-	//std::cerr << "Inteseccion, amigo conductor" << std::endl;
-	// Guardamos el objeto con el que chocamos
-	line.obj=obj;
-	// Guardamos la distancia de intersección
-	line.t=t;
-	// Guay
-	return true;
-      }
+      if(obj->hits(line,t))
+	{
+	  if((line.t==-1)||(line.t>t)&&(t>0))
+	    {
+	      //std::cerr << "Inteseccion, amigo conductor" << std::endl;
+	      // Guardamos el objeto con el que chocamos
+	      line.obj=obj;
+	      // Guardamos la distancia de intersección
+	      line.t=t;
+	    }
+	}
     }
-
-  // Mala suerte...
-  return false;
+  if(line.t>0)
+    return true;
+  else
+    return false;
 }
 
 /*-<==>-----------------------------------------------------------------
@@ -103,29 +109,45 @@ void CRayTracer::trace(CLine &line)
 
   //un nivell mes
   ++line;
-
+  
+  //fiquem com si no per inicialitzar
+  line.t=-1;
+  
   //si no intersecta no ens interesa
   if(!intersects(line))
     return;
 
   VECTOR pos = line.getIntersection();
 
-  //Ambiental
-  line.addColor(COLOR(0.2,0.2,0.2));
-
-  // Obtenemos el material del objeto
-  CMaterial* mat = line.obj->getMaterial();
-  assert(mat!=0);
-
-  // Cogemos el color difuso que da esta linea per la pos
-  line.addColor(mat->getDiffuseColor(pos));
-
-  //Difusa
-/*SCALAR NL=line.obj.dot(line.dir);
-if(NL>0)
-{
-line.addColor()
-}*/
+  //Ambiental suposem que hi es encara que no llum
+  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+		*0.5*
+		(1-line.obj->getMaterial()->getReflectance(pos)));
+  
+  //llums
+  std::list<CLight *>::iterator llum; 
+  for(llum = lights.begin();llum!=lights.end();++llum)
+    {
+      CLine *llumLinea=new CLine((*llum)->getLocation(),(pos-(*llum)->getLocation()), 0);
+      
+      SCALAR NL=llumLinea->dir.dot(line.obj->getNormal(pos));
+      if(NL<0) NL=0;
+      //llum ...
+      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+		    *
+		    (NL)
+		    *
+		    (1-line.obj->getMaterial()->getReflectance(pos))); 
+      if(true)
+	{
+	  //punt brillant
+	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+			*
+			(NL)
+			*5*
+			(1-line.obj->getMaterial()->getReflectance(pos))); 
+	}
+    }
 }
 
 /*-<==>-----------------------------------------------------------------
