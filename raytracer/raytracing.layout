@@ -4,6 +4,15 @@
 	<File name="src\camera.cpp" open="0" top="0">
 		<Cursor position="678" topLine="0"/>
 	</File>
+	<File name="src\cylinder.cpp" open="1" top="1">
+		<Cursor position="2672" topLine="48"/>
+	</File>
+	<File name="src\cylinder.h" open="1" top="0">
+		<Cursor position="0" topLine="0"/>
+	</File>
+	<File name="src\geometry.h" open="0" top="0">
+		<Cursor position="111" topLine="0"/>
+	</File>
 	<File name="src\line.cpp" open="0" top="0">
 		<Cursor position="315" topLine="0"/>
 	</File>
@@ -40,7 +49,11 @@
 	<File name="src\sphere.cpp" open="1" top="0">
 		<Cursor position="417" topLine="0"/>
 	</File>
-	<File name="src\vector_template.h" open="1" top="1">
+	<File name="src\vector_template.h" open="1" top="0">
 		<Cursor position="5391" topLine="314"/>
 	</File>
+	<Expand folder="/Sources/src"/>
+	<Expand folder="/Sources"/>
+	<Expand folder="/Headers/src"/>
+	<Expand folder="/Headers"/>
 </CodeBlocks_layout_file>
