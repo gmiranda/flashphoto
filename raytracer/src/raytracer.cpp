@@ -27,8 +27,9 @@ void CRayTracer::render() {
 	{
 	  printf("\b\b\b=>%d",100*i/camera.getXRes());
 	  fflush(stdout);
-	  // TODO (Guille#9#): para que compile en win32 :P
-	  //sleep(1); //pq es vegi
+#ifndef __WIN32__
+	  sleep(1); //pq es vegi
+#endif
 	}
       for(int j=0;j<camera.getYRes();j++)
 	{

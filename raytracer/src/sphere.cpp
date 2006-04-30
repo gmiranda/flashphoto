@@ -25,14 +25,14 @@ bool CSphere::hits (const CLine &line, SCALAR &t_hit)
 
   SCALAR b=std::sqrt(bp);
 
-#define MOD(x) ((x<0)?(-(x)):(x))
-
-  SCALAR t2=MOD(a)+b;
+//#define MOD(x) ((x<0)?(-(x)):(x))
+  // NOTE: No es lo mismo esto de aqui arriba que abs?
+  SCALAR t2=std::abs(a)+b;
 
   if(t2<0)
     return false;
 
-  SCALAR t1=MOD(a)-b;
+  SCALAR t1=std::abs(a)-b;
 
   if(t1>0)
     t_hit=t1;

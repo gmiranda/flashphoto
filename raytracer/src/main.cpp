@@ -1,6 +1,7 @@
 #include "raytracer.h"
 #include "sphere.h"
 #include "plane.h"
+#include "cylinder.h"
 
 /*-<==>-----------------------------------------------------------------
 / Defines the scene
@@ -31,10 +32,17 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // Add a sphere
-     sph = new CSphere(50);
-     sph->setLocation (VECTOR(0,250,0));
-     sph->setMaterial (materials["blue"]);
-     objects.push_back (sph);
+  sph = new CSphere(50);
+  sph->setLocation (VECTOR(0,250,0));
+  sph->setMaterial (materials["blue"]);
+  objects.push_back (sph);
+
+  // And now for something completely different
+  CCylinder* cyl = new CCylinder(100,50);
+  //cyl->setLocation(VECTOR(50,25,10));
+  cyl->setLocation(VECTOR(0,0,0));
+  cyl->setMaterial(materials["blue"]);
+  objects.push_back(cyl);
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);

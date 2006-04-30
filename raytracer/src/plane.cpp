@@ -20,8 +20,8 @@ bool CPlane::hits (const CLine &line, SCALAR &t_hit)
   numerador = -dist - norm.dot(line.loc);
   t_hit=numerador/denominador;
   //std::cerr << "t="<<t_hit<<std::endl;
-	
-  // TODO (Guille#1#): Comprobar si esto es valido
+
+
   return (t_hit>0.0f);
 }
 
