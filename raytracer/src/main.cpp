@@ -20,7 +20,7 @@ void CRayTracer::load () {
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0);
 
   // Add a sphere
-  CSphere *sph = new CSphere(50);
+ /* CSphere *sph = new CSphere(50);
   sph->setLocation (VECTOR(0,50,0));
   sph->setMaterial (materials["red"]);
   objects.push_back (sph);
@@ -35,13 +35,13 @@ void CRayTracer::load () {
   sph = new CSphere(50);
   sph->setLocation (VECTOR(0,250,0));
   sph->setMaterial (materials["blue"]);
-  objects.push_back (sph);
+  objects.push_back (sph);*/
 
   // And now for something completely different
   CCylinder* cyl = new CCylinder(100,50);
   //cyl->setLocation(VECTOR(50,25,10));
-  cyl->setLocation(VECTOR(0,0,0));
-  cyl->setMaterial(materials["blue"]);
+  cyl->setLocation (VECTOR(0,0,0));
+  cyl->setMaterial (materials["blue"]);
   objects.push_back(cyl);
 
   // Add the ground
