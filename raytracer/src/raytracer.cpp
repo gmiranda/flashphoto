@@ -16,7 +16,7 @@ CRayTracer::CRayTracer() {
 /----------------------------------------------------------------------*/
 void CRayTracer::render() {
   // ...
-  printf("\n                                             |\r|=");
+  printf("\n                                          |\r|=00%");
   CBitmap resultat(camera.getXRes(), camera.getYRes(), 24);
 
   CLine *raig;
@@ -25,7 +25,7 @@ void CRayTracer::render() {
     {
       if(i%15==0)
 	{
-	  printf("\b=>");
+	  printf("\b\b\b=>%d",100*i/camera.getXRes());
 	  fflush(stdout);
 	  // TODO (Guille#9#): para que compile en win32 :P
 	  //sleep(1); //pq es vegi
@@ -69,13 +69,13 @@ bool CRayTracer::intersects(CLine &line)
   // Example of traversing all the objects registered in the scene
   // Same thing for lights
   LRTObjects::iterator i = objects.begin();
-  
+
   //hem de buscar la mes propera
   //em sembla que aquest es el problema
   //aqui pillem el primer objecte, sigui davant o darrere,
   //tapat per un altre o no...
   SCALAR t=-1;
-  
+
   while( i != objects.end() )
     {
       CRTObject *obj = *i++;
@@ -109,10 +109,10 @@ void CRayTracer::trace(CLine &line)
 
   //un nivell mes
   ++line;
-  
+
   //fiquem com si no per inicialitzar
   line.t=-1;
-  
+
   //si no intersecta no ens interesa
   if(!intersects(line))
     return;
@@ -123,13 +123,13 @@ void CRayTracer::trace(CLine &line)
   line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		*0.5*
 		(1-line.obj->getMaterial()->getReflectance(pos)));
-  
+
   //llums
-  std::list<CLight *>::iterator llum; 
+  std::list<CLight *>::iterator llum;
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
       CLine *llumLinea=new CLine((*llum)->getLocation(),(pos-(*llum)->getLocation()), 0);
-      
+
       SCALAR NL=llumLinea->dir.dot(line.obj->getNormal(pos));
       if(NL<0) NL=0;
       //llum difosa
@@ -137,17 +137,17 @@ void CRayTracer::trace(CLine &line)
 		    *
 		    (NL)
 		    *2*
-		    (1-line.obj->getMaterial()->getReflectance(pos))); 
+		    (1-line.obj->getMaterial()->getReflectance(pos)));
       //llum especular
       VECTOR E;
       E=-line.dir;
       SCALAR RE=llumLinea->dir.dot(E);
-      
+
       line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		    *pow(RE,321)*
 		    0.9*
-		    (1-line.obj->getMaterial()->getReflectance(pos))); 
-      
+		    (1-line.obj->getMaterial()->getReflectance(pos)));
+
     }
 }
 

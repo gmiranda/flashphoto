@@ -1,22 +1,23 @@
-#include "sphere.h"
+#include "cylinder.h"
 #include <cmath>
 /*-<==>-----------------------------------------------------------------
 / Constructor
 /----------------------------------------------------------------------*/
-CSphere::CSphere(SCALAR aradius)
+/*CCylinder::CCylinder(SCALAR aheight, SCALAR aradius){
 {
-  radius = aradius;
+	height = aheight;
+	radius = aradius;
 }
-
+*/
 /*-<==>-----------------------------------------------------------------
-/
+/ Test a possible line hit
 /----------------------------------------------------------------------*/
-bool CSphere::hits (const CLine &line, SCALAR &t_hit)
+/*bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 {
   VECTOR lloc=line.loc-loc;
 
   SCALAR a=line.dir.dot(lloc);
-  SCALAR bp=(lloc.dot(line.dir)*lloc.dot(line.dir))-
+  SCALAR bp=pow((lloc.dot(line.dir)),2)-
     ((lloc.dot(lloc))-(radius*radius));
 
   // Si la raiz no tiene solucion, no hay interseccion
@@ -25,7 +26,7 @@ bool CSphere::hits (const CLine &line, SCALAR &t_hit)
 
   SCALAR b=std::sqrt(bp);
 
-#define MOD(x) ((x<0)?(-(x)):(x))
+//#define MOD(x) ((x<0)?(-(x)):(x))
 
   SCALAR t2=MOD(a)+b;
 
@@ -42,7 +43,7 @@ bool CSphere::hits (const CLine &line, SCALAR &t_hit)
   return true;
 }
 
-VECTOR CSphere::getNormal(const VECTOR &hit_loc)
+VECTOR CCylinder::getNormal(const VECTOR &hit_loc)
 {
   VECTOR T;
 
@@ -51,4 +52,4 @@ VECTOR CSphere::getNormal(const VECTOR &hit_loc)
   T.normalize();
   return T;
 }
-
+*/
