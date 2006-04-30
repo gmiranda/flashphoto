@@ -16,10 +16,10 @@ CRayTracer::CRayTracer() {
 /----------------------------------------------------------------------*/
 void CRayTracer::render() {
   // ...
-  printf("\n                                          |\r|=00%");
+  printf("\n                                          |\r|=00");
   CBitmap resultat(camera.getXRes(), camera.getYRes(), 24);
 
-  CLine *raig;
+  CLine raig;
 
   for(int i=0;i<camera.getXRes();i++)
     {
@@ -32,22 +32,21 @@ void CRayTracer::render() {
 	}
       for(int j=0;j<camera.getYRes();j++)
 	{
-	  raig=new CLine(camera.getLineAt(i,j));
-	  background(*raig);
-	  trace(*raig);
+	  raig=CLine(camera.getLineAt(i,j));
+	  background(raig);
+	  trace(raig);
 
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
-	  raig->color.x=(raig->color.x>1)?1:raig->color.x;
-	  raig->color.y=(raig->color.y>1)?1:raig->color.y;
-	  raig->color.z=(raig->color.z>1)?1:raig->color.z;
+	  raig.color.x=(raig.color.x>1)?1:raig.color.x;
+	  raig.color.y=(raig.color.y>1)?1:raig.color.y;
+	  raig.color.z=(raig.color.z>1)?1:raig.color.z;
 	  //
-	  raig->color.x=(raig->color.x<0)?0:raig->color.x;
-	  raig->color.y=(raig->color.y<0)?0:raig->color.y;
-	  raig->color.z=(raig->color.z<0)?0:raig->color.z;
+	  raig.color.x=(raig.color.x<0)?0:raig.color.x;
+	  raig.color.y=(raig.color.y<0)?0:raig.color.y;
+	  raig.color.z=(raig.color.z<0)?0:raig.color.z;
 
-	  resultat.setPixel(i, j,raig->color);
-	  delete raig;
+	  resultat.setPixel(i, j,raig.color);
 	}
     }
 
