@@ -15,7 +15,7 @@ CFLAGS    = -I$(INCDIR)
 LDFLAGS   = -L$(LIBDIR) $(LIBS)
 
 PROGRAM   = demo01     # name of the binary
-SRCS      = raytracer.cpp camera.cpp sphere.cpp main.cpp rtobject.cpp image.cpp io.cpp material.cpp plane.cpp line.cpp
+SRCS      = raytracer.cpp camera.cpp sphere.cpp main.cpp rtobject.cpp image.cpp io.cpp material.cpp plane.cpp line.cpp cylinder.cpp
 OBJS      = $(SRCS:.cpp=.o)
 
 
