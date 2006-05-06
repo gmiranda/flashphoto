@@ -1,11 +1,13 @@
 #ifndef INC_MATERIAL_H_
 #define INC_MATERIAL_H_
 
+#if ( defined(_MSC_VER) && _MSC_VER<=1200 )
 #pragma warning (disable : 4786 )
+#endif
 
 /*-<==>-----------------------------------------------------------------
 / Generic Material definition
-/ Some materials will not use the position to define the diffuse or 
+/ Some materials will not use the position to define the diffuse or
 / reflectance values
 /----------------------------------------------------------------------*/
 class CMaterial {

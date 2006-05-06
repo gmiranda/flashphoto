@@ -2,7 +2,9 @@
 #define INC_GEOMETRY_H
 
 // Disable warning from VC++ when compiling some templates
+#if ( defined(_MSC_VER) && _MSC_VER<=1200 )
 #pragma warning (disable : 4786 )
+#endif
 
 // Read 3D vector template definition
 #include "vector_template.h"
@@ -12,7 +14,7 @@ typedef T_VECTOR3<SCALAR> VECTOR;
 typedef VECTOR COLOR;
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846f 
+#define M_PI 3.14159265358979323846f
 #endif
 
 #endif

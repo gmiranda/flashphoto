@@ -84,13 +84,13 @@
 	"camera.h"
 	"light.h"
 
-1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\geometry.h
+1146913905 d:\mis documentos\uni\imagen sintetica\raytracer\src\geometry.h
 	"vector_template.h"
 
 1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\vector_template.h
 	<cmath>
 
-1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.h
+1146913944 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.h
 	<map>
 	<string>
 
@@ -122,11 +122,12 @@
 	<stdio.h>
 	"line.h"
 
-1151687239 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+1146913783 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
 	"raytracer.h"
 	"sphere.h"
 	"plane.h"
 	"cylinder.h"
+	<iostream>
 
 1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\sphere.h
 	"raytracer.h"
@@ -147,12 +148,13 @@
 	"sphere.h"
 	<cmath>
 
-1151679069 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1146913988 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"
+	<unistd.h>
 
-1146420007 d:\mis documentos\uni\imagen sintetica\raytracer\src\cylinder.cpp
+1146422237 d:\mis documentos\uni\imagen sintetica\raytracer\src\cylinder.cpp
 	"cylinder.h"
 	<cmath>
 
