@@ -1,6 +1,9 @@
 #include <assert.h>
 #include "raytracer.h"
 #include "image.h"
+#ifndef __WIN32__ || BEOS
+	#include <unistd.h>
+#endif
 
 /*-<==>-----------------------------------------------------------------
 /
@@ -27,7 +30,7 @@ void CRayTracer::render() {
 	{
 	  printf("\b\b\b=>%d",100*i/camera.getXRes());
 	  fflush(stdout);
-#ifndef __WIN32__
+#ifndef __WIN32__ || BEOS
 	  sleep(1); //pq es vegi
 #endif
 	}

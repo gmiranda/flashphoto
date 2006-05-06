@@ -1,20 +1,23 @@
-CC        = gcc
+CC        = g++
 
 #
 # Modify TOPDIR if you use your own include files and library files
 #
 
-TOPDIR    = .
+TOPDIR    = ..
 LIBDIR    = $(TOPDIR)/libs
 INCDIR    = $(TOPDIR)/include
+OBJDIR = $(TOPDIR)/.objs
+BINDIR = $(TOPDIR)/bin
 
-LIBS      = -lm -lstdc++  # add any -l's that you need here
+LIBS      = -lstdc++  # add any -l's that you need here
           # don't need any for the sample program
 
-CFLAGS    = -I$(INCDIR)
+# Tuve que eliminar --ffast-math y -msse3 porque no lo pilla gcc 2.95 :)
+CFLAGS    = -I$(INCDIR) -Wall -O3 -pipe #-ffast-math -msse3
 LDFLAGS   = -L$(LIBDIR) $(LIBS)
 
-PROGRAM   = demo01     # name of the binary
+PROGRAM   = $(BINDIR)/demo01     # name of the binary
 SRCS      = raytracer.cpp camera.cpp sphere.cpp main.cpp rtobject.cpp image.cpp io.cpp material.cpp plane.cpp line.cpp cylinder.cpp
 OBJS      = $(SRCS:.cpp=.o)
 
@@ -37,7 +40,7 @@ default: all
 all: $(PROGRAM)
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(OBJS) -o $(PROGRAM) $(LDFLAGS) --ffast-math -msse3 -O3 -pipe
+	$(CC) $(OBJS) -o $(PROGRAM) $(LDFLAGS) $(CFLAGS)
 
 clean:
 	/bin/rm -f $(OBJS) $(PROGRAM) *~

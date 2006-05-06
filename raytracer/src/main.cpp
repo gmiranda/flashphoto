@@ -2,6 +2,7 @@
 #include "sphere.h"
 #include "plane.h"
 #include "cylinder.h"
+#include <iostream>
 
 /*-<==>-----------------------------------------------------------------
 / Defines the scene
@@ -61,11 +62,11 @@ void CRayTracer::load () {
 /----------------------------------------------------------------------*/
 int main(int argc, char **argv)
 {
-  printf("GayTracer is tracing...\n");
+  std::cout << "GayTracer is tracing..." << std::endl;
   CRayTracer rt;
   rt.load();
   rt.render();
-  printf("is behind you!\n");
+  std::cout << "is behind you!" << std::endl;
   return 0;
 }
 
