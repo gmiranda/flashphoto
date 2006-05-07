@@ -5,52 +5,52 @@
 		<Cursor position="678" topLine="0"/>
 	</File>
 	<File name="src\cylinder.cpp" open="1" top="1">
-		<Cursor position="2672" topLine="48"/>
+		<Cursor position="1991" topLine="12"/>
 	</File>
 	<File name="src\cylinder.h" open="1" top="0">
 		<Cursor position="0" topLine="0"/>
 	</File>
-	<File name="src\geometry.h" open="0" top="0">
-		<Cursor position="111" topLine="0"/>
+	<File name="src\geometry.h" open="1" top="0">
+		<Cursor position="197" topLine="0"/>
 	</File>
-	<File name="src\line.cpp" open="0" top="0">
-		<Cursor position="315" topLine="0"/>
+	<File name="src\line.cpp" open="1" top="0">
+		<Cursor position="970" topLine="0"/>
 	</File>
-	<File name="src\line.h" open="0" top="0">
-		<Cursor position="521" topLine="0"/>
+	<File name="src\line.h" open="1" top="0">
+		<Cursor position="322" topLine="0"/>
 	</File>
 	<File name="src\main.cpp" open="1" top="0">
-		<Cursor position="863" topLine="0"/>
+		<Cursor position="863" topLine="9"/>
 	</File>
 	<File name="src\material.cpp" open="1" top="0">
 		<Cursor position="780" topLine="0"/>
 	</File>
-	<File name="src\material.h" open="0" top="0">
-		<Cursor position="1323" topLine="0"/>
+	<File name="src\material.h" open="1" top="0">
+		<Cursor position="140" topLine="0"/>
 	</File>
 	<File name="src\plane.cpp" open="1" top="0">
 		<Cursor position="302" topLine="0"/>
 	</File>
 	<File name="src\plane.h" open="1" top="0">
-		<Cursor position="470" topLine="0"/>
+		<Cursor position="480" topLine="0"/>
 	</File>
-	<File name="src\raytracer.cpp" open="1" top="0">
-		<Cursor position="2018" topLine="11"/>
+	<File name="src\raytracer.cpp" open="0" top="0">
+		<Cursor position="1816" topLine="3"/>
 	</File>
 	<File name="src\raytracer.h" open="0" top="0">
 		<Cursor position="897" topLine="0"/>
 	</File>
-	<File name="src\rtobject.cpp" open="1" top="0">
+	<File name="src\rtobject.cpp" open="0" top="0">
 		<Cursor position="692" topLine="0"/>
 	</File>
-	<File name="src\rtobject.h" open="1" top="0">
+	<File name="src\rtobject.h" open="0" top="0">
 		<Cursor position="783" topLine="0"/>
 	</File>
-	<File name="src\sphere.cpp" open="1" top="0">
+	<File name="src\sphere.cpp" open="0" top="0">
 		<Cursor position="417" topLine="0"/>
 	</File>
-	<File name="src\vector_template.h" open="1" top="0">
-		<Cursor position="5391" topLine="314"/>
+	<File name="src\vector_template.h" open="0" top="0">
+		<Cursor position="5207" topLine="275"/>
 	</File>
 	<Expand folder="/Sources/src"/>
 	<Expand folder="/Sources"/>

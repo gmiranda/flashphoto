@@ -62,8 +62,6 @@ void CRayTracer::render() {
 / Find which object and at which 't' the line hits and object
 / from the scene.
 / Returns true if the object hits some object
-\ Nota: sera 'if the line hits some object' o si acaso any
-http://www.amazon.com/gp/product/B00004R8L6/qid=1145724283/sr=8-1/ref=pd_bbs_1/002-8316345-3944001?%5Fencoding=UTF8&v=glance&n=229534
 /----------------------------------------------------------------------*/
 bool CRayTracer::intersects(CLine &line)
 {

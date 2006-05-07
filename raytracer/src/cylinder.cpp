@@ -12,6 +12,57 @@ CCylinder::CCylinder(SCALAR aheight, SCALAR aradius){
 / Test a possible line hit
 /----------------------------------------------------------------------*/
 bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
+
+	// EL punto de interseccion
+	VECTOR i;
+
+	// Si es posible la interseccion
+	if(line.dir.y!=0.0f){
+		// Buscamos intersecciones con tapas
+		//= -height-(line.loc.y+height*0)/line.dir.y;
+		SCALAR tUp = -(line.loc.y-height)/line.dir.y;
+		SCALAR tDown = (-line.loc.y)/line.dir.y;
+		// Nota: por ahora t_hit es la interseccion con el lateral
+
+		// Buscamos t mas pequeña
+		if((tUp>=0.0f)&&((tUp<tDown)||(tDown<0.0f))){
+			// Miramos si esta dentro de la circunferencia de la tapa
+			i=line.loc+line.dir*tUp;
+			//std::cerr << "tUp="<<tUp<<", tDown="<<tDown<<",tlateral="<<t_hit<<std::endl;
+			//std::cerr << "i="<<i<<std::endl;
+			if(i.x*i.x+i.z*i.z<=radius*radius){
+				//std::cerr << "tUp="<<tUp<<", tDown="<<tDown<<",tlateral="<<t_hit<<std::endl;
+				std::cerr << "Cylinder::hits() me quedo con tUp" << std::endl;
+				t_hit = tUp;
+			}
+		}
+		else if((tDown>=0.0f)&&((tDown<tUp)||(tUp<0.0f))){
+			// Miramos si esta dentro de la circunferencia de la tapa
+			i=line.loc+line.dir*tDown;
+			//std::cerr << "i="<<i<<std::endl;
+			if(i.x*i.x+i.z*i.z<=radius*radius){
+				//std::cerr << "tUp="<<tUp<<", tDown="<<tDown<<",tlateral="<<t_hit<<std::endl;
+				std::cerr << "Cylinder::hits() me quedo con tDown" << std::endl;
+				t_hit = tDown;
+			}
+		}
+	}
+	//return true;
+	// EL punto de interseccion
+	i=line.loc+line.dir*t_hit;
+//std::cerr << "interseccion.y=" << i.y << std::endl;
+	// Si no esta dentro del rango de altura esperado, no hay interseccion
+	if((i.y>=0.0f)&&(i.y<=height)){
+		//std::cerr << "Cylinder::hits() Interseccion: " << i << std::endl;
+		return true;
+	}
+	else
+		//std::cerr << "Cylinder::hits() No hay  interseccion en: " << i << std::endl;
+
+	// Guay
+	return false;
+}/*
+bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 	//std::cerr << "Cylinder::hits()" << std::endl;
 	// Vector dirección (este cilindro estara siempre en el eje Y)
 	//VECTOR dir(0,1,0);
@@ -41,7 +92,7 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 	SCALAR t1 = (-b-std::sqrt(discriminante))/(2.0f*a);
 
 	// Me quedo con la solucion mas pequeña, positiva.
-	if((t0>0.0f)&&(t0<t1)){
+	if((t0>0.0f)&&((t0<t1))||(t1<0.0f)){
 		t_hit=t0;
 		//return true;
 	}
@@ -56,8 +107,8 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 	// Si es posible la interseccion
 	if(line.dir.y!=0.0f){
 		// Buscamos intersecciones con tapas
-		SCALAR tUp = -(line.loc.y+height)/line.dir.y;
-		SCALAR tDown = (line.loc.y)/line.dir.y;
+		SCALAR tUp = -(line.loc.y-height)/line.dir.y;
+		SCALAR tDown = (-line.loc.y)/line.dir.y;
 		// Nota: por ahora t_hit es la interseccion con el lateral
 //std::cerr << "tUp="<<tUp<<", tDown="<<tDown<<",tlateral="<<t_hit<<std::endl;
 		// Buscamos t mas pequeña
@@ -95,7 +146,7 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 
 	// Guay
 	return false;
-}
+}*/
 
 VECTOR CCylinder::getNormal(const VECTOR &hit_loc){
   VECTOR N;
@@ -105,8 +156,12 @@ VECTOR CCylinder::getNormal(const VECTOR &hit_loc){
   T.normalize();*/
 
   // Si es por un lateral
-  N=VECTOR(hit_loc.x,0,hit_loc.z);
-  N.normalize();
+  /*N=VECTOR(hit_loc.x,0,hit_loc.z);
+  N.normalize();*/
+  // Tapa superior
+  N=VECTOR(0,1,0);
+  // Tapa inferior
+  //N= VECTOR(0,-1,0);
   return N;
 }
 
