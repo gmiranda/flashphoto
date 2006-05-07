@@ -9,6 +9,7 @@
 class CCylinder : public CRTObject {
   SCALAR radius;
   SCALAR height;
+  VECTOR norm;
 public:
   CCylinder(SCALAR aheight, SCALAR aradius);
   bool hits (const CLine &line, SCALAR &hits);

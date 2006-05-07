@@ -5,10 +5,10 @@
 		<Cursor position="678" topLine="0"/>
 	</File>
 	<File name="src\cylinder.cpp" open="1" top="1">
-		<Cursor position="1991" topLine="12"/>
+		<Cursor position="3923" topLine="133"/>
 	</File>
 	<File name="src\cylinder.h" open="1" top="0">
-		<Cursor position="0" topLine="0"/>
+		<Cursor position="366" topLine="0"/>
 	</File>
 	<File name="src\geometry.h" open="1" top="0">
 		<Cursor position="197" topLine="0"/>
@@ -20,7 +20,7 @@
 		<Cursor position="322" topLine="0"/>
 	</File>
 	<File name="src\main.cpp" open="1" top="0">
-		<Cursor position="863" topLine="9"/>
+		<Cursor position="387" topLine="0"/>
 	</File>
 	<File name="src\material.cpp" open="1" top="0">
 		<Cursor position="780" topLine="0"/>
@@ -52,8 +52,4 @@
 	<File name="src\vector_template.h" open="0" top="0">
 		<Cursor position="5207" topLine="275"/>
 	</File>
-	<Expand folder="/Sources/src"/>
-	<Expand folder="/Sources"/>
-	<Expand folder="/Headers/src"/>
-	<Expand folder="/Headers"/>
 </CodeBlocks_layout_file>
