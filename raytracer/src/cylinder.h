@@ -9,7 +9,8 @@
 class CCylinder : public CRTObject {
   SCALAR radius;
   SCALAR height;
-  VECTOR norm;
+  //VECTOR norm;
+  enum{SIDE=0,UP,DOWN} intersection;
 public:
   CCylinder(SCALAR aheight, SCALAR aradius);
   bool hits (const CLine &line, SCALAR &hits);

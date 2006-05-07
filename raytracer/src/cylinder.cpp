@@ -120,6 +120,7 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 
 	// Vamos a mirar las tapas
 	SCALAR tTapa;
+
 	// Si es posible la interseccion
 	if(line.dir.y!=0.0f){
 		// Buscamos intersecciones con tapas
@@ -131,10 +132,14 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 		if((tUp>=0.0f)&&((tUp<tDown)||(tDown<0.0f))){
 			// Quiero la de arriba
 			tTapa = tUp;
+			// Guardamos tipo de interseccion
+			intersection = UP;
 		}
 		else if(tDown>=0.0f){
 			// La de abajo
 			tTapa = tDown;
+			// Guardamos tipo de interseccion
+			intersection = DOWN;
 		}
 		// Calculamos de nuevo el punto de interseccion
 		i=line.loc+line.dir*tTapa;
@@ -154,13 +159,21 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 			if(t_hit>tTapa)
 				// Nos quedamos con la de la tapa
 				t_hit = tTapa;
-			// Sino, pues tan panchos
+				// Sino, pues tan panchos
 		}
+		// Si no ha habido, calculamos la normal del lado
+		else{
+			// Guardamos el tipo de interseccion que ha habido
+			intersection = SIDE;
+			//std::cerr << "Lado " << intersection<< std::endl;
+		}
+
 		// Ha habido interseccion
 		return true;
 	}
 	// Si solo ha habido interseccion con tapa, ok
 	if(tapa){
+		std::cerr << "Tapa " << intersection<< std::endl;
 		t_hit = tTapa;
 		return true;
 	}
@@ -170,19 +183,24 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit){
 }
 
 VECTOR CCylinder::getNormal(const VECTOR &hit_loc){
-  VECTOR N;
-
-  /*T=loc-hit_loc;
-
-  T.normalize();*/
-
+	switch(intersection){
+		case UP:
+			return VECTOR(0.0,1.0,0.0);
+		case DOWN:
+			return VECTOR(0.0,-1.0,0.0);
+		case SIDE:
+			return VECTOR(hit_loc.x,0,hit_loc.z);
+	}
   // Si es por un lateral
   /*N=VECTOR(hit_loc.x,0,hit_loc.z);
   N.normalize();*/
   // Tapa superior
-  N=VECTOR(0,1,0);
+ // N=VECTOR(0,1,0);
   // Tapa inferior
   //N= VECTOR(0,-1,0);
-  return N;
+	// Si has llegado aqui vete a la mierda
+	std::cerr << "CCylinder::getNormal() [ERROR] No se deberia haber llegado aqui"
+		<< std::endl;
+	return VECTOR(0,0,0);
 }
 
