@@ -18,8 +18,17 @@ CLine::CLine (const VECTOR &nloc, const VECTOR &ndir, int nlevel)
 /*-<==>-----------------------------------------------------------------
 /
 /----------------------------------------------------------------------*/
-CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal) {
-	// ..
+CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
+{
+  CLine c;
+  dir.normalize();
+  c.level=level+1;
+  c.loc=nloc;
+  c.dir=(dir+(2*dir.dot(-normal))*normal);
+  c.dir.normalize();
+  c.t=-1;
+  
+  return c;
 }
 
 const CLine& CLine::operator++()
@@ -46,8 +55,20 @@ int CLine::getLevel() const {
 /*-<==>-----------------------------------------------------------------
 / add a color amount to color of this line
 /----------------------------------------------------------------------*/
-void CLine::addColor(const VECTOR &amount) {
+void CLine::addColor(const VECTOR &amount)
+{
   color += amount;
-	// ...
+  if(color.x>1)
+    color.x=1;
+  if(color.y>1)
+    color.y=1;
+  if(color.z>1)
+    color.z=1;
+  
+  if((color.x>1)||(color.y>1)||(color.z>1))
+    {
+      color.x=1;
+      color.y=1;
+      color.z=1;
+    }
 }
-

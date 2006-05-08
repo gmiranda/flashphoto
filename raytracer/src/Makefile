@@ -17,7 +17,7 @@ LIBS      = -lstdc++  # add any -l's that you need here
 CFLAGS    = -I$(INCDIR) -Wall -O3 -pipe #-ffast-math -msse3
 LDFLAGS   = -L$(LIBDIR) $(LIBS)
 
-PROGRAM   = $(BINDIR)/demo01     # name of the binary
+PROGRAM   = demo01     # name of the binary
 SRCS      = raytracer.cpp camera.cpp sphere.cpp main.cpp rtobject.cpp image.cpp io.cpp material.cpp plane.cpp line.cpp cylinder.cpp
 OBJS      = $(SRCS:.cpp=.o)
 

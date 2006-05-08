@@ -22,9 +22,9 @@ void CRayTracer::load () {
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,50,0));
-  sph->setMaterial (materials["red"]);
-  objects.push_back (sph);
+  //sph->setLocation (VECTOR(0,50,0));
+  //sph->setMaterial (materials["red"]);
+  //objects.push_back (sph);
 
   // Add a sphere
   sph = new CSphere(50);
@@ -33,7 +33,6 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // Add a sphere
-
   sph = new CSphere(50);
   sph->setLocation (VECTOR(0,250,0));
   sph->setMaterial (materials["blue"]);
@@ -41,7 +40,7 @@ void CRayTracer::load () {
 
   // And now for something completely different
   CCylinder* cyl = new CCylinder(100,50);
-  //cyl->setLocation(VECTOR(50,25,10));
+  cyl->setLocation(VECTOR(50,25,10));
   cyl->setLocation (VECTOR(0,0,0));
   cyl->setMaterial (materials["blue"]);
   objects.push_back(cyl);
@@ -52,7 +51,7 @@ void CRayTracer::load () {
   objects.push_back (plane);
 
   // Add a single white light
-  CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
+  CLight *light = new CLight(VECTOR (5000,5000,5000), COLOR (1,1,1));
   lights.push_back (light);
 
 }

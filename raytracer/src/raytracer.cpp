@@ -30,16 +30,14 @@ void CRayTracer::render() {
 	{
 	  printf("\b\b\b=>%d",100*i/camera.getXRes());
 	  fflush(stdout);
-#ifndef __WIN32__
-	  sleep(1); //pq es vegi
-#endif
 	}
       for(int j=0;j<camera.getYRes();j++)
 	{
 	  raig=CLine(camera.getLineAt(i,j));
 	  background(raig);
 	  trace(raig);
-
+	  
+	  /*
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
 	  raig.color.x=(raig.color.x>1)?1:raig.color.x;
@@ -49,6 +47,7 @@ void CRayTracer::render() {
 	  raig.color.x=(raig.color.x<0)?0:raig.color.x;
 	  raig.color.y=(raig.color.y<0)?0:raig.color.y;
 	  raig.color.z=(raig.color.z<0)?0:raig.color.z;
+	  */
 
 	  resultat.setPixel(i, j,raig.color);
 	}
@@ -124,31 +123,53 @@ void CRayTracer::trace(CLine &line)
   line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		*0.5*
 		(1-line.obj->getMaterial()->getReflectance(pos)));
-
+  
   //llums
   std::list<CLight *>::iterator llum;
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
-      CLine *llumLinea=new CLine((*llum)->getLocation(),(pos-(*llum)->getLocation()), 0);
+      CLine llumLinea((*llum)->getLocation(),(pos-(*llum)->getLocation()), 0);
 
-      SCALAR NL=llumLinea->dir.dot(line.obj->getNormal(pos));
+      SCALAR NL=llumLinea.dir.dot(line.obj->getNormal(pos));
+      
       if(NL<0) NL=0;
+      
       //llum difosa
+      
       line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		    *
 		    (NL)
-		    *2*
+		    *
 		    (1-line.obj->getMaterial()->getReflectance(pos)));
+      
+      
       //llum especular
       VECTOR E;
       E=-line.dir;
-      SCALAR RE=llumLinea->dir.dot(E);
-
+      SCALAR RE=llumLinea.dir.dot(E);
+      
+      
       line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-		    *pow(RE,321)*
-		    0.9*
+		    *-pow(RE,921)*
 		    (1-line.obj->getMaterial()->getReflectance(pos)));
-
+      
+      
+      
+      if(line.obj->getMaterial()->getReflectance(pos)>0)
+	{
+	  CLine reflexe;
+	  
+	  line.t=-1;
+	  
+	  reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
+	  reflexe.color.x=0;
+	  reflexe.color.y=0;
+	  reflexe.color.z=0;
+	  trace(reflexe);
+	  
+	  //com l'afegeixo?
+	  line.addColor(reflexe.color);
+	}
     }
 }
 
