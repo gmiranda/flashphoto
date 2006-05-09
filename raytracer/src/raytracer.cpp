@@ -166,7 +166,7 @@ void CRayTracer::trace(CLine &line)
           // Especular = Is*(cos Beta)^n por Ks
           COLOR especular=VECTOR(0.5f,0.5f,0.5f)
             *pow(RE,21)*0.3f;
-            std::cerr << "Especular="<<especular << std::endl;
+            //std::cerr << "Especular="<<especular << std::endl;
           line.addColor(especular);
           /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
                 *-pow(RE,20)*

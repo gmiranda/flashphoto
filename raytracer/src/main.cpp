@@ -10,7 +10,7 @@
 void CRayTracer::load () {
 
   // Add the camera looking at the origin
-  camera.setView (VECTOR(300, 120, 120), VECTOR (0,0,0));
+  camera.setView (VECTOR(-100, -100, 100), VECTOR (0,0,0));
   camera.setRenderParameters (640,480,60);
 
   // Define some materials
@@ -27,7 +27,7 @@ void CRayTracer::load () {
   //objects.push_back (sph);
 
   // Add a sphere
-  sph = new CSphere(50);
+  /*sph = new CSphere(50);
   sph->setLocation (VECTOR(0,150,0));
   sph->setMaterial (materials["green"]);
   objects.push_back (sph);
@@ -43,7 +43,7 @@ void CRayTracer::load () {
   cyl->setLocation(VECTOR(50,25,10));
   cyl->setLocation (VECTOR(0,0,0));
   cyl->setMaterial (materials["blue"]);
-  objects.push_back(cyl);
+  objects.push_back(cyl);*/
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
