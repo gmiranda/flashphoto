@@ -51,7 +51,7 @@ void CRayTracer::load () {
   objects.push_back (plane);
 
   // Add a single white light
-  CLight *light = new CLight(VECTOR (5000,5000,5000), COLOR (1,1,1));
+  CLight *light = new CLight(VECTOR (100,100,100), COLOR (1,1,1));
   lights.push_back (light);
 
 }

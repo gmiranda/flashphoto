@@ -46,7 +46,7 @@ VECTOR CSphere::getNormal(const VECTOR &hit_loc)
 {
   VECTOR T;
 
-  T=loc-hit_loc;
+  T=hit_loc-loc;
 
   T.normalize();
   return T;

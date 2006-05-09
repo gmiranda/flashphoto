@@ -161,3 +161,89 @@
 1147003510 d:\mis documentos\uni\imagen sintetica\raytracer\src\cylinder.h
 	"raytracer.h"
 
+1145895996 c:\raytracer\src\image.cpp
+	<cassert>
+	"image.h"
+
+1145895996 c:\raytracer\src\image.h
+	<string.h>
+	<cstdio>
+	"geometry.h"
+
+1146913904 c:\raytracer\src\geometry.h
+	"vector_template.h"
+
+1145895996 c:\raytracer\src\vector_template.h
+	<cmath>
+
+1145895996 c:\raytracer\src\io.cpp
+	"raytracer.h"
+
+1145895996 c:\raytracer\src\raytracer.h
+	<iostream>
+	"geometry.h"
+	"material.h"
+	"rtobject.h"
+	"camera.h"
+	"light.h"
+
+1146913944 c:\raytracer\src\material.h
+	<map>
+	<string>
+
+1151677260 c:\raytracer\src\rtobject.h
+	"line.h"
+	<list>
+
+1145895996 c:\raytracer\src\line.h
+	"geometry.h"
+
+1145895996 c:\raytracer\src\camera.h
+
+1145895996 c:\raytracer\src\light.h
+	<list>
+
+1145900526 c:\raytracer\src\camera.cpp
+	"raytracer.h"
+	<math.h>
+
+1145895996 c:\raytracer\src\material.cpp
+	"raytracer.h"
+
+1145897630 c:\raytracer\src\rtobject.cpp
+	"raytracer.h"
+
+1147108360 c:\raytracer\src\cylinder.cpp
+	"cylinder.h"
+	<cmath>
+
+1147003510 c:\raytracer\src\cylinder.h
+	"raytracer.h"
+
+1147109402 c:\raytracer\src\line.cpp
+	<stdio.h>
+	"line.h"
+
+1147109830 c:\raytracer\src\raytracer.cpp
+	<assert.h>
+	"raytracer.h"
+	"image.h"
+	<unistd.h>
+
+1147109092 c:\raytracer\src\main.cpp
+	"raytracer.h"
+	"sphere.h"
+	"plane.h"
+	"cylinder.h"
+	<iostream>
+
+1145895996 c:\raytracer\src\sphere.h
+	"raytracer.h"
+
+1145895996 c:\raytracer\src\plane.h
+	"raytracer.h"
+
+1147108970 c:\raytracer\src\sphere.cpp
+	"sphere.h"
+	<cmath>
+

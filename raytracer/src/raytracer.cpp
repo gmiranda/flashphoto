@@ -36,7 +36,7 @@ void CRayTracer::render() {
 	  raig=CLine(camera.getLineAt(i,j));
 	  background(raig);
 	  trace(raig);
-	  
+
 	  /*
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
@@ -123,53 +123,73 @@ void CRayTracer::trace(CLine &line)
   line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		*0.5*
 		(1-line.obj->getMaterial()->getReflectance(pos)));
-  
+
   //llums
   std::list<CLight *>::iterator llum;
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
-      CLine llumLinea((*llum)->getLocation(),(pos-(*llum)->getLocation()), 0);
+      // Vector L
+      VECTOR L = (*llum)->getLocation()-pos;
+      L.normalize();
+      CLine llumLinea((*llum)->getLocation(),L, 0);
 
-      SCALAR NL=llumLinea.dir.dot(line.obj->getNormal(pos));
-      
+      VECTOR N = line.obj->getNormal(pos);
+      SCALAR NL=N.dot(L);
+
       if(NL<0) NL=0;
-      
+
       //llum difosa
-      
-      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+
+      /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		    *
 		    (NL)
 		    *
-		    (1-line.obj->getMaterial()->getReflectance(pos)));
-      
-      
+		    (1-line.obj->getMaterial()->getReflectance(pos)));*/
+
+
       //llum especular
       VECTOR E;
       E=-line.dir;
-      SCALAR RE=llumLinea.dir.dot(E);
-      
-      
-      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-		    *-pow(RE,921)*
-		    (1-line.obj->getMaterial()->getReflectance(pos)));
-      
-      
-      
-      if(line.obj->getMaterial()->getReflectance(pos)>0)
+      //E.normalize();
+      // La L paralela
+      VECTOR Lpar =N.cross(N.cross(L));
+      Lpar.normalize();
+      // La L perpendicular
+      VECTOR Lper = (L-Lpar);
+      Lper.normalize();
+      VECTOR R = (2*Lpar - L);
+      R.normalize();
+      // cos Beta = RE, se calcula asi :)
+      SCALAR RE=R.dot(E);
+      // Si es negativo, no hay componente especular
+      if(RE>=0){
+          // Especular = Is*(cos Beta)^n por Ks
+          COLOR especular=VECTOR(0.5f,0.5f,0.5f)
+            *pow(RE,21)*0.3f;
+            std::cerr << "Especular="<<especular << std::endl;
+          line.addColor(especular);
+          /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+                *-pow(RE,20)*
+                (1-line.obj->getMaterial()->getReflectance(pos)));*/
+      }
+
+
+      // Luz reflejada
+      /*if(line.obj->getMaterial()->getReflectance(pos)>0)
 	{
 	  CLine reflexe;
-	  
+
 	  line.t=-1;
-	  
+
 	  reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
 	  reflexe.color.x=0;
 	  reflexe.color.y=0;
 	  reflexe.color.z=0;
 	  trace(reflexe);
-	  
+
 	  //com l'afegeixo?
 	  line.addColor(reflexe.color);
-	}
+	}*/
     }
 }
 

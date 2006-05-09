@@ -4,8 +4,8 @@
 	<File name="src\camera.cpp" open="0" top="0">
 		<Cursor position="678" topLine="0"/>
 	</File>
-	<File name="src\cylinder.cpp" open="1" top="1">
-		<Cursor position="551" topLine="4"/>
+	<File name="src\cylinder.cpp" open="1" top="0">
+		<Cursor position="4206" topLine="126"/>
 	</File>
 	<File name="src\cylinder.h" open="1" top="0">
 		<Cursor position="356" topLine="0"/>
@@ -14,28 +14,28 @@
 		<Cursor position="197" topLine="0"/>
 	</File>
 	<File name="src\line.cpp" open="1" top="0">
-		<Cursor position="970" topLine="0"/>
+		<Cursor position="1988" topLine="44"/>
 	</File>
 	<File name="src\line.h" open="1" top="0">
 		<Cursor position="322" topLine="0"/>
 	</File>
-	<File name="src\main.cpp" open="1" top="0">
-		<Cursor position="1728" topLine="21"/>
+	<File name="src\main.cpp" open="1" top="1">
+		<Cursor position="1730" topLine="24"/>
 	</File>
 	<File name="src\material.cpp" open="1" top="0">
-		<Cursor position="780" topLine="0"/>
+		<Cursor position="784" topLine="0"/>
 	</File>
 	<File name="src\material.h" open="1" top="0">
-		<Cursor position="140" topLine="0"/>
+		<Cursor position="140" topLine="7"/>
 	</File>
-	<File name="src\plane.cpp" open="1" top="0">
-		<Cursor position="302" topLine="0"/>
+	<File name="src\plane.cpp" open="0" top="0">
+		<Cursor position="718" topLine="0"/>
 	</File>
-	<File name="src\plane.h" open="1" top="0">
+	<File name="src\plane.h" open="0" top="0">
 		<Cursor position="480" topLine="0"/>
 	</File>
 	<File name="src\raytracer.cpp" open="1" top="0">
-		<Cursor position="2954" topLine="90"/>
+		<Cursor position="4602" topLine="143"/>
 	</File>
 	<File name="src\raytracer.h" open="0" top="0">
 		<Cursor position="897" topLine="0"/>
@@ -46,10 +46,13 @@
 	<File name="src\rtobject.h" open="0" top="0">
 		<Cursor position="783" topLine="0"/>
 	</File>
-	<File name="src\sphere.cpp" open="0" top="0">
-		<Cursor position="417" topLine="0"/>
+	<File name="src\sphere.cpp" open="1" top="0">
+		<Cursor position="1101" topLine="18"/>
 	</File>
-	<File name="src\vector_template.h" open="0" top="0">
-		<Cursor position="5207" topLine="275"/>
+	<File name="src\vector_template.h" open="1" top="0">
+		<Cursor position="5106" topLine="278"/>
 	</File>
+	<Expand folder="/Sources/src"/>
+	<Expand folder="/Sources"/>
+	<Expand folder="/Headers"/>
 </CodeBlocks_layout_file>

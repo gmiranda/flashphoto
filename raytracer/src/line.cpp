@@ -27,7 +27,7 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
   c.dir=(dir+(2*dir.dot(-normal))*normal);
   c.dir.normalize();
   c.t=-1;
-  
+
   return c;
 }
 
@@ -57,6 +57,13 @@ int CLine::getLevel() const {
 /----------------------------------------------------------------------*/
 void CLine::addColor(const VECTOR &amount)
 {
+    // No sumamos luz negativa
+    if(amount.x<0)
+        return;
+    if(amount.y<0)
+        return;
+    if(amount.z<0)
+        return;
   color += amount;
   if(color.x>1)
     color.x=1;
@@ -64,7 +71,8 @@ void CLine::addColor(const VECTOR &amount)
     color.y=1;
   if(color.z>1)
     color.z=1;
-  
+
+  // NOTE: y esto para que?
   if((color.x>1)||(color.y>1)||(color.z>1))
     {
       color.x=1;

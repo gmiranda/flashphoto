@@ -138,17 +138,22 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 
 VECTOR CCylinder::getNormal(const VECTOR &hit_loc)
 {
-  //no es el mateix?
-  VECTOR ret;
-  VECTOR pos0;
-  
-  pos0.x=loc.x;
-  pos0.y= hit_loc.y;
-  pos0.z=loc.z;
-  
-  ret=pos0-hit_loc;
-  ret.normalize();
+    switch(intersection){
+        case UP:
+            return VECTOR(0.0,1.0,0.0);
+        case DOWN:
+            return VECTOR(0.0,-1.0,0.0);
+        case SIDE:
+            /*
+             * NOTE: No se porque es el -, pero lo tuve que poner
+             * para que funcionase bien la iluminacion.
+             */
+            return VECTOR(hit_loc.x,0,hit_loc.z).normalize();
+    }
 
-  return ret;
+    // Si has llegado aqui vete a la mierda
+	std::cerr << "CCylinder::getNormal() [ERROR] No se deberia haber llegado aqui"
+                << std::endl;
+    return VECTOR(0.0,0.0,0.0);
 }
 
