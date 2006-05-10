@@ -140,11 +140,11 @@ void CRayTracer::trace(CLine &line)
 
       //llum difosa
 
-      /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 		    *
 		    (NL)
 		    *
-		    (1-line.obj->getMaterial()->getReflectance(pos)));*/
+		    (1-line.obj->getMaterial()->getReflectance(pos)));
 
 
       //llum especular
@@ -152,20 +152,20 @@ void CRayTracer::trace(CLine &line)
       E=-line.dir;
       //E.normalize();
       // La L paralela
-      VECTOR Lpar =N.cross(N.cross(L));
-      Lpar.normalize();
+      VECTOR Lpar =N*(N.dot(L));
       // La L perpendicular
       VECTOR Lper = (L-Lpar);
-      Lper.normalize();
-      VECTOR R = (2*Lpar - L);
-      R.normalize();
+      VECTOR R = Lpar-Lper;
+      // En principio no hace falta
+	  //R.normalize();
       // cos Beta = RE, se calcula asi :)
       SCALAR RE=R.dot(E);
       // Si es negativo, no hay componente especular
       if(RE>=0){
           // Especular = Is*(cos Beta)^n por Ks
-          COLOR especular=VECTOR(0.5f,0.5f,0.5f)
-            *pow(RE,21)*0.3f;
+          // Dice que podemos sudar de Is y Ks xD
+          COLOR especular=VECTOR(1.0,1.0,1.0)
+            *pow(RE,21)/**0.8f*/;
             //std::cerr << "Especular="<<especular << std::endl;
           line.addColor(especular);
           /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)

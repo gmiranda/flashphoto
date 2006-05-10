@@ -122,7 +122,7 @@
 	<stdio.h>
 	"line.h"
 
-1147187377 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+1147263689 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
 	"raytracer.h"
 	"sphere.h"
 	"plane.h"
@@ -148,7 +148,7 @@
 	"sphere.h"
 	<cmath>
 
-1147187317 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1147250102 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"

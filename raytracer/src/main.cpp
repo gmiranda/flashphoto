@@ -10,7 +10,7 @@
 void CRayTracer::load () {
 
   // Add the camera looking at the origin
-  camera.setView (VECTOR(-100, -100, 100), VECTOR (0,0,0));
+  camera.setView (VECTOR(200, 200, 100), VECTOR (0,0,0));
   camera.setRenderParameters (640,480,60);
 
   // Define some materials
@@ -22,14 +22,14 @@ void CRayTracer::load () {
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
-  //sph->setLocation (VECTOR(0,50,0));
-  //sph->setMaterial (materials["red"]);
-  //objects.push_back (sph);
+  sph->setLocation (VECTOR(0,50,0));
+  sph->setMaterial (materials["green"]);
+  objects.push_back (sph);
 
   // Add a sphere
   /*sph = new CSphere(50);
   sph->setLocation (VECTOR(0,150,0));
-  sph->setMaterial (materials["green"]);
+  sph->setMaterial (materials["red"]);
   objects.push_back (sph);
 
   // Add a sphere
@@ -51,7 +51,7 @@ void CRayTracer::load () {
   objects.push_back (plane);
 
   // Add a single white light
-  CLight *light = new CLight(VECTOR (100,100,100), COLOR (1,1,1));
+  CLight *light = new CLight(VECTOR (300,300,300), COLOR (1,1,1));
   lights.push_back (light);
 
 }
