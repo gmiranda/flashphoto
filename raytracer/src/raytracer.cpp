@@ -131,7 +131,7 @@ void CRayTracer::trace(CLine &line)
       // Vector L
       VECTOR L = (*llum)->getLocation()-pos;
       L.normalize();
-      CLine llumLinea((*llum)->getLocation(),L, 0);
+      CLine llumLinea(pos,L, 0);
 
       VECTOR N = line.obj->getNormal(pos);
       SCALAR NL=N.dot(L);
@@ -164,6 +164,7 @@ void CRayTracer::trace(CLine &line)
       if(RE>=0){
           // Especular = Is*(cos Beta)^n por Ks
           // Dice que podemos sudar de Is y Ks xD
+          // Ademas, 20 o 21 es un 'numbero sunficiete'
           COLOR especular=VECTOR(1.0,1.0,1.0)
             *pow(RE,21)/**0.8f*/;
             //std::cerr << "Especular="<<especular << std::endl;

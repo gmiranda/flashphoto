@@ -9,7 +9,6 @@
 class CCylinder : public CRTObject {
   SCALAR radius;
   SCALAR height;
-  //VECTOR norm;
   enum{SIDE=0,UP,DOWN} intersection;
 public:
   CCylinder(SCALAR aheight, SCALAR aradius);
