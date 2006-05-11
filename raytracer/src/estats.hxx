@@ -58,7 +58,7 @@ public:
 	      << intersects
 	      << std::endl;
     std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: " 
-	      << interok << "/" << interbad
+	      << (double)((double)interok/(double)intersects)*100.0f << "/" << (double)(100.0f-(double)((double)interok/(double)intersects)*100.0f)
 	      << std::endl;
   }
 };

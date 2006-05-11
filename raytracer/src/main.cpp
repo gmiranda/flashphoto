@@ -4,6 +4,7 @@
 #include "cylinder.h"
 #include <iostream>
 #include "estats.hxx"
+#include "cmaterial.hxx"
 
 /*-<==>-----------------------------------------------------------------
   / Defines the scene
@@ -21,8 +22,11 @@ void CRayTracer::load () {
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.5);
   
-  materials["gray"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0);
+  materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0);
 
+  materials["escacs"]  = new CCheckerMaterial(materials["red"],
+					     materials["green"],20);
+  
   // Add a sphere
   CSphere *sph = new CSphere(50);
   /*sph->setLocation (VECTOR(0,50,0));
@@ -38,13 +42,13 @@ void CRayTracer::load () {
   // Add a sphere
   sph = new CSphere(50);
   sph->setLocation (VECTOR(0,100,0));
-  sph->setMaterial (materials["blue"]);
+  sph->setMaterial (materials["red"]);
   objects.push_back (sph);
 
     // Add a sphere
   sph = new CSphere(50);
   sph->setLocation (VECTOR(100,0,0));
-  sph->setMaterial (materials["red"]);
+  sph->setMaterial (materials["gray"]);
   objects.push_back (sph);
 
   // Add a sphere
@@ -56,7 +60,7 @@ void CRayTracer::load () {
     // Add a sphere
   sph = new CSphere(50);
   sph->setLocation (VECTOR(100,0,100));
-  sph->setMaterial (materials["gray"]);
+  sph->setMaterial (materials["escacs"]);
   objects.push_back (sph);
   
   // And now for something completely different
@@ -68,9 +72,9 @@ void CRayTracer::load () {
   
   
   // Add the ground
-  //CPlane *plane = new CPlane (VECTOR(0,-50,0), 0);
-  //plane->setMaterial (materials["blue"]);
-  //objects.push_back (plane);
+  CPlane *plane = new CPlane (VECTOR(0,10,0), 0);
+  plane->setMaterial (materials["escacs"]);
+  objects.push_back (plane);
   
   // Add a single white light
   CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
