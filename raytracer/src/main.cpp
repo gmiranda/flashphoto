@@ -44,7 +44,8 @@ void CRayTracer::load () {
   cyl->setLocation (VECTOR(0,0,0));
   cyl->setMaterial (materials["blue"]);
   objects.push_back(cyl);
-
+  
+  
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
   plane->setMaterial (materials["orange"]);
