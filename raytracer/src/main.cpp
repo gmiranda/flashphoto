@@ -5,8 +5,8 @@
 #include <iostream>
 
 /*-<==>-----------------------------------------------------------------
-/ Defines the scene
-/----------------------------------------------------------------------*/
+  / Defines the scene
+  /----------------------------------------------------------------------*/
 void CRayTracer::load () {
 
   // Add the camera looking at the origin
@@ -23,8 +23,8 @@ void CRayTracer::load () {
   // Add a sphere
   CSphere *sph = new CSphere(50);
   /*sph->setLocation (VECTOR(0,50,0));
-  sph->setMaterial (materials["red"]);
-  objects.push_back (sph);*/
+    sph->setMaterial (materials["red"]);
+    objects.push_back (sph);*/
 
   // Add a sphere
   sph = new CSphere(50);
@@ -57,6 +57,49 @@ void CRayTracer::load () {
 
 }
 
+bool CRayTracer::loadSnowflake (const char *filename) {
+  FILE *f = fopen (filename, "r");
+  if (!f)
+    return false;
+
+  // Add the camera looking at the origin
+  camera.setView (VECTOR(2.1, 1.7, 1.3), VECTOR (0,0,0));
+  camera.setRenderParameters (512,512,45);
+
+  // Add a two material
+  materials["txt001"]    = new CSolidMaterial (COLOR (0.8, 0.6, 0.264), 0);
+  materials["txt002"]    = new CSolidMaterial (COLOR (0.5, 0.45, 0.35), 0.5);
+
+  // Add the ground
+  CPlane *plane = new CPlane (VECTOR(0,1,0), -0.5);
+  plane->setMaterial (materials["txt001"]);
+  objects.push_back (plane); 
+
+  // This is a very simply parser!!
+  while (!feof(f)) {
+    char buf[512];
+    fgets (buf, 511, f);
+    if (strncmp (buf, "sphere", 6) == 0) {
+      char material[64];
+      double x,y,z, rad;
+      sscanf (buf, "sphere %s %lf %lf %lf %lf\n", material, &rad, &x,&y,&z);
+      CSphere *sph = new CSphere(rad);
+      sph->setLocation (VECTOR(x,z,y));
+      sph->setMaterial (materials["txt002"]);
+      objects.push_back (sph);
+    } 
+  }
+
+  // Add 3 white lights
+  lights.push_back (new CLight(VECTOR ( 4, 3, 2), COLOR (1,1,1)));
+  lights.push_back (new CLight(VECTOR ( 1,-4, 4), COLOR (1,1,1)));
+  lights.push_back (new CLight(VECTOR (-3, 1, 5), COLOR (1,1,1)));
+
+  fclose (f);
+  return true;
+}
+
+
 /*-<==>-----------------------------------------------------------------
 / MAIN
 /----------------------------------------------------------------------*/
@@ -64,7 +107,14 @@ int main(int argc, char **argv)
 {
   std::cout << "GayTracer is tracing..." << std::endl;
   CRayTracer rt;
-  rt.load();
+  
+  //despres ja ho canviarem a la seva manera
+  // Use filename given as runtime argument
+  if (argc>1)
+    rt.loadSnowflake(argv[1]);
+  else
+    rt.load();
+  
   rt.render();
   std::cout << "is behind you!" << std::endl;
   return 0;
