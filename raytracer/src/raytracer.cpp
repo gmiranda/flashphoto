@@ -5,6 +5,8 @@
 	#include <unistd.h>
 #endif
 
+#include "estats.hxx"
+
 /*-<==>-----------------------------------------------------------------
 /
 /----------------------------------------------------------------------*/
@@ -35,6 +37,7 @@ void CRayTracer::render() {
 	{
 	  raig=CLine(camera.getLineAt(i,j));
 	  background(raig);
+	  Estats::getInstance().incCamera();
 	  trace(raig);
 
 	  /*
@@ -64,7 +67,8 @@ void CRayTracer::render() {
 /----------------------------------------------------------------------*/
 bool CRayTracer::intersects(CLine &line)
 {
-  // ...
+  Estats::getInstance().incIntersects();
+  
   // ^Que coño es esto?
   // Example of traversing all the objects registered in the scene
   // Same thing for lights
@@ -93,9 +97,15 @@ bool CRayTracer::intersects(CLine &line)
 	}
     }
   if(line.t>0)
-    return true;
+    {
+      Estats::getInstance().incIntersectsOK();
+      return true;
+    }
   else
-    return false;
+    {
+      Estats::getInstance().incIntersectsNO();
+      return false;
+    }
 }
 
 /*-<==>-----------------------------------------------------------------
@@ -103,6 +113,8 @@ bool CRayTracer::intersects(CLine &line)
 /----------------------------------------------------------------------*/
 void CRayTracer::trace(CLine &line)
 {
+  Estats::getInstance().incLine();
+  
   //si no hem arribat al maxim de recursió
   if (line.getLevel()>max_recursion_level)
     return;
@@ -186,14 +198,17 @@ void CRayTracer::trace(CLine &line)
 	  reflexe.color.x=0;
 	  reflexe.color.y=0;
 	  reflexe.color.z=0;
+	  
+	  Estats::getInstance().incReflexe();
 	  trace(reflexe);
-
+	  
 	  //com l'afegeixo?
 	  line.addColor(reflexe.color*0.3);
 	}
       else
 	{
 	  //sombra
+	  Estats::getInstance().incSombra();
 	}
     }
 }

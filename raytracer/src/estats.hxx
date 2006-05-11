@@ -6,7 +6,63 @@ class Estats
 protected:
   static Estats inst;
   Estats(){}
+  
+  /*
+    segons enunciat
+    ===============
+    * Número total de lineas trazadas
+    * Número lineas trazadas desde la cámara
+    * Número lineas trazadas para el cálculo de sombras
+    * Número lineas trazadas para el cálculo de reflejos
+    * Número lineas trazadas para el cálculo de refracción y reflejos
+    * Número total de tests de intersección hechos
+    * Número de tests de intersección con resultado positivo y el porcentaje respecto al total.
+   */
+  int lineas;
+  int camera;
+  int sombra;
+  int reflexe;
+  int refrac_reflex;
+  int intersects;
+  int interok;
+  int interbad;
 public:
-  Estats& getInstance(){return inst;}
+  static Estats& getInstance(){return inst;}
+  void incLine(){lineas++;}
+  void incCamera(){camera++;}
+  void incSombra(){sombra++;}
+  void incReflexe(){reflexe++;}
+  void incRefrac(){refrac_reflex++;}
+  void incIntersects(){intersects++;}
+  void incIntersectsOK(){interok++;}
+  void incIntersectsNO(){interbad++;}
+  //
+  void printStats()
+  {
+    std::cout << "* Número total de lineas trazadas: " 
+	      << lineas
+	      << std::endl;
+    std::cout << "* Número lineas trazadas desde la cámara: " 
+	      << camera
+	      << std::endl;
+    std::cout << "* Número lineas trazadas para el cálculo de sombras: " 
+	      << sombra
+	      << std::endl;
+    std::cout << "* Número lineas trazadas para el cálculo de reflejos: " 
+	      << reflexe
+	      << std::endl;
+    std::cout << "* Número lineas trazadas para el cálculo de refracción y reflejos: " 
+	      << refrac_reflex
+	      << std::endl;
+    std::cout << "* Número total de tests de intersección hechos: " 
+	      << intersects
+	      << std::endl;
+    std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: " 
+	      << interok << "/" << interbad
+	      << std::endl;
+  }
 };
+
+
+#endif
 
