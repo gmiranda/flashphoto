@@ -1,5 +1,5 @@
 #include "raytracer.h"
-#include "cmaterial.h"
+#include "cmaterial.hxx"
 
 bool CCheckerMaterial::is_white(const VECTOR &loc) const
 {
