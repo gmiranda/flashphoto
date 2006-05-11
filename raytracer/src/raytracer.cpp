@@ -175,8 +175,8 @@ void CRayTracer::trace(CLine &line)
       }
 
 
-      // Luz reflejada
-      /*if(line.obj->getMaterial()->getReflectance(pos)>0)
+      //reflexe / sombra
+      if(line.obj->getMaterial()->getReflectance(pos)>0)
 	{
 	  CLine reflexe;
 
@@ -189,8 +189,12 @@ void CRayTracer::trace(CLine &line)
 	  trace(reflexe);
 
 	  //com l'afegeixo?
-	  line.addColor(reflexe.color);
-	}*/
+	  line.addColor(reflexe.color*0.3);
+	}
+      else
+	{
+	  //sombra
+	}
     }
 }
 

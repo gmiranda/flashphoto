@@ -83,5 +83,5 @@ void CLine::addColor(const VECTOR &amount)
     }
   */
   
-  color.normalize();
+  //color.normalize();
 }
