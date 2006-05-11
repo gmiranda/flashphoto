@@ -3,6 +3,11 @@
 
 bool CCheckerMaterial::is_white(const VECTOR &loc) const
 {
+  
+  bool bx;
+  bool by;
+  bool bz;
+  
   return true;
 }
 
