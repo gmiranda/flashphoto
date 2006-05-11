@@ -13,7 +13,8 @@
 /*-<==>-----------------------------------------------------------------
 /
 /----------------------------------------------------------------------*/
-CRayTracer::CRayTracer() {
+CRayTracer::CRayTracer()
+{
   max_recursion_level = 10;
 }
 
@@ -136,7 +137,7 @@ void CRayTracer::trace(CLine &line)
 
   //Ambiental suposem que hi es encara que no llum
   line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-		*0.5*
+		*0.2*
 		(1-line.obj->getMaterial()->getReflectance(pos)));
 
   //llums

@@ -15,11 +15,11 @@ void CRayTracer::load () {
   camera.setRenderParameters (640,480,60);
 
   // Define some materials
-  materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0);
-  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0);
+  materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0.5);
+  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0.5);
   //
-  materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0);
-  materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0);
+  materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
+  materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.5);
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
