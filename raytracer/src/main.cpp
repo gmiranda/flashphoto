@@ -3,6 +3,7 @@
 #include "plane.h"
 #include "cylinder.h"
 #include <iostream>
+#include "estats.hxx"
 
 /*-<==>-----------------------------------------------------------------
   / Defines the scene
@@ -28,28 +29,46 @@ void CRayTracer::load () {
 
   // Add a sphere
   sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,150,0));
+  sph->setLocation (VECTOR(0,0,0));
   sph->setMaterial (materials["green"]);
   objects.push_back (sph);
 
   // Add a sphere
   sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,250,0));
+  sph->setLocation (VECTOR(0,100,0));
   sph->setMaterial (materials["blue"]);
   objects.push_back (sph);
 
+    // Add a sphere
+  sph = new CSphere(50);
+  sph->setLocation (VECTOR(100,0,0));
+  sph->setMaterial (materials["blue"]);
+  objects.push_back (sph);
+
+  // Add a sphere
+  sph = new CSphere(50);
+  sph->setLocation (VECTOR(0,0,100));
+  sph->setMaterial (materials["blue"]);
+  objects.push_back (sph);
+
+    // Add a sphere
+  sph = new CSphere(50);
+  sph->setLocation (VECTOR(100,0,100));
+  sph->setMaterial (materials["blue"]);
+  objects.push_back (sph);
+  
   // And now for something completely different
-  CCylinder* cyl = new CCylinder(100,50);
-  cyl->setLocation(VECTOR(50,25,10));
-  cyl->setLocation (VECTOR(0,0,0));
-  cyl->setMaterial (materials["blue"]);
-  objects.push_back(cyl);
+  // CCylinder* cyl = new CCylinder(100,50);
+//   cyl->setLocation(VECTOR(50,25,10));
+//   cyl->setLocation (VECTOR(0,0,0));
+//   cyl->setMaterial (materials["blue"]);
+//   objects.push_back(cyl);
   
   
   // Add the ground
-  CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
-  plane->setMaterial (materials["orange"]);
-  objects.push_back (plane);
+//   CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
+//   plane->setMaterial (materials["orange"]);
+//   objects.push_back (plane);
 
   // Add a single white light
   CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
@@ -57,7 +76,8 @@ void CRayTracer::load () {
 
 }
 
-bool CRayTracer::loadSnowflake (const char *filename) {
+bool CRayTracer::loadSnowflake (const char *filename)
+{
   FILE *f = fopen (filename, "r");
   if (!f)
     return false;
@@ -99,6 +119,8 @@ bool CRayTracer::loadSnowflake (const char *filename) {
   return true;
 }
 
+
+Estats Estats::inst;
 
 /*-<==>-----------------------------------------------------------------
 / MAIN

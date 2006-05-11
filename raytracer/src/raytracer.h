@@ -30,6 +30,7 @@ public:
   CRayTracer();
   void render();
   void load();              // defined in main.cpp
+  bool loadSnowflake (const char *filename);
 };
 
 // Send a vector to a output stream
