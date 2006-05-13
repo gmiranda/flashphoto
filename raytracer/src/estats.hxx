@@ -22,20 +22,25 @@ protected:
   int camera;
   int sombra;
   int reflexe;
-  int refrac_reflex;
+  int refrac;
   int intersects;
   int interok;
   int interbad;
+  time_t tempsInici, tempsFi;
 public:
   static Estats& getInstance(){return inst;}
   void incLine(){lineas++;}
   void incCamera(){camera++;}
   void incSombra(){sombra++;}
   void incReflexe(){reflexe++;}
-  void incRefrac(){refrac_reflex++;}
+  void incRefrac(){refrac++;}
   void incIntersects(){intersects++;}
   void incIntersectsOK(){interok++;}
   void incIntersectsNO(){interbad++;}
+  
+  void start(){tempsInici=time(NULL);}
+  void stop(){tempsFi=time(NULL);}
+  
   //
   void printStats()
   {
@@ -52,7 +57,7 @@ public:
 	      << reflexe
 	      << std::endl;
     std::cout << "* Número lineas trazadas para el cálculo de refracción y reflejos: " 
-	      << refrac_reflex
+	      << refrac
 	      << std::endl;
     std::cout << "* Número total de tests de intersección hechos: " 
 	      << intersects
@@ -60,6 +65,8 @@ public:
     std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: " 
 	      << (double)((double)interok/(double)intersects)*100.0f << "/" << (double)(100.0f-(double)((double)interok/(double)intersects)*100.0f)
 	      << std::endl;
+    std::cout << "*Temps destinat: "
+	      << difftime(tempsInici, tempsFi) << std::endl;
   }
 };
 
