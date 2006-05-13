@@ -136,7 +136,9 @@ int main(int argc, char **argv)
   else
     rt.load();
 
+  Estats::getInstance().start();
   rt.render();
+  Estats::getInstance().stop();
   std::cout << "is behind you!" << std::endl;
 
   Estats::getInstance().printStats(rt);

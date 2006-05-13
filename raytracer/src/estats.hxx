@@ -1,6 +1,8 @@
 #ifndef _ESTATS_RAY_TRACER_HXX_
 #define _ESTATS_RAY_TRACER_HXX_
 
+#include "time.h"
+
 class Estats
 {
 protected:
@@ -65,16 +67,16 @@ public:
     std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: " 
 	      << (double)((double)interok/(double)intersects)*100.0f << "/" << (double)(100.0f-(double)((double)interok/(double)intersects)*100.0f)
 	      << std::endl;
-    std::cout << "*Temps destinat: "
-	      << difftime(tempsInici, tempsFi) 
+    std::cout << "* Temps destinat: "
+	      << difftime(tempsFi, tempsInici) 
 	      << std::endl;
-    std::cout << "*Nombre de primitives: "
+    std::cout << "* Nombre de primitives: "
 	      << rt.getCountObjects()
 	      << std::endl;
-    std::cout << "*Nombre de llums: "
+    std::cout << "* Nombre de llums: "
 	      << rt.getCountLights()
 	      << std::endl;
-    std::cout << "*Resolucio de l'imatge calculada: "
+    std::cout << "* Resolucio de l'imatge calculada: "
 	      << rt.getResolution()
 	      <<  std::endl;
     
