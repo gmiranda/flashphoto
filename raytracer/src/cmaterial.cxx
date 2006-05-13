@@ -6,22 +6,9 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
 
   VECTOR dloc=loc;
   
-  if(dloc.x<0)
-    {
-      dloc.x=std::abs(dloc.x)+side_size/2;
-    }
-  if(dloc.y<0)
-    {
-      dloc.y=std::abs(dloc.y)+side_size/2;
-    }
-  if(dloc.z<0)
-    {
-      dloc.z=std::abs(dloc.z)+side_size/2;
-    }
-  
-  //bool bx=(((dloc.x)-((float)(int)(dloc.x/side_size))*side_size)> side_size/2);
-  //bool by=(((dloc.y)-((float)(int)(dloc.y/side_size))*side_size)> side_size/2);
-  //bool bz=(((dloc.z)-((float)(int)(dloc.z/side_size))*side_size)> side_size/2);
+  dloc.x=std::abs(dloc.x)+side_size/2;
+  dloc.y=std::abs(dloc.y)+side_size/2;
+  dloc.z=std::abs(dloc.z)+side_size/2;
   
   bool bx=(((int)(dloc.x/side_size)%2)==0);
   bool by=(((int)(dloc.y/side_size)%2)==0);

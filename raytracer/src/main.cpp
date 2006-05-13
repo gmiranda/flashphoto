@@ -73,7 +73,6 @@ void CRayTracer::load () {
   // Add a single white light
   CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
   lights.push_back (light);
-
 }
 
 bool CRayTracer::loadSnowflake (const char *filename)
