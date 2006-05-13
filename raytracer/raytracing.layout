@@ -28,14 +28,14 @@
 	<File name="src\material.h" open="1" top="0">
 		<Cursor position="140" topLine="0"/>
 	</File>
-	<File name="src\plane.cpp" open="0" top="0">
-		<Cursor position="718" topLine="0"/>
+	<File name="src\plane.cpp" open="1" top="0">
+		<Cursor position="693" topLine="0"/>
 	</File>
 	<File name="src\plane.h" open="0" top="0">
 		<Cursor position="480" topLine="0"/>
 	</File>
 	<File name="src\raytracer.cpp" open="1" top="1">
-		<Cursor position="4441" topLine="143"/>
+		<Cursor position="5497" topLine="200"/>
 	</File>
 	<File name="src\raytracer.h" open="0" top="0">
 		<Cursor position="897" topLine="0"/>
@@ -47,7 +47,7 @@
 		<Cursor position="783" topLine="0"/>
 	</File>
 	<File name="src\sphere.cpp" open="1" top="0">
-		<Cursor position="1101" topLine="9"/>
+		<Cursor position="1101" topLine="3"/>
 	</File>
 	<File name="src\vector_template.h" open="0" top="0">
 		<Cursor position="4795" topLine="278"/>

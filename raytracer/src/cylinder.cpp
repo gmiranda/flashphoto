@@ -124,13 +124,13 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 	}
 
       // Ha habido interseccion
-      return true;
+      return (t_hit>1e-3);
     }
   // Si solo ha habido interseccion con tapa, ok
   if(tapa)
     {
       t_hit = tTapa;
-      return true;
+      return (t_hit>1e-3);
     }
   // Si no hay interseccion con nada, a la mierda
   return false;

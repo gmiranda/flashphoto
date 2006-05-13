@@ -72,7 +72,7 @@ void CRayTracer::render() {
 bool CRayTracer::intersects(CLine &line)
 {
   Estats::getInstance().incIntersects();
-  
+
   // ^Que coño es esto?
   // Example of traversing all the objects registered in the scene
   // Same thing for lights
@@ -119,7 +119,7 @@ void CRayTracer::trace(CLine &line)
 {
   Estats::getInstance().incLine();
   SCALAR t;
-  
+
   //si no hem arribat al maxim de recursió
   if (line.getLevel()>max_recursion_level)
     return;
@@ -149,32 +149,32 @@ void CRayTracer::trace(CLine &line)
       CLine llumLinea((*llum)->getLocation(),
 		      (pos-(*llum)->getLocation()),
 		      0);
-      
+
       llumLinea.t=1e10;
       intersects(llumLinea);
       line.obj->hits(llumLinea,t);
       if(true)
 	{
-	  
+
 	  // Vector L
 	  VECTOR L = (*llum)->getLocation()-pos;
 	  L.normalize();
-	  
+
 	  VECTOR N = line.obj->getNormal(pos);
 	  SCALAR NL=N.dot(L);
-	  
+
 	  if(NL<0) NL=0;
-	  
+
 	  //llum difosa
-	  
+
 	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
 			*
 			(NL)
 			*
 			(1-line.obj->getMaterial()->getReflectance(pos)));
-	  
-	  
-	  
+
+
+
 	  //llum especular
 	  VECTOR E;
 	  E=-line.dir;
@@ -195,34 +195,34 @@ void CRayTracer::trace(CLine &line)
 	    // Ademas, 20 o 21 es un 'numbero sunficiete'
 	    COLOR especular=VECTOR(1.0,1.0,1.0)
 	      *pow(RE,81)/**0.8f*/;
-	    
+
 	    //depen de la reflectance tindra un brillo mes o menys
 	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
-	    
+
 	    if (t*0.8<llumLinea.t)
-	      { 
-		line.addColor(especular);
-	      }
-	    
+		{
+		  line.addColor(especular);
+		}
+
 	  }
-	  
+
 	  //reflexe / sombra
 	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	    {
 	      CLine reflexe;
-	      
+
 	      line.t=-1;
-	      
+
 	      reflexe= line.getReflected(pos,
 					 line.obj->getNormal(pos) );
 	      reflexe.color=VECTOR(0,0,0);
 	      reflexe.t=-1;
-	      
+
 	      Estats::getInstance().incReflexe();
 	      trace(reflexe);
-	      
+
 	      //aixi rulez
 	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }

@@ -21,12 +21,12 @@ void CRayTracer::load () {
   //
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.7);
-  
+
   materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0.5);
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);
-  
+
   // Add a sphere
   CSphere *sph = new CSphere(50);
   /*sph->setLocation (VECTOR(0,50,0));
@@ -57,19 +57,19 @@ void CRayTracer::load () {
   sph->setMaterial (materials["orange"]);
   objects.push_back (sph);
 
-    // And now for something completely different
-  // CCylinder* cyl = new CCylinder(100,50);
-//   cyl->setLocation(VECTOR(50,25,10));
-//   cyl->setLocation (VECTOR(0,0,0));
-//   cyl->setMaterial (materials["blue"]);
-//   objects.push_back(cyl);
-  
-  
+  // And now for something completely different
+  CCylinder* cyl = new CCylinder(100,50);
+  cyl->setLocation(VECTOR(50,25,10));
+  cyl->setLocation (VECTOR(0,0,0));
+  cyl->setMaterial (materials["blue"]);
+  objects.push_back(cyl);
+
+
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,10,0), 0);
   plane->setMaterial (materials["escacs"]);
   objects.push_back (plane);
-  
+
   // Add a single white light
   CLight *light = new CLight(VECTOR (400,400,400), COLOR (1,1,1));
   lights.push_back (light);
@@ -92,7 +92,7 @@ bool CRayTracer::loadSnowflake (const char *filename)
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,1,0), -0.5);
   plane->setMaterial (materials["txt001"]);
-  objects.push_back (plane); 
+  objects.push_back (plane);
 
   // This is a very simply parser!!
   while (!feof(f)) {
@@ -106,7 +106,7 @@ bool CRayTracer::loadSnowflake (const char *filename)
       sph->setLocation (VECTOR(x,z,y));
       sph->setMaterial (materials["txt002"]);
       objects.push_back (sph);
-    } 
+    }
   }
 
   // Add 3 white lights
@@ -128,19 +128,19 @@ int main(int argc, char **argv)
 {
   std::cout << "GayTracer is tracing..." << std::endl;
   CRayTracer rt;
-  
+
   //despres ja ho canviarem a la seva manera
   // Use filename given as runtime argument
   if (argc>1)
     rt.loadSnowflake(argv[1]);
   else
     rt.load();
-  
+
   rt.render();
   std::cout << "is behind you!" << std::endl;
-  
+
   Estats::getInstance().printStats();
-  
+
   return 0;
 }
 
