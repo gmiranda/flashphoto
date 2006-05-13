@@ -118,6 +118,7 @@ bool CRayTracer::intersects(CLine &line)
 void CRayTracer::trace(CLine &line)
 {
   Estats::getInstance().incLine();
+  SCALAR t;
   
   //si no hem arribat al maxim de recursió
   if (line.getLevel()>max_recursion_level)
@@ -147,69 +148,78 @@ void CRayTracer::trace(CLine &line)
       // Vector L
       VECTOR L = (*llum)->getLocation()-pos;
       L.normalize();
-      CLine llumLinea(pos,L, 0);
-
-      VECTOR N = line.obj->getNormal(pos);
-      SCALAR NL=N.dot(L);
-
-      if(NL<0) NL=0;
-
-      //llum difosa
-
-      line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-		    *
-		    (NL)
-		    *
-		    (1-line.obj->getMaterial()->getReflectance(pos)));
-
-
-      //llum especular
-      VECTOR E;
-      E=-line.dir;
-      //E.normalize();
-      // La L paralela
-      VECTOR Lpar =N*(N.dot(L));
-      // La L perpendicular
-      VECTOR Lper = (L-Lpar);
-      VECTOR R = Lpar-Lper;
-      // En principio no hace falta
-	  //R.normalize();
-      // cos Beta = RE, se calcula asi :)
-      SCALAR RE=R.dot(E);
-      // Si es negativo, no hay componente especular
-      if(RE>=0){
-          // Especular = Is*(cos Beta)^n por Ks
-          // Dice que podemos sudar de Is y Ks xD
-          // Ademas, 20 o 21 es un 'numbero sunficiete'
-          COLOR especular=VECTOR(1.0,1.0,1.0)
-            *pow(RE,41)/**0.8f*/;
-	  
-	  //depen de la reflectance tindra un brillo mes o menys
-	  especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
-	  especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
-	  especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
-	  
-          line.addColor(especular);
-      }
-
-
-      //reflexe / sombra
-      if(line.obj->getMaterial()->getReflectance(pos)>0)
+      CLine llumLinea((*llum)->getLocation(),
+		      (pos-(*llum)->getLocation()),
+		      0);
+      
+      t=llumLinea.t=1e6;
+      intersects(llumLinea);
+      if(line.obj->hits(llumLinea,t))
 	{
-	  CLine reflexe;
-
-	  line.t=-1;
-
-	  reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
-	  reflexe.color.x=0;
-	  reflexe.color.y=0;
-	  reflexe.color.z=0;
 	  
-	  Estats::getInstance().incReflexe();
-	  trace(reflexe);
+	  VECTOR N = line.obj->getNormal(pos);
+	  SCALAR NL=N.dot(L);
 	  
-	  //com l'afegeixo?
-	  line.addColor(reflexe.color*0.2*(1-line.obj->getMaterial()->getReflectance(pos)));
+	  if(NL<0) NL=0;
+	  
+	  //llum difosa
+	  
+	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
+			*
+			(NL)
+			*
+			(1-line.obj->getMaterial()->getReflectance(pos)));
+	  
+	  
+	  //llum especular
+	  VECTOR E;
+	  E=-line.dir;
+	  //E.normalize();
+	  // La L paralela
+	  VECTOR Lpar =N*(N.dot(L));
+	  // La L perpendicular
+	  VECTOR Lper = (L-Lpar);
+	  VECTOR R = Lpar-Lper;
+	  // En principio no hace falta
+	  //R.normalize();
+	  // cos Beta = RE, se calcula asi :)
+	  SCALAR RE=R.dot(E);
+	  // Si es negativo, no hay componente especular
+	  if(RE>=0){
+	    // Especular = Is*(cos Beta)^n por Ks
+	    // Dice que podemos sudar de Is y Ks xD
+	    // Ademas, 20 o 21 es un 'numbero sunficiete'
+	    COLOR especular=VECTOR(1.0,1.0,1.0)
+	      *pow(RE,41)/**0.8f*/;
+	    
+	    //depen de la reflectance tindra un brillo mes o menys
+	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
+	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
+	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
+	    
+	    line.addColor(especular);
+	  }
+	  
+
+	  //reflexe / sombra
+	  if(line.obj->getMaterial()->getReflectance(pos)>0)
+	    {
+	      CLine reflexe;
+	      
+	      line.t=-1;
+	      
+	      reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
+	      reflexe.color.x=0;
+	      reflexe.color.y=0;
+	      reflexe.color.z=0;
+	      reflexe.t=-1;
+	      
+	      Estats::getInstance().incReflexe();
+	      trace(reflexe);
+	      
+	      //com l'afegeixo?
+	      //line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	    }
 	}
       else
 	{
