@@ -250,7 +250,7 @@ void CRayTracer::trace(CLine &line)
 		line.getRefracted(
 			pos,
 			line.obj->getNormal(pos),
-			1.0
+			1.0/line.obj->getMaterial()->getRefraction(pos)
 			);
 
 		/*

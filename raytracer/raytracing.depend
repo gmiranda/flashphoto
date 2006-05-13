@@ -98,7 +98,7 @@
 	"line.h"
 	<list>
 
-1147536479 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.h
+1147557689 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.h
 	"geometry.h"
 	<iostream>
 
@@ -119,7 +119,7 @@
 1147542862 d:\mis documentos\uni\imagen sintetica\raytracer\src\io.cpp
 	"raytracer.h"
 
-1147549260 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.cpp
+1147557680 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.cpp
 	<stdio.h>
 	"line.h"
 	"raytracer.h"
@@ -152,7 +152,7 @@
 	"sphere.h"
 	<cmath>
 
-1147555796 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1147557766 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"

@@ -32,27 +32,19 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
   return c;
 }
 
-CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR& factor)
+CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR& n)
 {
   dir.normalize();
 
   // El coseno de theta i es el escalar de la normal por el vector incidente
   const SCALAR cosi = -dir.dot(normal);
-const SCALAR cos2t = 1.0f - factor*factor * (1.0f - cosi*cosi);
-  /*
-   * El seno de theta t al cuadrado es el factor de refraccion al cuadrado
-   * multiplicado por (1- cos cuadrado de theta i)
-   */
-  //const SCALAR sin2t = (factor*factor)*(1-(cosi*cosi));
-//float cosI = -DOT( N, a_Ray.GetDirection() );
-//			float cosT2 = 1.0f - n * n * (1.0f - cosI * cosI);
-  // Si el seno es mayor que uno
-  //assert(!(sin2t>1.0));
+  // El coseno de theta t al cuadrado
+  const SCALAR cos2t = 1.0f - n*n * (1.0f - cosi*cosi);
+
   assert(cos2t>0.0);
 
   // El vector refractado
-  //VECTOR dirRefr = factor*dir - (factor + std::sqrt(1.0 - sin2t))*normal;
-  VECTOR dirRefr = (factor * dir) + (factor * cosi - std::sqrt( cos2t )) * normal;
+  VECTOR dirRefr = (n * dir) + (n * cosi - std::sqrt( cos2t )) * normal;
   dirRefr.normalize();
   // Construimos la linea del haz reflejado
   CLine refr(nloc, dirRefr);
@@ -60,7 +52,6 @@ const SCALAR cos2t = 1.0f - factor*factor * (1.0f - cosi*cosi);
   // Y ponemos el color a 0
   refr.color=COLOR(0.0,0.0,0.0);
 
-  //std::cout << "CLine::getRefracted() dir=" << dir <<", refr.dir=" << refr.dir << std::endl;
   return refr;
 }
 

@@ -31,7 +31,7 @@ public:
   const CLine& operator++();
 
   CLine getReflected(const VECTOR &nloc, const VECTOR &normal);
-  CLine getRefracted(const VECTOR &dir, const VECTOR &normal, const SCALAR& factor);
+  CLine getRefracted(const VECTOR &dir, const VECTOR &normal, const SCALAR& n);
 };
 
 #endif
