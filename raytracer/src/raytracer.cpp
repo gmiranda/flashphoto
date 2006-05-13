@@ -166,8 +166,8 @@ void CRayTracer::trace(CLine &line)
 
 		  if(NL<0) NL=0;
 
-		  //llum difosa
 
+		  //llum difosa
 		  VECTOR color=line.obj->getMaterial()->getDiffuseColor(pos)
 			*
 			(NL)
