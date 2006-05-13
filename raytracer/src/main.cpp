@@ -30,12 +30,12 @@ void CRayTracer::load () {
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
-  sph->setLocation (VECTOR(195,100,100));
-  sph->setMaterial (materials["glass"]);
+  sph->setLocation (VECTOR(0,-100,0));
+  sph->setMaterial (materials["grey"]);
   objects.push_back (sph);
 
   // Add a sphere
-  sph = new CSphere(50);
+  /*sph = new CSphere(50);
   sph->setLocation (VECTOR(0,100,0));
   sph->setMaterial (materials["green"]);
   objects.push_back (sph);
@@ -63,11 +63,11 @@ void CRayTracer::load () {
   cyl->setLocation (VECTOR(85,0,120));
   cyl->setMaterial (materials["blue"]);
   objects.push_back(cyl);
-
+*/
 
   // Add the ground
   CPlane *plane = new CPlane (VECTOR(0,10,0), 0);
-  plane->setMaterial (materials["escacs"]);
+  plane->setMaterial (materials["glass"]);
   objects.push_back (plane);
 
   // Add a single white light
