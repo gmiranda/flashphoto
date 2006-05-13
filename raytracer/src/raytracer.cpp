@@ -194,14 +194,14 @@ void CRayTracer::trace(CLine &line)
 	    // Dice que podemos sudar de Is y Ks xD
 	    // Ademas, 20 o 21 es un 'numbero sunficiete'
 	    COLOR especular=VECTOR(1.0,1.0,1.0)
-	      *pow(RE,41)/**0.8f*/;
+	      *pow(RE,81)/**0.8f*/;
 	    
 	    //depen de la reflectance tindra un brillo mes o menys
 	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    
-	    if (t*0.95<llumLinea.t)
+	    if (t*0.8<llumLinea.t)
 	      { 
 		line.addColor(especular);
 	      }
