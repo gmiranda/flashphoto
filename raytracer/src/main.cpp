@@ -16,16 +16,16 @@ void CRayTracer::load () {
   camera.setRenderParameters (640,480,60);
 
   // Define some materials
-  materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0.5);
-  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0.5);
+  materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0.1);
+  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0.3);
   //
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
-  materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.5);
+  materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.7);
   
-  materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0);
+  materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 1);
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
-					     materials["green"],20);
+					     materials["green"],1.5);
   
   // Add a sphere
   CSphere *sph = new CSphere(50);
@@ -57,13 +57,7 @@ void CRayTracer::load () {
   sph->setMaterial (materials["orange"]);
   objects.push_back (sph);
 
-    // Add a sphere
-  sph = new CSphere(50);
-  sph->setLocation (VECTOR(100,0,100));
-  sph->setMaterial (materials["escacs"]);
-  objects.push_back (sph);
-  
-  // And now for something completely different
+    // And now for something completely different
   // CCylinder* cyl = new CCylinder(100,50);
 //   cyl->setLocation(VECTOR(50,25,10));
 //   cyl->setLocation (VECTOR(0,0,0));

@@ -183,11 +183,13 @@ void CRayTracer::trace(CLine &line)
           // Ademas, 20 o 21 es un 'numbero sunficiete'
           COLOR especular=VECTOR(1.0,1.0,1.0)
             *pow(RE,41)/**0.8f*/;
-            //std::cerr << "Especular="<<especular << std::endl;
-          //line.addColor(especular);
-          /*line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-                *-pow(RE,20)*
-                (1-line.obj->getMaterial()->getReflectance(pos)));*/
+	  
+	  //depen de la reflectance tindra un brillo mes o menys
+	  especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
+	  especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
+	  especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
+	  
+          line.addColor(especular);
       }
 
 
@@ -207,7 +209,7 @@ void CRayTracer::trace(CLine &line)
 	  trace(reflexe);
 	  
 	  //com l'afegeixo?
-	  line.addColor(reflexe.color*0.2*(line.obj->getMaterial()->getReflectance(pos)));
+	  line.addColor(reflexe.color*0.2*(1-line.obj->getMaterial()->getReflectance(pos)));
 	}
       else
 	{
