@@ -152,7 +152,8 @@ void CRayTracer::trace(CLine &line)
       
       llumLinea.t=1e10;
       intersects(llumLinea);
-      if(line.obj->hits(llumLinea,t))
+      line.obj->hits(llumLinea,t);
+      if(true)
 	{
 	  
 	  // Vector L
@@ -198,10 +199,12 @@ void CRayTracer::trace(CLine &line)
 	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
+	    
 	    if (t*0.95<llumLinea.t)
 	      { 
 		line.addColor(especular);
 	      }
+	    
 	  }
 	  
 
@@ -221,7 +224,7 @@ void CRayTracer::trace(CLine &line)
 	      trace(reflexe);
 	      
 	      //aixi rulez
-	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	      //line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
 	}
       else
