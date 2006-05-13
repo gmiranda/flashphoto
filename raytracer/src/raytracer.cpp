@@ -149,17 +149,17 @@ void CRayTracer::trace(CLine &line)
     {
       CLight &ellum=(**llum);
       //fem per sombres
-      CLine llumLinea((*llum)->getLocation(),
-		      (pos-(*llum)->getLocation()),
+      CLine llumLinea(ellum.getLocation(),
+		      (pos-ellum.getLocation()),
 		      0);
-
-      llumLinea.t=1e10;
+      
       intersects(llumLinea);
       if(line.obj->hits(llumLinea,t))
-	{
+	if(t>0.0)
+	  {
 
 	  // Vector L
-	  VECTOR L = (*llum)->getLocation()-pos;
+	  VECTOR L = ellum.getLocation()-pos;
 	  L.normalize();
 
 	  VECTOR N = line.obj->getNormal(pos);
