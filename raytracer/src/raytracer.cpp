@@ -224,7 +224,7 @@ void CRayTracer::trace(CLine &line)
 	      trace(reflexe);
 	      
 	      //aixi rulez
-	      //line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
 	}
       else
