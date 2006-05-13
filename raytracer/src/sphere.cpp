@@ -29,17 +29,19 @@ bool CSphere::hits (const CLine &line, SCALAR &t_hit)
   SCALAR t2=std::abs(a)+b;
   SCALAR t1=std::abs(a)-b;
   
+  /*
   if(t2<0)
     return false;
-  
+  */
+    
   if(t1>0)
     t_hit=t1;
   else
     t_hit=t2;
 
-  //t_hit=((std::abs(t2)<std::abs(t1))?t2:t1)-;
+  t_hit=((std::abs(t2)<std::abs(t1))?t2:t1);
   
-  return true;
+  return (t_hit>1e-3);
 }
 
 VECTOR CSphere::getNormal(const VECTOR &hit_loc)
