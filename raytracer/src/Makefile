@@ -14,7 +14,7 @@ LIBS      = -lstdc++  # add any -l's that you need here
           # don't need any for the sample program
 
 # Tuve que eliminar --ffast-math y -msse3 porque no lo pilla gcc 2.95 :)
-CFLAGS    = -I$(INCDIR) -Wall -O3 -pipe #-ffast-math -msse3
+CFLAGS    = -I$(INCDIR) -Wall -O3 -pipe -g #-ffast-math -msse3 
 LDFLAGS   = -L$(LIBDIR) $(LIBS)
 
 PROGRAM   = demo01     # name of the binary

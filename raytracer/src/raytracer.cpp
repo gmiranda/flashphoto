@@ -15,7 +15,7 @@
   /----------------------------------------------------------------------*/
 CRayTracer::CRayTracer()
 {
-  max_recursion_level = 10;
+  max_recursion_level = 15;
 }
 
 /*-<==>-----------------------------------------------------------------
@@ -117,12 +117,13 @@ bool CRayTracer::intersects(CLine &line)
   /----------------------------------------------------------------------*/
 void CRayTracer::trace(CLine &line)
 {
-  Estats::getInstance().incLine();
   SCALAR t;
 
   //si no hem arribat al maxim de recursió
   if (line.getLevel()>max_recursion_level)
     return;
+
+  Estats::getInstance().incLine();
 
   //un nivell mes
   ++line;
@@ -242,11 +243,23 @@ void CRayTracer::trace(CLine &line)
 	    {
 	      // Factor es el indice de refraccion del medio.
 	      // El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
-	      CLine refractada = line.getRefracted(
-						   pos,
-						   -line.obj->getNormal(pos),
-						   1.0/1.52);
-
+	      CLine refractada=
+		
+		line.getRefracted(
+				  pos,
+				  line.obj->getNormal(pos),
+				  0.0
+				  );
+		
+	      /*
+	      refractada.loc=line.loc;
+	      refractada.dir=line.dir;
+	      refractada.color=VECTOR(0,0,0);
+	      refractada.t=-1;
+	      */
+	      
+	      
+	      
 	      // Trazamos la refraccion
 	      trace(refractada);
 	      // Estadisticas

@@ -60,10 +60,10 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // And now for something completely different
-  CCylinder* cyl = new CCylinder(100,50);
-  cyl->setLocation (VECTOR(85,0,120));
-  cyl->setMaterial (materials["grey"]);
-  objects.push_back(cyl);
+//   CCylinder* cyl = new CCylinder(100,50);
+//   cyl->setLocation (VECTOR(85,0,120));
+//   cyl->setMaterial (materials["grey"]);
+//   objects.push_back(cyl);
 
 
   // Add the ground

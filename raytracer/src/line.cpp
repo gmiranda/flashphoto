@@ -23,45 +23,42 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
 {
   CLine c;
   dir.normalize();
-  c.level=level+1;
+  //c.level=level+1;
   c.loc=nloc;
   c.dir=(dir+(2*dir.dot(-normal))*normal);
-  c.dir.normalize();
+  c.dir.normalize();  
   c.t=-1;
 
   return c;
 }
 
-CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR& factor){
-	dir.normalize();
+CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR& factor)
+{
+  dir.normalize();
 
-	// El coseno de theta i es el escalar de la normal por el vector incidente
-	const SCALAR cosi = dir.dot(-normal);
-	/*
-	 * El seno de theta t al cuadrado es el factor de refraccion al cuadrado
-	 * multiplicado por (1- cos cuadrado de theta i)
-	 */
-	const SCALAR sin2t = (factor*factor)*(1-(cosi*cosi));
+  // El coseno de theta i es el escalar de la normal por el vector incidente
+  const SCALAR cosi = dir.dot(-normal);
+  
+  /*
+   * El seno de theta t al cuadrado es el factor de refraccion al cuadrado
+   * multiplicado por (1- cos cuadrado de theta i)
+   */
+  const SCALAR sin2t = (factor*factor)*(1-(cosi*cosi));
 
-	// Si el seno es mayor que uno
-	if(sin2t>1.0){
-		// Problema, no es valido
-		std::cerr << "[ERROR] CLine::getRefracted() sen2t>1.0" << std::endl;
-	}
+  // Si el seno es mayor que uno
+  assert(!(sin2t>1.0));
 
-	// El vector refractado
-	VECTOR dirRefr = factor*dir - (factor + std::sqrt(1.0 - sin2t))*normal;
-	dirRefr.normalize();
-	// Construimos la linea del haz reflejado
-	CLine refr(nloc, dirRefr);
-	// Aumentamos el nivel
-	refr.level = level+1;
-	//refr.t=-1;
-	// Y ponemos el color a 0
-	refr.color=COLOR(0.0,0.0,0.0);
+  // El vector refractado
+  VECTOR dirRefr = factor*dir - (factor + std::sqrt(1.0 - sin2t))*normal;
+  dirRefr.normalize();
+  // Construimos la linea del haz reflejado
+  CLine refr(nloc, -dirRefr);
+  
+  // Y ponemos el color a 0
+  refr.color=COLOR(0.0,0.0,0.0);
 
-//std::cout << "CLine::getRefracted() dir=" << dir <<", refr.dir=" << refr.dir << std::endl;
-	return refr;
+  //std::cout << "CLine::getRefracted() dir=" << dir <<", refr.dir=" << refr.dir << std::endl;
+  return refr;
 }
 
 const CLine& CLine::operator++()
