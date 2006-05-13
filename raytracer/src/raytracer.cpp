@@ -208,6 +208,9 @@ void CRayTracer::trace(CLine &line)
 
 	  }
 
+      // Factor de refraccion (se usara luego)
+      SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
+
 	  //reflexe / sombra
 	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	    {
@@ -226,6 +229,16 @@ void CRayTracer::trace(CLine &line)
 	      //aixi rulez
 	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
+	    // Refraccion
+		else if(factor>0.0f){
+			CLine refractada = line.getRefracted(pos,line.obj->getNormal(pos), factor);
+
+			// Trazamos la refraccion
+			trace(refractada);
+			// Estadisticas
+
+			line.addColor(refractada.color*factor);
+		}
 	}
       else
 	{

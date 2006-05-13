@@ -31,6 +31,37 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
   return c;
 }
 
+CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR& factor){
+	dir.normalize();
+
+	// El coseno de theta i es el escalar de la normal por el vector incidente
+	const SCALAR cosi = dir.dot(normal);
+	/*
+	 * El seno de theta t al cuadrado es el factor de refraccion al cuadrado
+	 * multiplicado por (1- cos cuadrado de theta i)
+	 */
+	const SCALAR sin2t = (factor*factor)*(1-(cosi*cosi));
+
+	// Si el seno es mayor que uno
+	if(sin2t>1.0){
+		// Problema, no es valido
+		std::cerr << "[ERROR] CLine::getRefracted() sen2t>1.0" << std::endl;
+	}
+
+	// El vector refractado
+	VECTOR dirRefr = factor*dir - (factor + std::sqrt(1.0 - sin2t))*normal;
+	dirRefr.normalize();
+	// Construimos la linea del haz reflejado
+	CLine refr(nloc, dirRefr);
+	// Aumentamos el nivel
+	refr.level =level+1;
+	refr.t=-1;
+	// Y ponemos el color a 0
+	refr.color=COLOR(0.0,0.0,0.0);
+
+	return refr;
+}
+
 const CLine& CLine::operator++()
 {
   level++;
@@ -82,6 +113,6 @@ void CLine::addColor(const VECTOR &amount)
       color.z=1;
     }
   */
-  
+
   //color.normalize();
 }
