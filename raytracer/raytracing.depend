@@ -76,7 +76,7 @@
 	"raytracer.h"
 	<math.h>
 
-1147520728 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.h
+1147541976 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.h
 	<iostream>
 	"geometry.h"
 	"material.h"
@@ -116,14 +116,15 @@
 	<cstdio>
 	"geometry.h"
 
-1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\io.cpp
+1147542862 d:\mis documentos\uni\imagen sintetica\raytracer\src\io.cpp
 	"raytracer.h"
 
-1147536825 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.cpp
+1147543069 d:\mis documentos\uni\imagen sintetica\raytracer\src\line.cpp
 	<stdio.h>
 	"line.h"
+	"raytracer.h"
 
-1147540393 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+1147543699 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
 	"raytracer.h"
 	"sphere.h"
 	"plane.h"
@@ -138,7 +139,7 @@
 1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.h
 	"raytracer.h"
 
-1147534888 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.cpp
+1147542755 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.cpp
 	"raytracer.h"
 
 1147523008 d:\mis documentos\uni\imagen sintetica\raytracer\src\plane.cpp
@@ -151,7 +152,7 @@
 	"sphere.h"
 	<cmath>
 
-1147540483 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1147543522 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"
@@ -258,5 +259,6 @@
 
 1147534848 d:\mis documentos\uni\imagen sintetica\raytracer\src\cmaterial.hxx
 
-1147520728 d:\mis documentos\uni\imagen sintetica\raytracer\src\estats.hxx
+1147542439 d:\mis documentos\uni\imagen sintetica\raytracer\src\estats.hxx
+	"time.h"
 
