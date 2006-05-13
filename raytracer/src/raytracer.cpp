@@ -5,24 +5,24 @@
 #include "cmaterial.hxx"
 
 #ifndef __WIN32__
-	#include <unistd.h>
+#include <unistd.h>
 #endif
 
 #include "estats.hxx"
 
 /*-<==>-----------------------------------------------------------------
-/
-/----------------------------------------------------------------------*/
+  /
+  /----------------------------------------------------------------------*/
 CRayTracer::CRayTracer()
 {
   max_recursion_level = 10;
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Create an image, and for each pixel in the screen create a line
-/ and retrieve which color is seen through this line
-/ Save the image to a file
-/----------------------------------------------------------------------*/
+  / Create an image, and for each pixel in the screen create a line
+  / and retrieve which color is seen through this line
+  / Save the image to a file
+  /----------------------------------------------------------------------*/
 void CRayTracer::render() {
   // ...
   printf("\n                                          |\r|=00");
@@ -65,10 +65,10 @@ void CRayTracer::render() {
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Find which object and at which 't' the line hits and object
-/ from the scene.
-/ Returns true if the object hits some object
-/----------------------------------------------------------------------*/
+  / Find which object and at which 't' the line hits and object
+  / from the scene.
+  / Returns true if the object hits some object
+  /----------------------------------------------------------------------*/
 bool CRayTracer::intersects(CLine &line)
 {
   Estats::getInstance().incIntersects();
@@ -113,8 +113,8 @@ bool CRayTracer::intersects(CLine &line)
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Returns in line.color the color captured by the line.
-/----------------------------------------------------------------------*/
+  / Returns in line.color the color captured by the line.
+  /----------------------------------------------------------------------*/
 void CRayTracer::trace(CLine &line)
 {
   Estats::getInstance().incLine();
@@ -143,8 +143,10 @@ void CRayTracer::trace(CLine &line)
 
   //llums
   std::list<CLight *>::iterator llum;
+  
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
+      CLight &ellum=(**llum);
       //fem per sombres
       CLine llumLinea((*llum)->getLocation(),
 		      (pos-(*llum)->getLocation()),
@@ -166,11 +168,17 @@ void CRayTracer::trace(CLine &line)
 
 	  //llum difosa
 
-	  line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-			*
-			(NL)
-			*
-			(1-line.obj->getMaterial()->getReflectance(pos)));
+	  VECTOR color=line.obj->getMaterial()->getDiffuseColor(pos)
+	    *
+	    (NL)
+	    *
+	    (1-line.obj->getMaterial()->getReflectance(pos));
+	  
+	  color.x*=ellum.getColor().x;
+	  color.y*=ellum.getColor().y;
+	  color.z*=ellum.getColor().z;
+	  
+	  line.addColor(color);
 
 
 
@@ -200,15 +208,16 @@ void CRayTracer::trace(CLine &line)
 	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
 
-	    if (t*0.8<llumLinea.t)
-		{
-		  line.addColor(especular);
-		}
-
+	    line.addColor(especular);
+	    
+	    especular.x*=ellum.getColor().x;
+	    especular.y*=ellum.getColor().y;
+	    especular.z*=ellum.getColor().z;
+	    
 	  }
 
-      // Factor de refraccion (se usara luego)
-      SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
+	  // Factor de refraccion (se usara luego)
+	  SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
 
 	  //reflexe / sombra
 	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
@@ -228,18 +237,19 @@ void CRayTracer::trace(CLine &line)
 	      //aixi rulez
 	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
-	    // Refraccion
-		else if(factor>0.0f){
-			// Factor es el indice de refraccion del medio.
-			// El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
-			CLine refractada = line.getRefracted(pos,line.obj->getNormal(pos), 1.0/1.0);
+	  // Refraccion
+	  else if(factor>0.0f)
+	    {
+	      // Factor es el indice de refraccion del medio.
+	      // El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
+	      CLine refractada = line.getRefracted(pos,line.obj->getNormal(pos), 1.0/1.0);
 
-			// Trazamos la refraccion
-			trace(refractada);
-			// Estadisticas
+	      // Trazamos la refraccion
+	      trace(refractada);
+	      // Estadisticas
 
-			line.addColor(refractada.color*factor);
-		}
+	      line.addColor(refractada.color*factor);
+	    }
 	}
       else
 	{
@@ -250,8 +260,8 @@ void CRayTracer::trace(CLine &line)
 }
 
 /*-<==>-----------------------------------------------------------------
-/ Default background
-/----------------------------------------------------------------------*/
+  / Default background
+  /----------------------------------------------------------------------*/
 void CRayTracer::background(CLine &line)
 {
   line.color = COLOR (0,0,0);
