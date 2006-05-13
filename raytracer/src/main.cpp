@@ -22,10 +22,11 @@ void CRayTracer::load () {
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.7);
 
-  materials["grey"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0.0);
+  materials["grey"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0.5);
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);
+  
   materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.0,0.6),1.52);
 
   // Add a sphere
