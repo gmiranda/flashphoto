@@ -138,7 +138,7 @@ void CRayTracer::trace(CLine &line)
 
   //Ambiental suposem que hi es encara que no llum
   line.addColor(line.obj->getMaterial()->getDiffuseColor(pos)
-		*0.2*
+		*1*
 		(1-line.obj->getMaterial()->getReflectance(pos)));
 
   //llums
@@ -174,6 +174,7 @@ void CRayTracer::trace(CLine &line)
 			(1-line.obj->getMaterial()->getReflectance(pos)));
 	  
 	  
+	  
 	  //llum especular
 	  VECTOR E;
 	  E=-line.dir;
@@ -207,7 +208,6 @@ void CRayTracer::trace(CLine &line)
 	    
 	  }
 	  
-
 	  //reflexe / sombra
 	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	    {
@@ -224,7 +224,7 @@ void CRayTracer::trace(CLine &line)
 	      trace(reflexe);
 	      
 	      //aixi rulez
-	      //line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
 	}
       else

@@ -3,7 +3,7 @@
 
 bool CCheckerMaterial::is_white(const VECTOR &loc) const
 {
-  
+
   VECTOR dloc=loc;
   
   if(dloc.x<0)
@@ -19,13 +19,17 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
       dloc.z=std::abs(dloc.z)+side_size/2;
     }
   
-  bool bx=(((dloc.x)-((float)(int)(dloc.x/side_size))*side_size)> side_size/2);
-  bool by=(((dloc.y)-((float)(int)(dloc.y/side_size))*side_size)> side_size/2);
-  bool bz=(((dloc.z)-((float)(int)(dloc.z/side_size))*side_size)> side_size/2);
+  //bool bx=(((dloc.x)-((float)(int)(dloc.x/side_size))*side_size)> side_size/2);
+  //bool by=(((dloc.y)-((float)(int)(dloc.y/side_size))*side_size)> side_size/2);
+  //bool bz=(((dloc.z)-((float)(int)(dloc.z/side_size))*side_size)> side_size/2);
+  
+  bool bx=(((int)(dloc.x/side_size)%2)==0);
+  bool by=(((int)(dloc.y/side_size)%2)==0);
+  bool bz=(((int)(dloc.z/side_size)%2)==0);
   
   if (bz)
     {
-      if((!(bz&&by))&&(bx || by))
+      if((!(bx&&by))&&(bx || by))
 	return true;
       else 
 	return false;
@@ -38,6 +42,7 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
 	return false;
     }
   return true;
+  
 }
 
 
