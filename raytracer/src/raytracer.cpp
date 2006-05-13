@@ -145,17 +145,19 @@ void CRayTracer::trace(CLine &line)
   std::list<CLight *>::iterator llum;
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
-      // Vector L
-      VECTOR L = (*llum)->getLocation()-pos;
-      L.normalize();
+      //fem per sombres
       CLine llumLinea((*llum)->getLocation(),
 		      (pos-(*llum)->getLocation()),
 		      0);
       
-      t=llumLinea.t=1e6;
+      llumLinea.t=1e10;
       intersects(llumLinea);
       if(line.obj->hits(llumLinea,t))
 	{
+	  
+	  // Vector L
+	  VECTOR L = (*llum)->getLocation()-pos;
+	  L.normalize();
 	  
 	  VECTOR N = line.obj->getNormal(pos);
 	  SCALAR NL=N.dot(L);
@@ -196,29 +198,30 @@ void CRayTracer::trace(CLine &line)
 	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
-	    
-	    line.addColor(especular);
+	    if (t*0.95<llumLinea.t)
+	      { 
+		line.addColor(especular);
+	      }
 	  }
 	  
 
 	  //reflexe / sombra
-	  if(line.obj->getMaterial()->getReflectance(pos)>0)
+	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	    {
 	      CLine reflexe;
 	      
 	      line.t=-1;
 	      
-	      reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
-	      reflexe.color.x=0;
-	      reflexe.color.y=0;
-	      reflexe.color.z=0;
+	      reflexe= line.getReflected(pos,
+					 line.obj->getNormal(pos) );
+	      reflexe.color=VECTOR(0,0,0);
 	      reflexe.t=-1;
 	      
 	      Estats::getInstance().incReflexe();
 	      trace(reflexe);
 	      
-	      //com l'afegeixo?
-	      //line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	      //aixi rulez
+	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	    }
 	}
       else
