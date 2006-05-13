@@ -31,6 +31,11 @@ public:
   void render();
   void load();              // defined in main.cpp
   bool loadSnowflake (const char *filename);
+  
+  //custom!
+  int getCountObjects(){ return objects.size();}
+  int getCountLights(){ return lights.size();}
+  int getResolution(){ return camera.getXRes()*camera.getYRes();}
 };
 
 // Send a vector to a output stream

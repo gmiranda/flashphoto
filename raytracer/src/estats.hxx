@@ -69,10 +69,13 @@ public:
 	      << difftime(tempsInici, tempsFi) 
 	      << std::endl;
     std::cout << "*Nombre de primitives: "
+	      << rt.getCountObjects()
 	      << std::endl;
     std::cout << "*Nombre de llums: "
+	      << rt.getCountLights()
 	      << std::endl;
     std::cout << "*Resolucio de l'imatge calculada: "
+	      << rt.getResolution()
 	      <<  std::endl;
     
   }
