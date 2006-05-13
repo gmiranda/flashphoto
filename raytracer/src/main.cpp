@@ -17,7 +17,7 @@ void CRayTracer::load () {
 
   // Define some materials
   materials["orange"]  = new CSolidMaterial (COLOR (1, 0.301, 0.074), 0.1);
-  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0.3);
+  materials["blue"]    = new CSolidMaterial (COLOR (0.0, 0.2, 0.8), 0.0);
   //
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.7);
@@ -26,7 +26,7 @@ void CRayTracer::load () {
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);
-  
+
   materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.1,0.1),1.52);
 
   // Add a sphere
@@ -36,10 +36,10 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // Add a sphere
-  sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,100,0));
-  sph->setMaterial (materials["green"]);
-  objects.push_back (sph);
+  CCylinder* cyl = new CCylinder(50,50);
+  cyl->setLocation (VECTOR(0,100,0));
+  cyl->setMaterial (materials["green"]);
+  objects.push_back (cyl);
 
   // Add a sphere
   sph = new CSphere(50);
@@ -64,6 +64,10 @@ void CRayTracer::load () {
 //   cyl->setLocation (VECTOR(85,0,120));
 //   cyl->setMaterial (materials["grey"]);
 //   objects.push_back(cyl);
+  cyl = new CCylinder(100,50);
+  cyl->setLocation (VECTOR(150,0,100));
+  cyl->setMaterial (materials["blue"]);
+  objects.push_back(cyl);
 
 
   // Add the ground

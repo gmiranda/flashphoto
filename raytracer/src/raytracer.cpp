@@ -144,7 +144,7 @@ void CRayTracer::trace(CLine &line)
 
   //llums
   std::list<CLight *>::iterator llum;
-  
+
   for(llum = lights.begin();llum!=lights.end();++llum)
     {
       CLight &ellum=(**llum);
@@ -152,127 +152,127 @@ void CRayTracer::trace(CLine &line)
       CLine llumLinea(ellum.getLocation(),
 		      (pos-ellum.getLocation()),
 		      0);
-      
+
       intersects(llumLinea);
       if(line.obj->hits(llumLinea,t))
-	if(t>0.0)
-	  {
+		if(t>0.0)
+		  {
 
-	  // Vector L
-	  VECTOR L = ellum.getLocation()-pos;
-	  L.normalize();
+		  // Vector L
+		  VECTOR L = ellum.getLocation()-pos;
+		  L.normalize();
 
-	  VECTOR N = line.obj->getNormal(pos);
-	  SCALAR NL=N.dot(L);
+		  VECTOR N = line.obj->getNormal(pos);
+		  SCALAR NL=N.dot(L);
 
-	  if(NL<0) NL=0;
+		  if(NL<0) NL=0;
 
-	  //llum difosa
+		  //llum difosa
 
-	  VECTOR color=line.obj->getMaterial()->getDiffuseColor(pos)
-	    *
-	    (NL)
-	    *
-	    (1-line.obj->getMaterial()->getReflectance(pos));
-	  
-	  color.x*=ellum.getColor().x;
-	  color.y*=ellum.getColor().y;
-	  color.z*=ellum.getColor().z;
-	  
-	  line.addColor(color);
+		  VECTOR color=line.obj->getMaterial()->getDiffuseColor(pos)
+			*
+			(NL)
+			*
+			(1-line.obj->getMaterial()->getReflectance(pos));
+
+		  color.x*=ellum.getColor().x;
+		  color.y*=ellum.getColor().y;
+		  color.z*=ellum.getColor().z;
+
+		  line.addColor(color);
 
 
 
-	  //llum especular
-	  VECTOR E;
-	  E=-line.dir;
-	  //E.normalize();
-	  // La L paralela
-	  VECTOR Lpar =N*(N.dot(L));
-	  // La L perpendicular
-	  VECTOR Lper = (L-Lpar);
-	  VECTOR R = Lpar-Lper;
-	  // En principio no hace falta
-	  //R.normalize();
-	  // cos Beta = RE, se calcula asi :)
-	  SCALAR RE=R.dot(E);
-	  // Si es negativo, no hay componente especular
-	  if(RE>=0){
-	    // Especular = Is*(cos Beta)^n por Ks
-	    // Dice que podemos sudar de Is y Ks xD
-	    // Ademas, 20 o 21 es un 'numbero sunficiete'
-	    COLOR especular=VECTOR(1.0,1.0,1.0)
-	      *pow(RE,81)/**0.8f*/;
+		  //llum especular
+		  VECTOR E;
+		  E=-line.dir;
+		  //E.normalize();
+		  // La L paralela
+		  VECTOR Lpar =N*(N.dot(L));
+		  // La L perpendicular
+		  VECTOR Lper = (L-Lpar);
+		  VECTOR R = Lpar-Lper;
+		  // En principio no hace falta
+		  //R.normalize();
+		  // cos Beta = RE, se calcula asi :)
+		  SCALAR RE=R.dot(E);
+		  // Si es negativo, no hay componente especular
+		  if(RE>=0){
+			// Especular = Is*(cos Beta)^n por Ks
+			// Dice que podemos sudar de Is y Ks xD
+			// Ademas, 20 o 21 es un 'numbero sunficiete'
+			COLOR especular=VECTOR(1.0,1.0,1.0)
+			  *pow(RE,81)/**0.8f*/;
 
-	    //depen de la reflectance tindra un brillo mes o menys
-	    especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
-	    especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
-	    especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
+			//depen de la reflectance tindra un brillo mes o menys
+			especular.x*=(1-line.obj->getMaterial()->getReflectance(pos));
+			especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
+			especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
 
-	    line.addColor(especular);
-	    
-	    especular.x*=ellum.getColor().x;
-	    especular.y*=ellum.getColor().y;
-	    especular.z*=ellum.getColor().z;
-	    
-	  }
+			line.addColor(especular);
 
-	  // Factor de refraccion (se usara luego)
-	  SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
+			especular.x*=ellum.getColor().x;
+			especular.y*=ellum.getColor().y;
+			especular.z*=ellum.getColor().z;
 
-	  //reflexe / sombra
-	  if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
-	    {
-	      CLine reflexe;
+		  }
 
-	      line.t=-1;
-
-	      reflexe= line.getReflected(pos,
-					 line.obj->getNormal(pos) );
-	      reflexe.color=VECTOR(0,0,0);
-	      reflexe.t=-1;
-
-	      Estats::getInstance().incReflexe();
-	      trace(reflexe);
-
-	      //aixi rulez
-	      line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
-	    }
-	  // Refraccion
-	  else if(factor>0.0f)
-	    {
-	      // Factor es el indice de refraccion del medio.
-	      // El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
-	      CLine refractada=
-		
-		line.getRefracted(
-				  pos,
-				  line.obj->getNormal(pos),
-				  0.0
-				  );
-		
-	      /*
-	      refractada.loc=line.loc;
-	      refractada.dir=line.dir;
-	      refractada.color=VECTOR(0,0,0);
-	      refractada.t=-1;
-	      */
-	      
-	      
-	      
-	      // Trazamos la refraccion
-	      trace(refractada);
-	      // Estadisticas
-
-	      line.addColor(refractada.color*factor);
-	    }
-	}
-      else
-	{
-	  //sombra
-	  Estats::getInstance().incSombra();
-	}
+		}
     }
+	// Factor de refraccion (se usara luego)
+	SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
+	//reflexe / sombra
+	/*if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
+	{
+		CLine reflexe;
+
+		line.t=-1;
+
+		reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
+		reflexe.color=VECTOR(0,0,0);
+		reflexe.t=-1;
+
+		Estats::getInstance().incReflexe();
+		trace(reflexe);
+
+		//aixi rulez
+		line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+	}
+	// Refraccion
+	else */if(factor>0.0f)
+	{
+		// Factor es el indice de refraccion del medio.
+		// El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
+
+
+		CLine refractada=
+
+		line.getRefracted(
+			pos,
+			line.obj->getNormal(pos),
+			1.0
+			);
+
+		/*
+		refractada.loc=line.loc;
+		refractada.dir=line.dir;
+		refractada.color=VECTOR(0,0,0);
+		refractada.t=-1;
+		*/
+
+
+
+		// Trazamos la refraccion
+		trace(refractada);
+		// Estadisticas
+
+		line.addColor(refractada.color*0.5);
+	}
+	else
+	{
+		//sombra
+		Estats::getInstance().incSombra();
+	}
 }
 
 /*-<==>-----------------------------------------------------------------
