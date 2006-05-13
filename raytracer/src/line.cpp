@@ -25,9 +25,16 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
   dir.normalize();
   //c.level=level+1;
   c.loc=nloc;
-  c.dir=dir+(2*(-normal.dot(dir))*normal);
+
+  // Miramos si es reflexion difusa o perfecta
+  // Es difusa si hemos hecho menos de 2 reflexiones y hay componente difusa
+  //if((level < 2)&& obj->getMaterial().)
+  //VECTOR R = dir -2.0f * dir.dot(normal)*normal;
+  c.dir = dir -2.0f * dir.dot(normal)*normal;
+  //c.dir=dir+(2*(-normal.dot(dir))*normal);
   c.dir.normalize();
   c.t=-1;
+  c.level = level+1;
 
   return c;
 }
@@ -48,6 +55,7 @@ CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR
   dirRefr.normalize();
   // Construimos la linea del haz reflejado
   CLine refr(nloc, dirRefr);
+  refr.level=level+1;
 
   // Y ponemos el color a 0
   refr.color=COLOR(0.0,0.0,0.0);

@@ -36,10 +36,10 @@ void CRayTracer::load () {
   objects.push_back (sph);
 
   // Add a sphere
-  CCylinder* cyl = new CCylinder(50,50);
-  cyl->setLocation (VECTOR(0,100,0));
-  cyl->setMaterial (materials["green"]);
-  objects.push_back (cyl);
+  sph = new CSphere(50);
+  sph->setLocation (VECTOR(0,100,0));
+  sph->setMaterial (materials["blue"]);
+  objects.push_back (sph);
 
   // Add a sphere
   sph = new CSphere(50);
@@ -50,7 +50,8 @@ void CRayTracer::load () {
     // Add a sphere
   sph = new CSphere(50);
   sph->setLocation (VECTOR(100,100,0));
-  sph->setMaterial (materials["glass"]);
+  //sph->setMaterial (materials["glass"]);
+  sph->setMaterial (materials["green"]);
   objects.push_back (sph);
 
   // Add a sphere
@@ -64,9 +65,9 @@ void CRayTracer::load () {
 //   cyl->setLocation (VECTOR(85,0,120));
 //   cyl->setMaterial (materials["grey"]);
 //   objects.push_back(cyl);
-  cyl = new CCylinder(100,50);
+  CCylinder* cyl = new CCylinder(100,50);
   cyl->setLocation (VECTOR(150,0,100));
-  cyl->setMaterial (materials["blue"]);
+  cyl->setMaterial (materials["green"]);
   objects.push_back(cyl);
 
 

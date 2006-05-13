@@ -73,7 +73,6 @@ bool CRayTracer::intersects(CLine &line)
 {
   Estats::getInstance().incIntersects();
 
-  // ^Que coño es esto?
   // Example of traversing all the objects registered in the scene
   // Same thing for lights
   LRTObjects::iterator i = objects.begin();
@@ -222,7 +221,7 @@ void CRayTracer::trace(CLine &line)
 	// Factor de refraccion (se usara luego)
 	SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
 	//reflexe / sombra
-	/*if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
+	if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	{
 		CLine reflexe;
 
@@ -239,7 +238,7 @@ void CRayTracer::trace(CLine &line)
 		line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	}
 	// Refraccion
-	else */if(factor>0.0f)
+	else if(factor>0.0f)
 	{
 		// Factor es el indice de refraccion del medio.
 		// El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52

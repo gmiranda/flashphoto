@@ -14,8 +14,8 @@
 / Raytracer
 /---------------------------------------------------------------------*/
 class CRayTracer {
-	// Maximum recursion level allowed while computing 
-	// lines 
+	// Maximum recursion level allowed while computing
+	// lines
   int         max_recursion_level;
 
   CCamera     camera; 			// The camera to render the scene from
@@ -31,7 +31,7 @@ public:
   void render();
   void load();              // defined in main.cpp
   bool loadSnowflake (const char *filename);
-  
+
   //custom!
   int getCountObjects(){ return objects.size();}
   int getCountLights(){ return lights.size();}
