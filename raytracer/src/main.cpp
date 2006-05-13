@@ -59,8 +59,7 @@ void CRayTracer::load () {
 
   // And now for something completely different
   CCylinder* cyl = new CCylinder(100,50);
-  cyl->setLocation(VECTOR(50,25,10));
-  cyl->setLocation (VECTOR(0,0,0));
+  cyl->setLocation (VECTOR(85,0,120));
   cyl->setMaterial (materials["blue"]);
   objects.push_back(cyl);
 

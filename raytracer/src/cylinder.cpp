@@ -17,12 +17,15 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
   // Flags para saber donde hay interseccion
   bool lado=false, tapa=false;
 
+  // La linea trasladada al origen
+  CLine line_o(line.loc-loc,line.dir);
+
   // a * t^2 + b * t + c = 0
   // Esto queda...
-  SCALAR a = line.dir.x*line.dir.x + line.dir.z*line.dir.z;
+  SCALAR a = line_o.dir.x*line_o.dir.x + line_o.dir.z*line_o.dir.z;
 
-  SCALAR b = 2.0f*(line.loc.x*line.dir.x+line.loc.z*line.dir.z);
-  SCALAR c = line.loc.x*line.loc.x+line.loc.z*line.loc.z-radius*radius;
+  SCALAR b = 2.0f*(line_o.loc.x*line_o.dir.x+line_o.loc.z*line_o.dir.z);
+  SCALAR c = line_o.loc.x*line_o.loc.x+line_o.loc.z*line_o.loc.z-radius*radius;
 
   // Si a es 0, no se puede resolver
   if(a==0.0f)
@@ -40,7 +43,6 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
       return false;
     }
   // Hay 2 posibles soluciones
-  // TODO: se puede simplificar (ver links.rtf)
   SCALAR rdisc = std::sqrt(discriminante);
   SCALAR t0 = -b/(2.0*a) - rdisc;
   SCALAR t1 = -b/(2.0*a) + rdisc;
@@ -60,7 +62,7 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
   }
 
   // EL punto de interseccion
-  i=line.loc+line.dir*t_hit;
+  i=line_o.loc+line_o.dir*t_hit;
 
   // Si no esta dentro del rango de altura esperado, no hay interseccion con lado
   if((i.y>=0.0f)&&(i.y<=height))
@@ -72,12 +74,12 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
   SCALAR tTapa=0;
 
   // Si es posible la interseccion
-  if(line.dir.y!=0.0f)
+  if(line_o.dir.y!=0.0f)
     {
       // Buscamos intersecciones con tapas
-      //= -height-(line.loc.y+height*0)/line.dir.y;
-      SCALAR tUp = -(line.loc.y-height)/line.dir.y;
-      SCALAR tDown = (-line.loc.y)/line.dir.y;
+      //= -height-(line_o.loc.y+height*0)/line_o.dir.y;
+      SCALAR tUp = -(line_o.loc.y-height)/line_o.dir.y;
+      SCALAR tDown = (-line_o.loc.y)/line_o.dir.y;
 
       // Me quedo con la mas pequeña, positiva
       if((tUp>=0.0f)&&((tUp<tDown)||(tDown<0.0f)))
@@ -95,7 +97,7 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 	  intersection = DOWN;
 	}
       // Calculamos de nuevo el punto de interseccion
-      i=line.loc+line.dir*tTapa;
+      i=line_o.loc+line_o.dir*tTapa;
 
       // Si no esta dentro del rango de esperado, no hay interseccion con tapa
       if((i.x*i.x+i.z*i.z)<=(radius*radius))
