@@ -152,8 +152,8 @@ void CRayTracer::trace(CLine &line)
 
       llumLinea.t=1e10;
       intersects(llumLinea);
-      line.obj->hits(llumLinea,t);
-      if(true)
+      ;
+      if(line.obj->hits(llumLinea,t))
 	{
 
 	  // Vector L
