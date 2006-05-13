@@ -16,17 +16,17 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
   
   if (bz)
     {
-      if((!(bx&&by))&&(bx || by))
+      if((!(bx&&by))&&(bx||by))
 	return true;
       else 
 	return false;
     }
   else
     {
-      if(!((!(bx&&by)) && (bx||by)))
-	return true;
-      else 
+      if((!(bx&&by))&&(bx||by))
 	return false;
+      else 
+	return true;
     }
   return true;
   
