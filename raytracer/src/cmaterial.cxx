@@ -14,7 +14,7 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
   bool by=(((int)(dloc.y/side_size)%2)==0);
   bool bz=(((int)(dloc.z/side_size)%2)==0);
   
-  if (bz)
+  if(bz)
     {
       if((!(bx&&by))&&(bx||by))
 	return true;
