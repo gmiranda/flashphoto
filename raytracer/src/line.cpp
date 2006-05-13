@@ -26,26 +26,14 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
   c.level=level+1;
   c.loc=nloc;
 
-  // Miramos si es reflexion difusa o perfecta
-  // Es difusa si hemos hecho menos de 2 reflexiones y hay componente difusa
- /* if((level < 2)&& (obj->getMaterial().getDiffuseColor()!=VECTOR(0.0,0.0,0.0)){
-		// calculate diffuse reflection
-		vector3 N = prim->GetNormal( pi );
-		vector3 RP = a_Ray.GetDirection() - 2.0f * DOT( a_Ray.GetDirection(), N ) * N;
-		VECTOR RP = dir - 2.0 * dir.dot(normal)*normal;
-		VECTOR RN1 = VECTOR( RP.z, RP.y, -RP.x);
-		VECTOR RN2 = RP.cross(RN1);
-		refl *= m_SScale;
 
-  }
-  else{*/
-    //VECTOR R = dir -2.0f * dir.dot(normal)*normal;
-    c.dir = dir -2.0f * dir.dot(normal)*normal;
-  //}
+  //VECTOR R = dir -2.0f * dir.dot(normal)*normal;
+  c.dir = dir -2.0f * dir.dot(normal)*normal;
   //c.dir=dir+(2*(-normal.dot(dir))*normal);
   c.dir.normalize();
   c.t=-1;
   c.level = level+1;
+  c.color=COLOR(0.0,0.0,0.0);
 
   return c;
 }

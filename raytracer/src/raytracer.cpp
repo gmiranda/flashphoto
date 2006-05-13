@@ -88,8 +88,9 @@ bool CRayTracer::intersects(CLine &line)
       CRTObject *obj = *i++;
       // Si la linea intersecta al objeto
       if(obj->hits(line,t))
-	{
-	  if((line.t==-1)||(line.t>t)&&(t>0))
+      {
+      	// Si es un objeto mas cercano
+        if((line.t==-1)||(line.t>t)&&(t>0))
 	    {
 	      //std::cerr << "Inteseccion, amigo conductor" << std::endl;
 	      // Guardamos el objeto con el que chocamos
@@ -148,11 +149,11 @@ void CRayTracer::trace(CLine &line)
     {
       CLight &ellum=(**llum);
       //fem per sombres
-      CLine llumLinea(ellum.getLocation(),
-		      (pos-ellum.getLocation()),
-		      0);
+      CLine llumLinea(ellum.getLocation(), (pos-ellum.getLocation()));
 
+      // Miramos si esta luz intersecta con el punto
       intersects(llumLinea);
+      // Si asi es, no hay sombra
       if(line.obj->hits(llumLinea,t))
 	if(t>0.0)
 	  {
@@ -228,6 +229,11 @@ void CRayTracer::trace(CLine &line)
 
 
 		}
+      else
+      {
+        //sombra
+         Estats::getInstance().incSombra();
+      }
     }
 	// Factor de refraccion (se usara luego)
 	SCALAR factor = line.obj->getMaterial()->getRefraction(pos);
@@ -236,11 +242,10 @@ void CRayTracer::trace(CLine &line)
 	{
 		CLine reflexe;
 
-		line.t=-1;
+		//line.t=-1;
 
 		reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
-		reflexe.color=VECTOR(0,0,0);
-		reflexe.t=-1;
+
 
 		Estats::getInstance().incReflexe();
 		trace(reflexe);
@@ -277,11 +282,6 @@ void CRayTracer::trace(CLine &line)
 		// Estadisticas
 
 		line.addColor(refractada.color*0.5);
-	}
-	else
-	{
-		//sombra
-		Estats::getInstance().incSombra();
 	}
 }
 

@@ -8,7 +8,7 @@ class Estats
 protected:
   static Estats inst;
   Estats(){}
-  
+
   /*
     segons enunciat
     ===============
@@ -39,36 +39,36 @@ public:
   void incIntersects(){intersects++;}
   void incIntersectsOK(){interok++;}
   void incIntersectsNO(){interbad++;}
-  
+
   void start(){tempsInici=time(NULL);}
   void stop(){tempsFi=time(NULL);}
-  
+
   //
   void printStats(CRayTracer &rt)
   {
-    std::cout << "* Número total de lineas trazadas: " 
+    std::cout << "* Número total de lineas trazadas: "
 	      << lineas
 	      << std::endl;
-    std::cout << "* Número lineas trazadas desde la cámara: " 
+    std::cout << "* Número lineas trazadas desde la cámara: "
 	      << camera
 	      << std::endl;
-    std::cout << "* Número lineas trazadas para el cálculo de sombras: " 
+    std::cout << "* Número lineas trazadas para el cálculo de sombras: "
 	      << sombra
 	      << std::endl;
-    std::cout << "* Número lineas trazadas para el cálculo de reflejos: " 
+    std::cout << "* Número lineas trazadas para el cálculo de reflejos: "
 	      << reflexe
 	      << std::endl;
-    std::cout << "* Número lineas trazadas para el cálculo de refracción y reflejos: " 
+    std::cout << "* Número lineas trazadas para el cálculo de refracción y reflejos: "
 	      << refrac
 	      << std::endl;
-    std::cout << "* Número total de tests de intersección hechos: " 
+    std::cout << "* Número total de tests de intersección hechos: "
 	      << intersects
 	      << std::endl;
-    std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: " 
+    std::cout << "* Número de tests de intersección con resultado positivo y el porcentaje respecto al total: "
 	      << (double)((double)interok/(double)intersects)*100.0f << "/" << (double)(100.0f-(double)((double)interok/(double)intersects)*100.0f)
 	      << std::endl;
     std::cout << "* Temps destinat: "
-	      << difftime(tempsFi, tempsInici) 
+	      << difftime(tempsFi, tempsInici)
 	      << std::endl;
     std::cout << "* Nombre de primitives: "
 	      << rt.getCountObjects()
@@ -79,7 +79,7 @@ public:
     std::cout << "* Resolucio de l'imatge calculada: "
 	      << rt.getResolution()
 	      <<  std::endl;
-    
+
   }
 };
 
