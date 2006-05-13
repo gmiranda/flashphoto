@@ -27,7 +27,7 @@ void CRayTracer::load () {
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);
   
-  materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.0,0.6),1.52);
+  materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.1,0.1),1.52);
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
@@ -50,7 +50,7 @@ void CRayTracer::load () {
     // Add a sphere
   sph = new CSphere(50);
   sph->setLocation (VECTOR(100,100,0));
-  sph->setMaterial (materials["grey"]);
+  sph->setMaterial (materials["glass"]);
   objects.push_back (sph);
 
   // Add a sphere

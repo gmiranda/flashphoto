@@ -242,7 +242,10 @@ void CRayTracer::trace(CLine &line)
 	    {
 	      // Factor es el indice de refraccion del medio.
 	      // El del cristal es algo asi como 1.52, asi que se le pasa 1.0/1.52
-	      CLine refractada = line.getRefracted(pos,line.obj->getNormal(pos), 1.0/1.0);
+	      CLine refractada = line.getRefracted(
+						   pos,
+						   -line.obj->getNormal(pos),
+						   1.0/1.52);
 
 	      // Trazamos la refraccion
 	      trace(refractada);
