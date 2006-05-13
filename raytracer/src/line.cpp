@@ -23,7 +23,7 @@ CLine CLine::getReflected(const VECTOR &nloc, const VECTOR &normal)
 {
   CLine c;
   dir.normalize();
-  //c.level=level+1;
+  c.level=level+1;
   c.loc=nloc;
 
   // Miramos si es reflexion difusa o perfecta

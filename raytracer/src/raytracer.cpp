@@ -154,9 +154,19 @@ void CRayTracer::trace(CLine &line)
 
       intersects(llumLinea);
       if(line.obj->hits(llumLinea,t))
-		if(t>0.0)
-		  {
-
+	if(t>0.0)
+	  {
+	    //posem les coses simples
+	    //si el vector a la llum desde on xoquem
+	    //no intersecta amb algo no ilumina
+	    //si ho fa pero darrere, no toca
+	    //sino si
+	    //i es el que son les condicions
+	    //
+	    //pq no fa sombres...
+	    //un misteri
+	    //
+		    //printf("%d\n",t);
 		  // Vector L
 		  VECTOR L = ellum.getLocation()-pos;
 		  L.normalize();
@@ -215,6 +225,7 @@ void CRayTracer::trace(CLine &line)
 			especular.z*=ellum.getColor().z;
 
 		  }
+
 
 		}
     }
