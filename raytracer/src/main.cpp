@@ -139,7 +139,7 @@ int main(int argc, char **argv)
   rt.render();
   std::cout << "is behind you!" << std::endl;
 
-  Estats::getInstance().printStats();
+  Estats::getInstance().printStats(rt);
 
   return 0;
 }
