@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "line.h"
+#include "raytracer.h"
 
 /*-<==>-----------------------------------------------------------------
 / Builds a default empty line
@@ -35,7 +36,7 @@ CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR
 	dir.normalize();
 
 	// El coseno de theta i es el escalar de la normal por el vector incidente
-	const SCALAR cosi = dir.dot(normal);
+	const SCALAR cosi = dir.dot(-normal);
 	/*
 	 * El seno de theta t al cuadrado es el factor de refraccion al cuadrado
 	 * multiplicado por (1- cos cuadrado de theta i)
@@ -54,11 +55,12 @@ CLine CLine::getRefracted(const VECTOR &nloc, const VECTOR &normal, const SCALAR
 	// Construimos la linea del haz reflejado
 	CLine refr(nloc, dirRefr);
 	// Aumentamos el nivel
-	refr.level =level+1;
-	refr.t=-1;
+	refr.level = level+1;
+	//refr.t=-1;
 	// Y ponemos el color a 0
 	refr.color=COLOR(0.0,0.0,0.0);
 
+//std::cout << "CLine::getRefracted() dir=" << dir <<", refr.dir=" << refr.dir << std::endl;
 	return refr;
 }
 

@@ -26,7 +26,7 @@ void CRayTracer::load () {
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);
-  materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.0,0.9),0.8);
+  materials["glass"] = new CTransparentMaterial(COLOR(0.1,0.0,0.6),0.8);
 
   // Add a sphere
   CSphere *sph = new CSphere(50);
@@ -57,16 +57,16 @@ void CRayTracer::load () {
   sph->setLocation (VECTOR(0,100,100));
   sph->setMaterial (materials["orange"]);
   objects.push_back (sph);
-
+*/
   // And now for something completely different
-  CCylinder* cyl = new CCylinder(200,50);
-  cyl->setLocation (VECTOR(-85,0,-120));
-  cyl->setMaterial (materials["orange"]);
+  CCylinder* cyl = new CCylinder(100,50);
+  cyl->setLocation (VECTOR(85,-150,120));
+  cyl->setMaterial (materials["grey"]);
   objects.push_back(cyl);
 
 
   // Add the ground
-  CPlane *plane = new CPlane (VECTOR(0,10,0), 0);
+  CPlane *plane = new CPlane (VECTOR(0,1,0), 0);
   plane->setMaterial (materials["escacs"]);
   objects.push_back (plane);
 
@@ -141,7 +141,7 @@ int main(int argc, char **argv)
   Estats::getInstance().stop();
   std::cout << "is behind you!" << std::endl;
 
-  Estats::getInstance().printStats(rt);
+   Estats::getInstance().printStats(rt);
 
   return 0;
 }

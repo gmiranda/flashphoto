@@ -34,6 +34,7 @@ CTransparentMaterial::CTransparentMaterial(const COLOR &diffuse, SCALAR refracti
 
 COLOR  CTransparentMaterial::getDiffuseColor(const VECTOR &loc) const {
   //std::cout <<  loc << std::endl;
+  //return COLOR(0.0,0.0,0.0);
   return diffuse_color;
 }
 
