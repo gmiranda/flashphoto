@@ -90,7 +90,7 @@
 1145895996 d:\mis documentos\uni\imagen sintetica\raytracer\src\vector_template.h
 	<cmath>
 
-1146913944 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.h
+1147534819 d:\mis documentos\uni\imagen sintetica\raytracer\src\material.h
 	<map>
 	<string>
 
@@ -122,7 +122,7 @@
 	<stdio.h>
 	"line.h"
 
-1147532219 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
+1147532898 d:\mis documentos\uni\imagen sintetica\raytracer\src\main.cpp
 	"raytracer.h"
 	"sphere.h"
 	"plane.h"
@@ -158,7 +158,7 @@
 	<unistd.h>
 	"estats.hxx"
 
-1147532028 d:\mis documentos\uni\imagen sintetica\raytracer\src\cylinder.cpp
+1147532517 d:\mis documentos\uni\imagen sintetica\raytracer\src\cylinder.cpp
 	"cylinder.h"
 	<cmath>
 
@@ -255,7 +255,7 @@
 	"raytracer.h"
 	"cmaterial.hxx"
 
-1147520728 d:\mis documentos\uni\imagen sintetica\raytracer\src\cmaterial.hxx
+1147534848 d:\mis documentos\uni\imagen sintetica\raytracer\src\cmaterial.hxx
 
 1147520728 d:\mis documentos\uni\imagen sintetica\raytracer\src\estats.hxx
 

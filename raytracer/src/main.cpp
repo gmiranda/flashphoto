@@ -22,7 +22,7 @@ void CRayTracer::load () {
   materials["red"]    = new CSolidMaterial (COLOR (0.8, 0.2, 0.0), 0.5);
   materials["green"]    = new CSolidMaterial (COLOR (0.1, 0.8, 0.0), 0.7);
 
-  materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0.5);
+  materials["gray"]    = new CSolidMaterial (COLOR (0.5, 0.5, 0.5), 0.0);
 
   materials["escacs"]  = new CCheckerMaterial(materials["red"],
 					     materials["green"],100);

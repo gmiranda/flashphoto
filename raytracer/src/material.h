@@ -16,6 +16,7 @@ public:
   virtual ~CMaterial() {}
   virtual COLOR  getDiffuseColor(const VECTOR &loc) const = 0;
   virtual SCALAR getReflectance(const VECTOR &loc) const = 0;
+  virtual SCALAR getRefraction(const VECTOR &loc) const = 0;
 };
 
 /*-<==>-----------------------------------------------------------------
@@ -35,6 +36,21 @@ public:
   CSolidMaterial(const COLOR &diffuse, SCALAR reflectance);
   COLOR  getDiffuseColor(const VECTOR &loc) const;
   SCALAR getReflectance(const VECTOR &loc)  const;
+  SCALAR getRefraction(const VECTOR &loc) const;
+};
+
+/*-<==>-----------------------------------------------------------------
+/ Transparent material
+/----------------------------------------------------------------------*/
+class CTransparentMaterial : public CMaterial {
+  COLOR  diffuse_color;
+  //SCALAR reflectance_factor;
+  SCALAR refraction_factor;
+public:
+  CTransparentMaterial(const COLOR &diffuse, SCALAR refraction);
+  COLOR  getDiffuseColor(const VECTOR &loc) const;
+  SCALAR getReflectance(const VECTOR &loc)  const;
+  SCALAR getRefraction(const VECTOR &loc) const;
 };
 
 #endif
