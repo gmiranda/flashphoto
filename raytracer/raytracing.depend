@@ -152,7 +152,7 @@
 	"sphere.h"
 	<cmath>
 
-1147594142 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1147598722 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"
@@ -253,7 +253,7 @@
 	"sphere.h"
 	<cmath>
 
-1147563235 d:\mis documentos\uni\imagen sintetica\raytracer\src\cmaterial.cxx
+1147598722 d:\mis documentos\uni\imagen sintetica\raytracer\src\cmaterial.cxx
 	"raytracer.h"
 	"cmaterial.hxx"
 
