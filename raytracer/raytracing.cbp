@@ -16,6 +16,11 @@
 				<Option type="1"/>
 				<Option compiler="0"/>
 				<Option projectResourceIncludeDirsRelation="1"/>
+				<Compiler>
+					<Add option="-march=k8"/>
+					<Add option="-O3"/>
+					<Add option="-Wall"/>
+				</Compiler>
 			</Target>
 		</Build>
 		<Compiler>

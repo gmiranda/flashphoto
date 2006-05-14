@@ -11,7 +11,7 @@
 		<Cursor position="450" topLine="0"/>
 	</File>
 	<File name="src\cylinder.cpp" open="1" top="0">
-		<Cursor position="4128" topLine="112"/>
+		<Cursor position="1623" topLine="19"/>
 	</File>
 	<File name="src\cylinder.h" open="1" top="0">
 		<Cursor position="352" topLine="0"/>
@@ -29,13 +29,13 @@
 		<Cursor position="253" topLine="0"/>
 	</File>
 	<File name="src\line.cpp" open="1" top="0">
-		<Cursor position="1237" topLine="45"/>
+		<Cursor position="2967" topLine="73"/>
 	</File>
 	<File name="src\line.h" open="1" top="0">
 		<Cursor position="86" topLine="0"/>
 	</File>
 	<File name="src\main.cpp" open="1" top="0">
-		<Cursor position="2348" topLine="30"/>
+		<Cursor position="2669" topLine="60"/>
 	</File>
 	<File name="src\material.cpp" open="1" top="0">
 		<Cursor position="85" topLine="2"/>
@@ -49,11 +49,11 @@
 	<File name="src\plane.h" open="0" top="0">
 		<Cursor position="480" topLine="0"/>
 	</File>
-	<File name="src\raytracer.cpp" open="1" top="1">
-		<Cursor position="3922" topLine="115"/>
+	<File name="src\raytracer.cpp" open="1" top="0">
+		<Cursor position="4682" topLine="213"/>
 	</File>
 	<File name="src\raytracer.h" open="1" top="0">
-		<Cursor position="470" topLine="0"/>
+		<Cursor position="54" topLine="0"/>
 	</File>
 	<File name="src\rtobject.cpp" open="0" top="0">
 		<Cursor position="692" topLine="0"/>
@@ -61,12 +61,13 @@
 	<File name="src\rtobject.h" open="0" top="0">
 		<Cursor position="783" topLine="0"/>
 	</File>
-	<File name="src\sphere.cpp" open="0" top="0">
-		<Cursor position="625" topLine="11"/>
+	<File name="src\sphere.cpp" open="1" top="1">
+		<Cursor position="899" topLine="11"/>
 	</File>
 	<File name="src\vector_template.h" open="0" top="0">
 		<Cursor position="6118" topLine="319"/>
 	</File>
+	<Expand folder="/Sources/src"/>
 	<Expand folder="/Sources"/>
 	<Expand folder="/Headers/src"/>
 	<Expand folder="/Headers"/>
