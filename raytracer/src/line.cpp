@@ -102,17 +102,4 @@ void CLine::addColor(const VECTOR &amount)
     color.y=1;
   if(color.z>1)
     color.z=1;
-
-  // NOTE: y esto para que?
-  /*
-    aixo era per si arrivaben a mes de 1 en un posar blanc del tot
-  if((color.x>1)||(color.y>1)||(color.z>1))
-    {
-      color.x=1;
-      color.y=1;
-      color.z=1;
-    }
-  */
-
-  //color.normalize();
 }

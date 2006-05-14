@@ -49,12 +49,12 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
   VECTOR i;
 
   // Me quedo con la solucion mas pequeña, positiva.
-  if((t0>=1e-3)&&((t0<t1)||(t1<1e-3)))
+  if((t0>=SMALL_AMOUNT)&&((t0<t1)||(t1<SMALL_AMOUNT)))
     {
       t_hit=t0;
       //return true;
     }
-  else if(t1>=1e-3){
+  else if(t1>=SMALL_AMOUNT){
     t_hit=t1;
     //return true;
   }
@@ -80,14 +80,14 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
       SCALAR tDown = (-line_o.loc.y)/line_o.dir.y;
 
       // Me quedo con la mas pequeña, positiva
-      if((tUp>=1e-3)&&((tUp<tDown)||(tDown<1e-3)))
+      if((tUp>=SMALL_AMOUNT)&&((tUp<tDown)||(tDown<SMALL_AMOUNT)))
 	{
 	  // Quiero la de arriba
 	  tTapa = tUp;
 	  // Guardamos tipo de interseccion
 	  intersection = UP;
 	}
-      else if(tDown>=1e-3)
+      else if(tDown>=SMALL_AMOUNT)
 	{
 	  // La de abajo
 	  tTapa = tDown;
@@ -124,13 +124,13 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 	}
 
       // Ha habido interseccion
-      return (t_hit>1e-3);
+      return (t_hit>SMALL_AMOUNT);
     }
   // Si solo ha habido interseccion con tapa, ok
   if(tapa)
     {
       t_hit = tTapa;
-      return (t_hit>1e-3);
+      return (t_hit>SMALL_AMOUNT);
     }
   // Si no hay interseccion con nada, a la mierda
   return false;
