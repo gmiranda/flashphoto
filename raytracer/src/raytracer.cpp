@@ -82,18 +82,18 @@ bool CRayTracer::intersects(CLine &line)
   //aqui pillem el primer objecte, sigui davant o darrere,
   //tapat per un altre o no...
   SCALAR t=-1;
-  
+
   bool init=false;
-  
+
   line.t=-1;
-  
+
   //per si les mosquis
   if(objects.begin()==objects.end())
-    {
+  {
       line.t=-1;
       return false;
-    }
-  
+  }
+
   while( i != objects.end() )
     {
       CRTObject *obj = *i++;
@@ -116,8 +116,8 @@ bool CRayTracer::intersects(CLine &line)
 	    }
 	}
     }
-  
-  
+
+
   if(line.t>0)
     {
       Estats::getInstance().incIntersectsOK();
@@ -168,16 +168,27 @@ void CRayTracer::trace(CLine &line)
       CLight &ellum=(**llum);
       //fem per sombres
       //CLine llumLinea(line.loc, ellum.getLocation()-line.loc);
-      CLine llumLinea(pos, (ellum.getLocation()-pos));
-      
+      CLine llumLinea(ellum.getLocation(), (pos-ellum.getLocation()));
+
       llumLinea.t=-1;
-      
+
       // Miramos si esta luz intersecta con el punto
       //intersects(llumLinea);
       // Si asi es, no hay sombra
       //line.obj->hits(llumLinea,t);
-	//if(t>0.0)
-      if(intersects(llumLinea))
+		/*bool sombra = false;
+		// Miramos los objetos
+		LRTObjects::iterator i;
+		for(i = objects.begin();i!=objects.end();++i){
+			CRTObject* obj = *i;
+			// Si hay un objeto entre la fuente de luz y el punto
+			if(obj->hits(llumLinea,t)){
+				// Hay sombra
+				sombra=true;
+				break;
+			}
+		}*/
+      if(line.obj->hits(llumLinea,t)){
 	if(t>0.0)
 	  {
 	    //posem les coses simples
@@ -252,6 +263,7 @@ void CRayTracer::trace(CLine &line)
 
 
 		}
+    }
       else
       {
         //sombra

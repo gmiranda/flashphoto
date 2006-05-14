@@ -11,7 +11,6 @@ CCylinder::CCylinder(SCALAR aheight, SCALAR aradius){
 /*-<==>-----------------------------------------------------------------
   / Test a possible line hit
   /----------------------------------------------------------------------*/
-// TODO: Poder colocar el cilindro en otro punto diferente a (0,0,0).
 bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
 {
   // Flags para saber donde hay interseccion
@@ -34,7 +33,6 @@ bool CCylinder::hits(const CLine &line, SCALAR &t_hit)
       if(b==0.0f)return false;
 
     }
-  // NOTE: Sacado de http://www.koders.com/cpp/fid5CAA2B18A838ACCA6922104409C271085D3B3F63.aspx?s=raytracer+cylinder
   // El discriminante es lo que va dentro de la raiz
   SCALAR discriminante = b*b / (4.0*a*a) - c/a;
   // Si es <0, no hay solucion
