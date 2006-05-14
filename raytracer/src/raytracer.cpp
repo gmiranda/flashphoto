@@ -308,13 +308,13 @@ void CRayTracer::trace(CLine &line)
 		//line.t=-1;
 
 		reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
-		reflexe.loc*=0.999;
+		reflexe.loc-=line.dir*SMALL_AMOUNT;
 
 		Estats::getInstance().incReflexe();
 		trace(reflexe);
 
 		//aixi rulez
-		line.addColor(reflexe.color*0.3*(line.obj->getMaterial()->getReflectance(pos)));
+		line.addColor(reflexe.color*0.5*(line.obj->getMaterial()->getReflectance(pos)));
 	}
 	// Refraccion
 	else if(factor>0.0f)
@@ -352,7 +352,7 @@ void CRayTracer::trace(CLine &line)
   /----------------------------------------------------------------------*/
 void CRayTracer::background(CLine &line)
 {
-  line.color = COLOR (0,0,0);
+  line.color = COLOR (0.2,0.2,0.8);
   //line.color = COLOR(0.0,0.0,0.0);
 }
 

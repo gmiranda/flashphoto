@@ -43,7 +43,7 @@ void CRayTracer::load () {
 
   // Add a sphere
   sph = new CSphere(50);
-  sph->setLocation (VECTOR(0,200,0));
+  sph->setLocation (VECTOR(0,210,0));
   sph->setMaterial (materials["red"]);
   objects.push_back (sph);
 
