@@ -25,6 +25,9 @@
 	<File name="src\io.cpp" open="0" top="0">
 		<Cursor position="26" topLine="0"/>
 	</File>
+	<File name="src\light.h" open="1" top="0">
+		<Cursor position="253" topLine="0"/>
+	</File>
 	<File name="src\line.cpp" open="1" top="0">
 		<Cursor position="1237" topLine="45"/>
 	</File>
@@ -47,7 +50,7 @@
 		<Cursor position="480" topLine="0"/>
 	</File>
 	<File name="src\raytracer.cpp" open="1" top="1">
-		<Cursor position="3343" topLine="113"/>
+		<Cursor position="3922" topLine="115"/>
 	</File>
 	<File name="src\raytracer.h" open="1" top="0">
 		<Cursor position="470" topLine="0"/>
@@ -64,7 +67,6 @@
 	<File name="src\vector_template.h" open="0" top="0">
 		<Cursor position="6118" topLine="319"/>
 	</File>
-	<Expand folder="/Sources/src"/>
 	<Expand folder="/Sources"/>
 	<Expand folder="/Headers/src"/>
 	<Expand folder="/Headers"/>

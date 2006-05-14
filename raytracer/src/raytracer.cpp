@@ -149,10 +149,11 @@ void CRayTracer::trace(CLine &line)
     {
       CLight &ellum=(**llum);
       //fem per sombres
+      //CLine llumLinea(line.loc, ellum.getLocation()-line.loc);
       CLine llumLinea(ellum.getLocation(), (pos-ellum.getLocation()));
 
       // Miramos si esta luz intersecta con el punto
-      intersects(llumLinea);
+      //intersects(llumLinea);
       // Si asi es, no hay sombra
       line.obj->hits(llumLinea,t);
 	if(t>0.0)
