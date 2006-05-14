@@ -132,7 +132,7 @@ Estats Estats::inst;
 /----------------------------------------------------------------------*/
 int main(int argc, char **argv)
 {
-  std::cout << "GayTracer is tracing..." << std::endl;
+  std::cout << "Tracing..." << std::endl;
   CRayTracer rt;
 
   //despres ja ho canviarem a la seva manera
@@ -145,10 +145,9 @@ int main(int argc, char **argv)
   Estats::getInstance().start();
   rt.render();
   Estats::getInstance().stop();
-  std::cout << "is behind you!" << std::endl;
-
-   Estats::getInstance().printStats(rt);
-
+  
+  Estats::getInstance().printStats(rt);
+  
   return 0;
 }
 
