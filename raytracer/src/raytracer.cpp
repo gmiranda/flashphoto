@@ -253,15 +253,42 @@ void CRayTracer::trace(CLine &line)
 			especular.y*=(1-line.obj->getMaterial()->getReflectance(pos));
 			especular.z*=(1-line.obj->getMaterial()->getReflectance(pos));
 
-			line.addColor(especular);
-
 			especular.x*=ellum.getColor().x;
 			especular.y*=ellum.getColor().y;
 			especular.z*=ellum.getColor().z;
-
+			/*
+			if(llumLinea.t>10)
+			  {
+			    //atenuo per distància
+			    if(llumLinea.t>=100)
+			      especular=VECTOR(0,0,0);
+			    else
+			      {
+				SCALAR at=1-(line.t/100);
+				especular.x*=at;
+				especular.y*=at;
+				especular.z*=at;
+			      }
+			  }
+			*/
+			line.addColor(especular);
 		  }
-
-
+		  
+		  if(t>100)
+		    {
+		      //atenuo per distància
+		      if(t>=1000)
+			line.color=VECTOR(0,0,0);
+		      else
+			{
+			  SCALAR at=1-(t/1000);
+			  line.color.x*=at;
+			  line.color.y*=at;
+			  line.color.z*=at;
+			}
+		    }
+			
+		  
 		}
     }
       else
@@ -318,21 +345,6 @@ void CRayTracer::trace(CLine &line)
 
 		line.addColor(refractada.color*0.5);
 	}
-	
-	if(line.t>10)
-	  {
-	    //atenuo per distància
-	    if(line.t>=100)
-	      line.color=VECTOR(0,0,0);
-	    else
-	      {
-		SCALAR at=1-(line.t/100);
-		line.color.x*=at;
-		line.color.y*=at;
-		line.color.z*=at;
-	      }
-	  }
-	
 }
 
 /*-<==>-----------------------------------------------------------------
