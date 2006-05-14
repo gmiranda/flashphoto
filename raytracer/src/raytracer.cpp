@@ -353,6 +353,6 @@ void CRayTracer::trace(CLine &line)
   /----------------------------------------------------------------------*/
 void CRayTracer::background(CLine &line)
 {
-  line.color = COLOR (0.2,0.2,0.8);
+  line.color = COLOR (0,0,0);
 }
 
