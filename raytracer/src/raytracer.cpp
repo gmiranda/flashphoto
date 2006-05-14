@@ -129,7 +129,7 @@ void CRayTracer::trace(CLine &line)
   ++line;
 
   //fiquem com si no per inicialitzar
-  line.t=-1;
+  t=line.t=-1;
 
   //si no intersecta no ens interesa
   if(!intersects(line))

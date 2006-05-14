@@ -11,13 +11,13 @@ bool CCheckerMaterial::is_white(const VECTOR &loc) const
   dloc.z=std::abs(dloc.z)+side_size/2;
 
   bool bx=(((int)
-	    (((float)dloc.x/(float)side_size)+0.5)
+	    (((float)dloc.x/(float)side_size))
 	    %2)==0);
   bool by=(((int)
-	    (((float)dloc.y/(float)side_size)+0.5)
+	    (((float)dloc.y/(float)side_size))
 	    %2)==0);
   bool bz=(((int)
-	    (((float)dloc.z/(float)side_size)+0.5)
+	    (((float)dloc.z/(float)side_size))
 	    %2)==0);
 
   if(bz)
