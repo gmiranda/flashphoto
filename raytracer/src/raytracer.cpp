@@ -3,7 +3,6 @@
 #include "image.h"
 
 #include "cmaterial.hxx"
-
 #ifndef __WIN32__
 #include <unistd.h>
 #endif
