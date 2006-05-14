@@ -338,8 +338,7 @@ void CRayTracer::trace(CLine &line)
 		refractada.color=VECTOR(0,0,0);
 		refractada.t=-1;
 		*/
-
-
+		Estats::getInstance().incRefrac();
 
 		// Trazamos la refraccion
 		trace(refractada);

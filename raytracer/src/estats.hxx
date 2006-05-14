@@ -58,7 +58,7 @@ public:
     std::cout << "* Número lineas trazadas para el cálculo de reflejos: "
 	      << reflexe
 	      << std::endl;
-    std::cout << "* Número lineas trazadas para el cálculo de refracción y reflejos: "
+    std::cout << "* Número lineas trazadas para el cálculo de refracción: "
 	      << refrac
 	      << std::endl;
     std::cout << "* Número total de tests de intersección hechos: "
