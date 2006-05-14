@@ -40,10 +40,10 @@ void CRayTracer::render() {
 	{
 	  raig=CLine(camera.getLineAt(i,j));
 	  raig.color=VECTOR(0,0,0);
-	  
+
 	  Estats::getInstance().incCamera();
 	  trace(raig);
-	  
+
 	  /*
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
@@ -258,24 +258,10 @@ void CRayTracer::trace(CLine &line)
 			especular.x*=ellum.getColor().x;
 			especular.y*=ellum.getColor().y;
 			especular.z*=ellum.getColor().z;
-			/*
-			if(llumLinea.t>10)
-			  {
-			    //atenuo per distància
-			    if(llumLinea.t>=100)
-			      especular=VECTOR(0,0,0);
-			    else
-			      {
-				SCALAR at=1-(line.t/100);
-				especular.x*=at;
-				especular.y*=at;
-				especular.z*=at;
-			      }
-			  }
-			*/
+
 			line.addColor(especular);
 		  }
-		  
+
 		  if(t>100)
 		    {
 		      //atenuo per distància
@@ -289,8 +275,8 @@ void CRayTracer::trace(CLine &line)
 			  line.color.z*=at;
 			}
 		    }
-			
-		  
+
+
 		}
     }
       else
@@ -305,17 +291,30 @@ void CRayTracer::trace(CLine &line)
 	//reflexe / sombra
 	if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	{
+
+		/*CLine *line2;
+
+		line.t=-1;
+
+		line2= &line.getReflected(pos,line.obj->getNormal(pos) );
+		line2->loc=line2->loc*0.999;
+		line2->color.x=0;
+		line2->color.y=0;
+		line2->color.z=0;
+		trace(*line2);
+		line.addColor( line2->color*0.3* (line.obj->getMaterial()->getReflectance(pos)));*/
 		CLine reflexe;
 
 		//line.t=-1;
 
 		reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
+		reflexe.loc*=0.999;
 
 		Estats::getInstance().incReflexe();
 		trace(reflexe);
-		
+
 		//aixi rulez
-		line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
+		line.addColor(reflexe.color*0.3*(line.obj->getMaterial()->getReflectance(pos)));
 	}
 	// Refraccion
 	else if(factor>0.0f)
@@ -354,5 +353,6 @@ void CRayTracer::trace(CLine &line)
 void CRayTracer::background(CLine &line)
 {
   line.color = COLOR (0,0,0);
+  //line.color = COLOR(0.0,0.0,0.0);
 }
 
