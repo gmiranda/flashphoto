@@ -24,7 +24,7 @@ CRayTracer::CRayTracer()
   /----------------------------------------------------------------------*/
 void CRayTracer::render() {
   // ...
-  printf("\n                                          |\r|=00");
+    printf("\n                                          \r|=00");
   CBitmap resultat(camera.getXRes(), camera.getYRes(), 24);
 
   CLine raig;
