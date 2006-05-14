@@ -40,10 +40,15 @@ void CRayTracer::render() {
       for(int j=0;j<camera.getYRes();j++)
 	{
 	  raig=CLine(camera.getLineAt(i,j));
-	  background(raig);
+	  raig.color=VECTOR(0,0,0);
+	  
 	  Estats::getInstance().incCamera();
 	  trace(raig);
-
+	  
+	  if(raig.color==VECTOR(0,0,0))
+	    background(raig);
+	     
+	  
 	  /*
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
@@ -151,7 +156,10 @@ void CRayTracer::trace(CLine &line)
 
   //si no intersecta no ens interesa
   if(!intersects(line))
-    return;
+    {
+      this->background(line);
+      return;
+    }
 
   VECTOR pos = line.getIntersection();
 
@@ -225,8 +233,6 @@ void CRayTracer::trace(CLine &line)
 
 		  line.addColor(color);
 
-
-
 		  //llum especular
 		  VECTOR E;
 		  E=-line.dir;
@@ -295,6 +301,7 @@ void CRayTracer::trace(CLine &line)
       {
         //sombra
          Estats::getInstance().incSombra();
+	 //background(line.color);
       }
     }
 	// Factor de refraccion (se usara luego)
@@ -311,6 +318,8 @@ void CRayTracer::trace(CLine &line)
 
 		Estats::getInstance().incReflexe();
 		trace(reflexe);
+		
+		
 
 		//aixi rulez
 		line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
@@ -352,6 +361,6 @@ void CRayTracer::trace(CLine &line)
   /----------------------------------------------------------------------*/
 void CRayTracer::background(CLine &line)
 {
-  line.color = COLOR (0,0,0);
+  line.color = COLOR (0.2,0.2,0.8);
 }
 
