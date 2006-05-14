@@ -318,6 +318,21 @@ void CRayTracer::trace(CLine &line)
 
 		line.addColor(refractada.color*0.5);
 	}
+	
+	if(line.t>10)
+	  {
+	    //atenuo per distància
+	    if(line.t>=100)
+	      line.color=VECTOR(0,0,0);
+	    else
+	      {
+		SCALAR at=1-(line.t/100);
+		line.color.x*=at;
+		line.color.y*=at;
+		line.color.z*=at;
+	      }
+	  }
+	
 }
 
 /*-<==>-----------------------------------------------------------------
