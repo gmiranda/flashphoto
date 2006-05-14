@@ -154,7 +154,7 @@ void CRayTracer::trace(CLine &line)
       // Miramos si esta luz intersecta con el punto
       intersects(llumLinea);
       // Si asi es, no hay sombra
-      if(line.obj->hits(llumLinea,t))
+      line.obj->hits(llumLinea,t);
 	if(t>0.0)
 	  {
 	    //posem les coses simples
