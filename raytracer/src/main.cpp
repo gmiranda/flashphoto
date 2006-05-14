@@ -88,7 +88,8 @@ bool CRayTracer::loadSnowflake (const char *filename)
     return false;
 
   // Add the camera looking at the origin
-  camera.setView (VECTOR(2.1, 1.7, 1.3), VECTOR (0,0,0));
+  //camera.setView (VECTOR(2.1, 1.7, 1.3), VECTOR (0,0,0));
+  camera.setView (VECTOR(1.05, 0.85, 0.65), VECTOR (0,0,0));
   camera.setRenderParameters (512,512,45);
 
   // Add a two material

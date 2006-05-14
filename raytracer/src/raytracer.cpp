@@ -45,10 +45,6 @@ void CRayTracer::render() {
 	  Estats::getInstance().incCamera();
 	  trace(raig);
 	  
-	  if(raig.color==VECTOR(0,0,0))
-	    background(raig);
-	     
-	  
 	  /*
 	  // lo que MMX ho fa sol ho fem a mà :)
 	  //saturació
@@ -105,13 +101,14 @@ bool CRayTracer::intersects(CLine &line)
       // Si la linea intersecta al objeto
       if(obj->hits(line,t))
 	{
+	  //si es el primer element que mirem
 	  if(!init)
 	    {
 	      line.obj=obj;
 	      line.t=t;
 	      init=true;
 	    }
-	  else if((line.t>t)&&(t>0))
+	  else if(line.t>t)
 	    {
 	      //std::cerr << "Inteseccion, amigo conductor" << std::endl;
 	      // Guardamos el objeto con el que chocamos
@@ -315,12 +312,9 @@ void CRayTracer::trace(CLine &line)
 
 		reflexe= line.getReflected(pos,line.obj->getNormal(pos) );
 
-
 		Estats::getInstance().incReflexe();
 		trace(reflexe);
 		
-		
-
 		//aixi rulez
 		line.addColor(reflexe.color*(1-line.obj->getMaterial()->getReflectance(pos)));
 	}
