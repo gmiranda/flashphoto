@@ -292,17 +292,6 @@ void CRayTracer::trace(CLine &line)
 	if(line.obj->getMaterial()->getReflectance(pos)>0.0f)
 	{
 
-		/*CLine *line2;
-
-		line.t=-1;
-
-		line2= &line.getReflected(pos,line.obj->getNormal(pos) );
-		line2->loc=line2->loc*0.999;
-		line2->color.x=0;
-		line2->color.y=0;
-		line2->color.z=0;
-		trace(*line2);
-		line.addColor( line2->color*0.3* (line.obj->getMaterial()->getReflectance(pos)));*/
 		CLine reflexe;
 
 		//line.t=-1;
@@ -331,12 +320,6 @@ void CRayTracer::trace(CLine &line)
 			1.0/line.obj->getMaterial()->getRefraction(pos)
 			);
 
-		/*
-		refractada.loc=line.loc;
-		refractada.dir=line.dir;
-		refractada.color=VECTOR(0,0,0);
-		refractada.t=-1;
-		*/
 		Estats::getInstance().incRefrac();
 
 		// Trazamos la refraccion

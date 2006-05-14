@@ -148,11 +148,11 @@
 1145897630 d:\mis documentos\uni\imagen sintetica\raytracer\src\rtobject.cpp
 	"raytracer.h"
 
-1147618152 d:\mis documentos\uni\imagen sintetica\raytracer\src\sphere.cpp
+1147620326 d:\mis documentos\uni\imagen sintetica\raytracer\src\sphere.cpp
 	"sphere.h"
 	<cmath>
 
-1147620172 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
+1147620711 d:\mis documentos\uni\imagen sintetica\raytracer\src\raytracer.cpp
 	<assert.h>
 	"raytracer.h"
 	"image.h"

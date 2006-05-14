@@ -29,7 +29,8 @@ bool CSphere::hits (const CLine &line, SCALAR &t_hit)
   SCALAR t1=std::abs(a)-b;
 
 
-  if((t1>=SMALL_AMOUNT)&&((t1<t2)||(t2<SMALL_AMOUNT)))
+ //if((t1>=SMALL_AMOUNT)&&((t1<t2)||(t2<SMALL_AMOUNT)))
+  if(t1>=SMALL_AMOUNT)
     t_hit=t1;
   else
     t_hit=t2;
