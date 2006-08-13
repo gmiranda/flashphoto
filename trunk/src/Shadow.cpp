@@ -212,7 +212,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 	
 	// Para todas las Ys
 	for(int y=0;y<color->dimy();y++){
-		cerr << "\rY=" << y;
+		cerr << "\r" << y*100/color->dimy() << "%";
 		// Para todas las Xs
 		for(int x=0;x<color->dimx();x++){
 			// La intensidad la copiamos

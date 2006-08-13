@@ -33,10 +33,10 @@ using std::endl;
 #define PI 3.14159265f
 
 /**
- * Clase de ayuda, con metodos estaticos.
+ * Namespace de ayuda, con metodos estaticos.
  *
- * Los metodos de esta clase son empleados por el resto
- * de las clases de la practica, pero, pese a que colaboran
+ * Los metodos de este espacio son empleados por el resto
+ * de las clases del proyecto, pero, pese a que colaboran
  * en los metodos de las otras clases, son solo herramientas
  * que usan esos metodos.
  *
@@ -45,11 +45,8 @@ using std::endl;
  * metodo penumbra, pero la finalidad de penumbra no es
  * crear el filtro.
  */
-class Helper{
-	/// No hace falta instanciar :)
-	Helper();
+namespace Helper{
 
-public:
 	/**
 	 * Devuelve el minimo de los dos numeros.
 	 */

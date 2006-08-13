@@ -112,25 +112,7 @@ int main(int argc, char* argv[]){
 	intenNF+=0.001f;
 
 	// PRUEBAS
-	CImg<> kernelG=Decoupling::gaussianKernel(5);
-	kernelG.display();
-	kernelG.resize(inten,0);
-	kernelG.display("kernelG redimensionada");
-	CImgl<> kernelFFT = Helper::getFFT(kernelG);
 
-	//inten.get_convolve(kernelG).display();
-
-	CImgl<> intenFFT = Helper::getFFT(inten);
-	cimgl_map(intenFFT,l) intenFFT[l].mul(kernelFFT[l]);
-	//CImgl<> intenFFTi = (intenFFT[0].mul(kernelFFT[0])+intenFFT[1].mul(kernelFFT[1])).get_FFT(true);
-	CImgl<> intenFFTi = intenFFT.get_FFT(true);
-	intenFFTi[0].display("ffti 0");
-	intenFFTi[1].display("ffti 1");
-	cout << "Suma" << endl;
-	CImg<> inteni=(intenFFTi[0]/*+intenFFTi[1]*/).crop(0,0,320,240);
-	//CImg<> inteni=Helper::getiFFT(intenFFT,inten.dimx(),inten.dimy());
-	cout << "Crop" << endl;
-	inteni.display("intensidad suavizada ifft");
 
 
 
@@ -150,17 +132,16 @@ int main(int argc, char* argv[]){
 	if(OPTIONS!=CROSS){
 		// Utilizamos la sombra para calcular la large scale
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
-		largeScale=CImg<>("largeScaleF.bmp");
-		//largeScale= deco.bilateralFilter(inten,shadow);
+		//largeScale=CImg<>("largeScaleF.bmp");largeScale/=255.0f;
+		largeScale= deco.bilateralFilter(inten,shadow);
 	}
 	// Si lo hacemos
 	else{
 		// No podemos utilizar la sombra.
-		largeScale= deco.piecewiseBilateralFilter(inten);
+		largeScale= deco.bilateralFilterAlt(inten);
 		//largeScale= deco.bilateralFilterAlt(inten);
 		largeScale.display("Large Scale");
 	}
-	largeScale/=255.0f;	// Descomenta si cargas de archivo
 	(largeScale*255.0f).save("largeScaleF.bmp");
 	//largeScale.display("Large Scale Flash");
 
@@ -178,8 +159,8 @@ int main(int argc, char* argv[]){
 		(colorCor*255.0f).save("colorcor.bmp");
 		// Descomenta esta linea para cargar la correccion de color,
 		//y comenta hasta Shadow::colorCorrection()
-		//CImg<> colorCor("colorcor.png");colorCor/=255.0f;
-		colorCor.display("correccion color");
+		//CImg<> colorCor("colorcor.bmp");colorCor/=255.0f;
+		//colorCor.display("correccion color");
 		color=colorCor;
 		color.log10();colorNF.log10();
 	}
@@ -199,10 +180,9 @@ int main(int argc, char* argv[]){
 	// Sino, se hace el normal
 	else{
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
-		//largeScaleNF=CImg<>("largeScaleNF.png");
-		largeScaleNF= deco.bilateralFilter/*Alt*/(intenNF);
+		//largeScaleNF=CImg<>("largeScaleNF.bmp");largeScaleNF/=255.0f;
+		largeScaleNF= deco.bilateralFilterAlt(intenNF);
 	}
-	//largeScaleNF/=255.0f;	// Descomenta esto si cargas de archivo
 	(largeScaleNF*255.0f).save("largeScaleNF.bmp");
 	//largeScaleNF.display("Large Scale no flash");
 	// Convertimos la capa largeScale a log10
