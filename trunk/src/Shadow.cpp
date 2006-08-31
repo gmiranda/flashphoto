@@ -325,3 +325,120 @@ CImg<>& Shadow::detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& 
 	// Devolvemos la imagen resultante
 	return *details;
 }
+
+/*
+ * Experimental Shadow Class
+ */
+
+
+/**
+ * Performs color correction on the region where is
+ * no shadow.
+ * @param noFlash photo without flas.
+ * @param flash flash photo.
+ * @param shadow binary map of the shadow region.
+ * @return new image with flash, where the colors of the pixels
+ * inside the shadow region has been corrected.
+ * @ToDo Use Luv instead of Lab if it's really necessary.
+ */
+CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const CImg<bool>& shadow){
+	// Imagen resultante, mismas dimensiones que flash, sin copiar pixeles
+	CImg<>* color = new CImg<>(flash,false);
+	
+	// Las imagenes de color tienen que estar en Luv
+	const CImg<> noFlashLuv = noFlash.get_RGBtoLab();
+	const CImg<> flashLuv = flash.get_RGBtoLab();
+	
+	// Varianza f es el 2.5% de la diagonal de la imagen
+	const float sigmaF = 0.025f*Helper::diagonalLength(flash);
+	// La varianza f es 0.01
+	const float sigmaG = 0.01f;
+	
+	// Esta c_r es para la varianza de intensidades
+	float c_r=1.0/(2.0f*(sigmaG*sigmaG));
+	// Y Esta para la espacial
+	float c_d=1.0/(2.0f*(sigmaF*sigmaF));
+	
+	// Esto es la mitad del tamaño de la ventana
+	int hwin=(int)Helper::max(1,std::ceil(2.1*sigmaF));
+	//cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
+	
+	// Construimos squares y gaussian a la vez
+	CImg<> gaussian(2*hwin+1);
+	for(unsigned int p=0;p<gaussian.size();p++){
+		gaussian[p]=(p-hwin)*(p-hwin);
+	}
+	// Ahora hacemos la parte gaussiana
+	for(unsigned int p=0;p<gaussian.size();p++){
+		gaussian[p]=exp(-c_d*gaussian[p]);
+	}
+	
+	CImg<> gaussian_d=gaussian.get_transpose()*gaussian;
+	
+	// Creamos la imagen en blanco K, que se corresponde con la d
+	// del codigo original en matlab
+	CImg<> K(noFlash,false);
+	
+	// Para cada fila de la ventana
+	for(int r=-hwin;r<=hwin;r++){
+		cerr << "\r" << (r+hwin)*100/(hwin*2) <<"%";
+		// Para cada columna de la ventana
+		for(int c=-hwin;c<=hwin;c++){
+			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
+			float g=gaussian_d(c+hwin,r+hwin);
+	
+			// Imagen con el producto
+			CImg<> s(noFlashLuv,false);
+			// Imagen con algo...
+			CImg<> is(noFlashLuv,false), isFlash(flashLuv,false);
+	
+			// Aqui tampoco sumamos 1
+			int rs=(int)Helper::max(0,r);
+			// Creo que tendria que restar -1
+			int re=flashLuv.dimy()+(int)Helper::min(0,r)-1;
+			int cs=(int)Helper::max(0,c);
+			int ce=flashLuv.dimx()+(int)Helper::min(0,c)-1;
+	
+			for(int r2=rs;r2<=re;r2++){
+				for(int c2=cs;c2<=ce;c2++){
+					is(c2,r2,0)=noFlashLuv(c2-c,r2-r,0);
+					is(c2,r2,1)=noFlashLuv(c2-c,r2-r,1);
+					is(c2,r2,2)=noFlashLuv(c2-c,r2-r,2);
+					
+					isFlash(c2,r2,0)=flashLuv(c2-c,r2-r,0);
+					isFlash(c2,r2,1)=flashLuv(c2-c,r2-r,1);
+					isFlash(c2,r2,2)=flashLuv(c2-c,r2-r,2);
+				}
+			}
+	
+			for(int r2=rs;r2<=re;r2++){
+				for(int c2=cs;c2<=ce;c2++){
+					// Compute difference for each channel
+					float	diffL = noFlashLuv(c2,r2,0)-is(c2,r2,0),
+							diffU = noFlashLuv(c2,r2,1)-is(c2,r2,1),
+							diffV = noFlashLuv(c2,r2,2)-is(c2,r2,2);
+					// La gaussiana de la intensidad es e^(-c_r*diferencia cuadrada)
+					float prod = shadow(c2-c,r2-r)? Helper::fakezero 
+						: exp(-c_r*(diffL*diffL))
+							*exp(-c_r*(diffU*diffU))
+							*exp(-c_r*(diffV*diffV))*g;
+					s(c2,r2,0)= s(c2,r2,1)= s(c2,r2,2)= prod;
+				}
+			}
+	
+			// Ahora incrementamos la K
+			K+=s;
+			// Now multiply 
+			(*color)+=s.mul(isFlash);
+		}
+	}
+	
+	cerr << endl;
+	
+		// Dividimos la imagen por el factor corrector K
+	(*color).div(K);
+	
+	cerr << std::endl;
+	//color->LabtoRGB();
+	return (*color).LabtoRGB();
+}

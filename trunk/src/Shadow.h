@@ -36,7 +36,8 @@ using std::endl;
 
 /**
  * Clase para la detección de sombras.
- *
+ * ToDo: create a constructor that stores a reference to the
+ * intensities (inten and IntenNF).
  */
 class Shadow{
 
@@ -55,8 +56,16 @@ public:
 	// Correcion de color y sombra
 	static CImg<>& colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const CImg<bool>& shadow);
 	static CImg<>& detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& detailsNoFlash, const CImg<bool>& shadow);
+};
 
-
+/**
+ * Experimental Shadow class,
+ * uses faster algorithms, but may produce worse results.
+ * @see Shadow
+ */
+class ShadowExperimental : public Shadow{
+public:
+	static CImg<>& colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const CImg<bool>& shadow);
 };
 
 

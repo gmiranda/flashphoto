@@ -46,6 +46,8 @@ using std::endl;
  * crear el filtro.
  */
 namespace Helper{
+	//! Dirty cheat to avoid NaNs (0/0)
+	static const float fakezero = 0.00000000001f;
 
 	/**
 	 * Devuelve el minimo de los dos numeros.
