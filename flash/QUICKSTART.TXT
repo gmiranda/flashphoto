@@ -1,0 +1,9 @@
+Windows
+-------
+cd images
+..\bin\flash d giantShadowFlashs.png giantShadowNo-flashs.png
+
+Linux
+-----
+cd images
+../flash d giantShadowFlashs.png giantShadowNo-flashs.png

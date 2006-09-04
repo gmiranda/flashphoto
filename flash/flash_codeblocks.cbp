@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_project_file>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="1"/>
+	<Project>
+		<Option title="Flash Console Command"/>
+		<Option makefile="Makefile"/>
+		<Option makefile_is_custom="0"/>
+		<Option active_target="1"/>
+		<Option compiler="0"/>
+		<Build>
+			<Target title="default">
+				<Option output="..\bin\flash.exe"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="1"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="1"/>
+				<Linker>
+					<Add library="gdi32"/>
+				</Linker>
+			</Target>
+			<Target title="release">
+				<Option output="..\bin\flash.exe"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="1"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="1"/>
+				<Compiler>
+					<Add option="-march=athlon64"/>
+					<Add option="-fexpensive-optimizations"/>
+					<Add option="-O3"/>
+					<Add option="-Wall"/>
+					<Add option="-pipe"/>
+					<Add option="-msse3"/>
+					<Add option="-mfpmath=sse"/>
+					<Add option="-ffast-math"/>
+					<Add option="-fomit-frame-pointer"/>
+					<Add option="-D_WIN32"/>
+				</Compiler>
+				<Linker>
+					<Add library="gdi32"/>
+					<Add library="..\..\..\..\Herramientas\CodeBlocks\lib\libjpeg.dll.a"/>
+				</Linker>
+			</Target>
+		</Build>
+		<Linker>
+			<Add library="libpng"/>
+			<Add library="libz"/>
+		</Linker>
+		<Unit filename="src\CImg.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Decoupling.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Decoupling.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Helper.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Pixel.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Shadow.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\Shadow.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+		<Unit filename="src\main.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+			<Option target="release"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

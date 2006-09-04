@@ -1,0 +1,283 @@
+# depslib dependency file v1.0
+1137368887 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.cpp
+	"Shadow.h"
+
+1137406599 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.h
+	"CImg/CImg.h"
+	"Helper.h"
+	"Pixel.h"
+	<cmath>
+	<iostream>
+
+1137368886 c:\documents and settings\punk guy\mis documentos\flash\src\cimg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1137406638 c:\documents and settings\punk guy\mis documentos\flash\src\helper.h
+	<cmath>
+	"CImg/CImg.h"
+	<iostream>
+
+1137368887 c:\documents and settings\punk guy\mis documentos\flash\src\pixel.h
+	<cmath>
+
+1137406803 c:\documents and settings\punk guy\mis documentos\flash\src\main.cpp
+	<iostream>
+	"CImg/CImg.h"
+	"Decoupling.h"
+	"Helper.h"
+	"Shadow.h"
+
+1137406638 c:\documents and settings\punk guy\mis documentos\flash\src\decoupling.h
+	<iostream>
+	<cmath>
+	"CImg/CImg.h"
+	"Pixel.h"
+	"Helper.h"
+
+1137415957 c:\documents and settings\punk guy\mis documentos\flash\src\decoupling.cpp
+	"Decoupling.h"
+
+1137406865 c:\documents and settings\punk guy\mis documentos\flash\src\cimg\cimg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1137892948 d:\mis documentos\flash\src\shadow.cpp
+	"Shadow.h"
+
+1137892593 d:\mis documentos\flash\src\shadow.h
+	"CImg.h"
+	"Helper.h"
+	"Pixel.h"
+	<cmath>
+	<iostream>
+
+1143492840 d:\mis documentos\flash\src\cimg.h
+	"CImg/CImg.h"
+
+1137893571 d:\mis documentos\flash\src\cimg\cimg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1137892471 d:\mis documentos\flash\src\helper.h
+	<cmath>
+	"CImg.h"
+	<iostream>
+
+1137372487 d:\mis documentos\flash\src\pixel.h
+	<cmath>
+
+1137892588 d:\mis documentos\flash\src\main.cpp
+	<iostream>
+	"CImg.h"
+	"Decoupling.h"
+	"Helper.h"
+	"Shadow.h"
+
+1137892453 d:\mis documentos\flash\src\decoupling.h
+	<iostream>
+	<cmath>
+	"CImg.h"
+	"Pixel.h"
+	"Helper.h"
+
+1137893677 d:\mis documentos\flash\src\decoupling.cpp
+	"Decoupling.h"
+
+1157050526 d:\documentos de guille\flashphoto\trunk\src\shadow.cpp
+	"Shadow.h"
+
+1157050100 d:\documentos de guille\flashphoto\trunk\src\shadow.h
+	"CImg.h"
+	"Helper.h"
+	"Pixel.h"
+	<cmath>
+	<iostream>
+
+1157361406 d:\documentos de guille\flashphoto\trunk\src\cimg.h
+	"CImg/CImg.h"
+
+1155507950 d:\documentos de guille\flashphoto\trunk\src\cimg\cimg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1157045922 d:\documentos de guille\flashphoto\trunk\src\helper.h
+	<cmath>
+	"CImg.h"
+	<iostream>
+
+1157040554 d:\documentos de guille\flashphoto\trunk\src\pixel.h
+	<cmath>
+
+1157364036 d:\documentos de guille\flashphoto\trunk\src\main.cpp
+	<iostream>
+	<memory>
+	"CImg.h"
+	"Decoupling.h"
+	"Helper.h"
+	"Shadow.h"
+
+1157055322 d:\documentos de guille\flashphoto\trunk\src\decoupling.h
+	<iostream>
+	<cmath>
+	"CImg.h"
+	"Pixel.h"
+	"Helper.h"
+
+1157055274 d:\documentos de guille\flashphoto\trunk\src\decoupling.cpp
+	"Decoupling.h"
+
+1157050526 d:\documentos de guille\flashphoto\trunk\flash\src\shadow.cpp
+	"Shadow.h"
+
+1157050100 d:\documentos de guille\flashphoto\trunk\flash\src\shadow.h
+	"CImg.h"
+	"Helper.h"
+	"Pixel.h"
+	<cmath>
+	<iostream>
+
+1157361406 d:\documentos de guille\flashphoto\trunk\flash\src\cimg.h
+	"CImg/CImg.h"
+
+1157375461 d:\documentos de guille\flashphoto\trunk\flash\src\cimg\cimg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1157045922 d:\documentos de guille\flashphoto\trunk\flash\src\helper.h
+	<cmath>
+	"CImg.h"
+	<iostream>
+
+1157040554 d:\documentos de guille\flashphoto\trunk\flash\src\pixel.h
+	<cmath>
+
+1157395020 d:\documentos de guille\flashphoto\trunk\flash\src\main.cpp
+	<iostream>
+	<memory>
+	"CImg.h"
+	"Decoupling.h"
+	"Helper.h"
+	"Shadow.h"
+
+1157055322 d:\documentos de guille\flashphoto\trunk\flash\src\decoupling.h
+	<iostream>
+	<cmath>
+	"CImg.h"
+	"Pixel.h"
+	"Helper.h"
+
+1157394462 d:\documentos de guille\flashphoto\trunk\flash\src\decoupling.cpp
+	"Decoupling.h"
+

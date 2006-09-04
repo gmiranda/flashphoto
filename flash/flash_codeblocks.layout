@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="src\CImg.h" open="0" top="0">
+		<Cursor position="348" topLine="0"/>
+	</File>
+	<File name="src\Decoupling.cpp" open="0" top="0">
+		<Cursor position="4880" topLine="123"/>
+	</File>
+	<File name="src\Decoupling.h" open="0" top="0">
+		<Cursor position="930" topLine="21"/>
+	</File>
+	<File name="src\Helper.h" open="0" top="0">
+		<Cursor position="4086" topLine="106"/>
+	</File>
+	<File name="src\Pixel.h" open="0" top="0">
+		<Cursor position="923" topLine="15"/>
+	</File>
+	<File name="src\Shadow.cpp" open="0" top="0">
+		<Cursor position="7233" topLine="247"/>
+	</File>
+	<File name="src\Shadow.h" open="0" top="0">
+		<Cursor position="846" topLine="0"/>
+	</File>
+	<File name="src\main.cpp" open="1" top="0">
+		<Cursor position="3077" topLine="39"/>
+	</File>
+</CodeBlocks_layout_file>
