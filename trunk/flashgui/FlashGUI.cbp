@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_project_file>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="1"/>
+	<Project>
+		<Option title="FlashGUI"/>
+		<Option makefile="Makefile"/>
+		<Option makefile_is_custom="0"/>
+		<Option active_target="1"/>
+		<Option compiler="0"/>
+		<Build>
+			<Target title="flashgui">
+				<Option output="FlashGUI.exe"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="0"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="0"/>
+				<Compiler>
+					<Add directory="$(#QT4DIR.include)"/>
+					<Add directory="$(#QT4DIR.include)\QtCore"/>
+					<Add directory="$(#QT4DIR.include)\QtGui"/>
+				</Compiler>
+				<Linker>
+					<Add library="QtGui"/>
+					<Add library="QtCore"/>
+					<Add library="pthread"/>
+					<Add library="X11"/>
+					<Add directory="$(#QT4DIR.lib)"/>
+					<Add directory="\usr\X11R6\lib"/>
+				</Linker>
+				<ExtraCommands>
+					<Add before="echo qmake-qt4 -project -unix"/>
+					<Add before="qmake-qt4 -unix"/>
+					<Add before="$(#MAKE) compiler_moc_header_make_all"/>
+				</ExtraCommands>
+			</Target>
+			<Target title="win32">
+				<Option output="..\bin\FlashGUI"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="0"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="0"/>
+				<Compiler>
+					<Add option="-mthreads -Wl,-enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -Wl,-s -Wl,-subsystem,windows"/>
+					<Add option="-DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -DQT_NEEDS_QMAIN"/>
+					<Add directory="$(#QT4DIR.include)"/>
+					<Add directory="$(#QT4DIR.include)\QtCore"/>
+					<Add directory="$(#QT4DIR.include)\QtGui"/>
+				</Compiler>
+				<Linker>
+					<Add library="mingw32"/>
+					<Add library="qtmain"/>
+					<Add library="QtGui4"/>
+					<Add library="QtCore4"/>
+					<Add directory="$(#QT4DIR.lib)"/>
+					<Add directory="d:\Herramientas\QT4.1\lib"/>
+				</Linker>
+				<ExtraCommands>
+					<Add before="qmake -win32"/>
+					<Add before="$(MAKE) -f Makefile.Release compiler_moc_header_make_all"/>
+					<Add before="move release\moc*.cpp ."/>
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Unit filename="Dialog.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="flashgui"/>
+		</Unit>
+		<Unit filename="Dialog.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option weight="53"/>
+			<Option target="flashgui"/>
+		</Unit>
+		<Unit filename="main.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="flashgui"/>
+		</Unit>
+		<Unit filename="moc_Dialog.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="flashgui"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
