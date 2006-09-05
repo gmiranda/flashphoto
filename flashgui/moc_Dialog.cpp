@@ -1,17 +1,17 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Dialog.h'
 **
-** Created: lun 4. sep 11:46:53 2006
-**      by: The Qt Meta Object Compiler version 59 (Qt 4.1.4)
+** Created: mar sep 5 14:02:09 2006
+**      by: The Qt Meta Object Compiler version 59 (Qt 4.1.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../Dialog.h"
+#include "Dialog.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'Dialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 59
-#error "This file was generated using the moc from 4.1.4. It"
+#error "This file was generated using the moc from 4.1.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
