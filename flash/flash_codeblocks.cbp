@@ -1,115 +1,121 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_project_file>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="5" />
+	<FileVersion major="1" minor="1"/>
 	<Project>
-		<Option title="Flash Console Command" />
-		<Option pch_mode="0" />
-		<Option default_target="" />
-		<Option compiler="gcc" />
-		<Option virtualFolders="" />
+		<Option title="Flash Console Command"/>
+		<Option makefile="Makefile"/>
+		<Option makefile_is_custom="0"/>
+		<Option active_target="1"/>
+		<Option compiler="0"/>
 		<Build>
 			<Target title="linux_x86">
-				<Option output="../bin/flash" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option projectResourceIncludeDirsRelation="1" />
+				<Option output="..\bin\flash"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="1"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="1"/>
 				<Compiler>
-					<Add option="-march=athlon64" />
-					<Add option="-O3" />
-					<Add option="-Wall" />
-					<Add option="-pipe" />
-					<Add option="-fomit-frame-pointer" />
-					<Add option="-finline-functions" />
-					<Add option="-m3dnow" />
-					<Add option="-msse3" />
-					<Add option="-mfpmath=sse" />
+					<Add option="-march=athlon64"/>
+					<Add option="-O3"/>
+					<Add option="-Wall"/>
+					<Add option="-pipe"/>
+					<Add option="-fomit-frame-pointer"/>
+					<Add option="-finline-functions"/>
+					<Add option="-ffast-math"/>
+					<Add option="-m3dnow"/>
+					<Add option="-msse3"/>
+					<Add option="-mfpmath=sse"/>
 				</Compiler>
 				<Linker>
-					<Add library="libjpeg" />
-					<Add library="X11" />
-					<Add library="pthread" />
+					<Add library="libjpeg"/>
+					<Add library="X11"/>
+					<Add library="pthread"/>
 				</Linker>
 			</Target>
 			<Target title="win32">
-				<Option output="../bin/flash.exe" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option projectResourceIncludeDirsRelation="1" />
+				<Option output="..\bin\flash.exe"/>
+				<Option working_dir="."/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="1"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="1"/>
 				<Compiler>
-					<Add option="-march=athlon64" />
-					<Add option="-fexpensive-optimizations" />
-					<Add option="-O3" />
-					<Add option="-Wall" />
-					<Add option="-pipe" />
-					<Add option="-msse3" />
-					<Add option="-mfpmath=sse" />
-					<Add option="-ffast-math" />
-					<Add option="-fomit-frame-pointer" />
-					<Add option="-D_WIN32" />
+					<Add option="-march=athlon64"/>
+					<Add option="-fexpensive-optimizations"/>
+					<Add option="-O3"/>
+					<Add option="-Wall"/>
+					<Add option="-pipe"/>
+					<Add option="-fomit-frame-pointer"/>
+					<Add option="-finline-functions"/>
+					<Add option="-ffast-math"/>
+					<Add option="-m3dnow"/>
+					<Add option="-msse3"/>
+					<Add option="-mfpmath=sse"/>
+					<Add option="-D_WIN32"/>
 				</Compiler>
 				<Linker>
-					<Add library="gdi32" />
-					<Add library="../../../../Herramientas/CodeBlocks/lib/libjpeg.dll.a" />
+					<Add library="gdi32"/>
+					<Add library="libjpeg"/>
 				</Linker>
 			</Target>
 		</Build>
-		<VirtualTargets>
-			<Add alias="All" targets="default;release;" />
-		</VirtualTargets>
 		<Linker>
-			<Add library="libpng" />
-			<Add library="libz" />
+			<Add library="libpng"/>
+			<Add library="libz"/>
 		</Linker>
-		<Unit filename="src/CImg.h">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\CImg.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Decoupling.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Decoupling.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Decoupling.h">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Decoupling.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Helper.h">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Helper.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Pixel.h">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Pixel.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Shadow.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Shadow.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/Shadow.h">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\Shadow.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Unit filename="src/main.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="linux_x86" />
-			<Option target="win32" />
+		<Unit filename="src\main.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="linux_x86"/>
+			<Option target="win32"/>
 		</Unit>
-		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
