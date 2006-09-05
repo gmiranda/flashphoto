@@ -2,7 +2,7 @@
 1137368887 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.cpp
 	"Shadow.h"
 
-1157055322 
+1157375461 
 
 1137406599 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.h
 	"CImg/CImg.h"
@@ -36,8 +36,6 @@
 	"CImg.h"
 	"CImg.h"
 	"CImg.h"
-
-1157375461 
 
 1137406638 c:\documents and settings\punk guy\mis documentos\flash\src\helper.h
 	<cmath>
@@ -271,7 +269,7 @@
 1157040554 d:\documentos de guille\flashphoto\trunk\flash\src\pixel.h
 	<cmath>
 
-1157395020 d:\documentos de guille\flashphoto\trunk\flash\src\main.cpp
+1157464017 d:\documentos de guille\flashphoto\trunk\flash\src\main.cpp
 	<iostream>
 	<memory>
 	"CImg.h"
