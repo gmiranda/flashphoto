@@ -32,11 +32,13 @@ FlashDialog::FlashDialog()
 	//optionAndInfoLayout->setStretchFactor(optionBox);
 	infoLabel = new QLabel("Info");
 	infoLabel->setWordWrap(true);
-	infoLabel->setText(tr("Instrucions:")+"\n"+tr("You need two exact photographs, first select the ")
+	infoLabel->setText(tr("Instructions:")+"\n"+tr("You need two exact photographs, first select the ")
 		+tr("Flash Image")+" "+tr("to choose the photo that was registered using the flash of the camera.")
 		+"\n"+tr("Then, go for the photo without flash, select the ")+tr("No Flash Image")+tr(" button.")+"\n"
+		+tr("DO NOT forget to add the format (i.e.: result.JPEG)")+"\n"
 		+tr("Finally, just choose where do you want to save the ")+tr("Result Image")+tr(", press ")
-		+tr("Go!")+tr(" button and wait. Note that it will take a while, and big images (1280x960) may take several hours."));
+		+tr("Go!")+tr(" button and wait.")+"\n"
+		+tr("Note that it will take a while, and big images (1280x960) may take several hours."));
 
 	optionAndInfoLayout->addWidget(infoLabel,0,1,-1,4);
 
@@ -71,11 +73,9 @@ FlashDialog::~FlashDialog(){
 }
 
 /**
- * Creates the vertical group of 3 buttons.
+ * Creates the vertical group of 3 buttons,
+ * with their correspondent image labels.
  */
-//void FlashDialog::createVerticalBox(){
-
-
 void FlashDialog::createImageLayout(){
 	gridGroupBox = new QGroupBox(tr("Choose Files"));
 	QGridLayout *gLayout = new QGridLayout();
