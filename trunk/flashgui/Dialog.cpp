@@ -16,15 +16,29 @@ FlashDialog::FlashDialog()
 :
 	// The name of the executable
 #ifdef WIN32
-	executable("flash"),
+	executable("flash")
 #else
-	executable("./flash"),
+	executable("./flash")
 #endif
-	parameters("d")
 {
 
 	// Create image selection layout
-	createLayout();
+	createImageLayout();
+
+	// Create info & options layout
+	createOptionLayout();
+	QGridLayout* optionAndInfoLayout = new QGridLayout;
+	optionAndInfoLayout->addWidget(optionBox,0,0,-1,1);
+	//optionAndInfoLayout->setStretchFactor(optionBox);
+	infoLabel = new QLabel("Info");
+	infoLabel->setWordWrap(true);
+	infoLabel->setText(tr("Instrucions:")+"\n"+tr("You need two exact photographs, first select the ")
+		+tr("Flash Image")+" "+tr("to choose the photo that was registered using the flash of the camera.")
+		+"\n"+tr("Then, go for the photo without flash, select the ")+tr("No Flash Image")+tr(" button.")+"\n"
+		+tr("Finally, just choose where do you want to save the ")+tr("Result Image")+tr(", press ")
+		+tr("Go!")+tr(" button and wait. Note that it will take a while, and big images (1280x960) may take several hours."));
+
+	optionAndInfoLayout->addWidget(infoLabel,0,1,-1,4);
 
 	// Button configuration
 	goButton = new QPushButton(tr("Go!"));
@@ -43,6 +57,7 @@ FlashDialog::FlashDialog()
 	// And now for the main layout
 	QVBoxLayout* mainLayout = new QVBoxLayout();
 	mainLayout->addWidget(gridGroupBox);
+	mainLayout->addLayout(optionAndInfoLayout);
 	mainLayout->addLayout(buttonLayout);
     setLayout(mainLayout);
 	setWindowTitle(tr("Flash Photography GUI"));
@@ -61,7 +76,7 @@ FlashDialog::~FlashDialog(){
 //void FlashDialog::createVerticalBox(){
 
 
-void FlashDialog::createLayout(){
+void FlashDialog::createImageLayout(){
 	gridGroupBox = new QGroupBox(tr("Choose Files"));
 	QGridLayout *gLayout = new QGridLayout();
 
@@ -96,6 +111,27 @@ void FlashDialog::createLayout(){
 }
 
 /**
+ * Creates the layout that contains options like which
+ * algoritm (cross bilateral, plain bilateral) shall be used
+ */
+void FlashDialog::createOptionLayout(){
+	optionBox = new QGroupBox(tr("Options"));
+	QVBoxLayout *optionLayout = new QVBoxLayout;
+	optionLayout->addStretch(1);
+
+	// The default option
+	plainBilateral = new QRadioButton(tr("Default bilateral filter"));
+	plainBilateral->setChecked(true);
+	// Alternative option
+	crossBilateral = new QRadioButton(tr("Cross bilateral")+"\n"+ tr("(better for dark images)"));
+
+	optionLayout->addWidget(plainBilateral);
+	optionLayout->addWidget(crossBilateral);
+
+	optionBox->setLayout(optionLayout);
+}
+
+/**
  * Opens the Flash Image dialog.
  */
 void FlashDialog::openFlashImage(){
@@ -114,7 +150,7 @@ void FlashDialog::openFlashImage(){
 		return;
 	}
 	// Else, resize it
-	img.scaledToWidth(150);
+	img.scaledToWidth(160);
 	// And insert the image into the label
 	imageBoxes[flashImage]->setPixmap(QPixmap::fromImage(img).scaledToWidth(160));
 }
@@ -138,7 +174,7 @@ void FlashDialog::openNoFlashImage(){
 		return;
 	}
 	// Else, resize it
-	img.scaledToWidth(150);
+	img.scaledToWidth(160);
 	// And insert the image into the label
 	imageBoxes[noFlashImage]->setPixmap(QPixmap::fromImage(img).scaledToWidth(160));
 }
@@ -151,8 +187,7 @@ void FlashDialog::saveResultImage(){
 	resultImagePath = QFileDialog::getSaveFileName(this,
 		tr("Select file to save the Result Image"),
 		"./",
-		tr("All Images (*.png *.jpg *.jpeg *.bmp *.tiff);;All Files (*)"));
-
+		tr("Portable Network Graphics (*.png);;JPEG (*.jpeg);;BMP (*.bmp);;True Image File Format (*.tiff);;All Files (*)"));
 
 }
 
@@ -172,7 +207,7 @@ void FlashDialog::launchFlashExec(){
 	std::stringstream ss;
 	ss << executable;
 	ss << " ";
-	ss << parameters;
+	ss << parameters();
 	// We must add "" to the path, so C:\A Directory will be
 	// "C:\A Directory" and will be recognized as one single parameter
 	ss << " \"";
@@ -200,7 +235,23 @@ void FlashDialog::launchFlashExec(){
 		return;
 	}
 	// Else, resize it
-	img.scaledToWidth(150);
+	img.scaledToWidth(160);
 	// And insert the image into the label
 	imageBoxes[resultImage]->setPixmap(QPixmap::fromImage(img).scaledToWidth(160));
+}
+
+/**
+ * @return A string with the parameters selected for the
+ * filtering, such as the bilateral filter to use.
+ */
+std::string FlashDialog::parameters()const{
+
+	// If plain bilateral is selected
+	if(plainBilateral->isChecked())
+		// Bilateral filter, but also do detail correction
+		return "d";
+	// If cross bilateral is selected
+	if(crossBilateral->isChecked())
+		// Just compute cross bilateral
+		return "c";
 }

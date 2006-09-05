@@ -63,7 +63,7 @@ void printUsage();
  * in a flash photo, and the colors and ambience of the non flash photo
  * (that also means no red eyes and no shadows because of the flash).
 
- * @author Guillermo Miranda Alamo <gmiranda@teleline.es>
+ * @author Guillermo Miranda Alamo <gmiranda@user.berlios.de>
  * @date July 2005 - September 2006
  * @param argc Number of arguments.
  * @param argv Arguments
@@ -73,7 +73,7 @@ void printUsage();
 int main(int argc, char* argv[]){
 	// Welcome Message
 	cout << "Flash photography enhancement via intrinsic relighting" << endl << endl;
-	cout << "Implementation by Guillermo Miranda Alamo - gmiranda@teleline.es" << endl << endl;
+	cout << "Implementation by Guillermo Miranda Alamo - gmiranda@user.berlios.de" << endl << endl;
 
 	// Check number of arguments
 	if(argc<4){

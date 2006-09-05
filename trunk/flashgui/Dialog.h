@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QGroupBox>
 #include <QPushButton>
+#include <QRadioButton>
 #include <QString>
 #include <QLabel>
 #include <string>
@@ -26,20 +27,27 @@ private:
 	//! Name of the executable file
 	const std::string executable;
 
-	//! Parameters
-	std::string parameters;
-
 	//! Number of elements in the vertical groupbox
 	const static unsigned verticalOptions = 3;
-
 	//! Button enumeration
 	enum{ flashImage = 0, noFlashImage, resultImage };
+
 	//! Group of buttons to choose the image files (2 input/1 output)
 	QGroupBox* gridGroupBox;
 	//! Buttons pointer array
 	QPushButton *buttons[verticalOptions];
 	//! Image boxes
 	QLabel* imageBoxes[verticalOptions];
+
+	//! Option box
+	QGroupBox* optionBox;
+	//! Normal bilateral filter option
+	QRadioButton	*plainBilateral,
+	//! Cross bilateral filter option
+					*crossBilateral;
+	//! Info label
+	QLabel* infoLabel;
+
 	//! Go button (starts the main program)
 	QPushButton *	goButton,
 	//! Cancel button (quits the program: GUI and core)
@@ -56,7 +64,9 @@ private:
 
 private:
 	// Methods
-	void createLayout();
+	void createImageLayout();
+	void createOptionLayout();
+	std::string parameters()const;
 
 private slots:
 	// Slots
