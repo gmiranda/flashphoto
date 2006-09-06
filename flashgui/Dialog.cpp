@@ -254,4 +254,6 @@ std::string FlashDialog::parameters()const{
 	if(crossBilateral->isChecked())
 		// Just compute cross bilateral
 		return "c";
+	// Normal mode, but the control shouldn't arrive here...
+	return "n";
 }
