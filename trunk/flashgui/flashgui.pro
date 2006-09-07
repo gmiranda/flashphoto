@@ -11,6 +11,13 @@ INCLUDEPATH += .
 HEADERS += Dialog.h
 SOURCES += Dialog.cpp main.cpp
 
+# Options
+macx {
+	QMAKE_MAC_SDK=/Developer/SDKs/MacOSX10.4u.sdk
+
+	CONFIG+=x86 ppc
+} 
+
 
 # Translations
 TRANSLATIONS = dialog_es_ES.ts \
