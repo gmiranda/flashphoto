@@ -22,7 +22,8 @@ FlashDialog::FlashDialog()
 	// Solve bundle path
 	executable((QCoreApplication::applicationDirPath() + "/flash").toStdString())
 #else
-	executable("./flash")
+	// Unix systems used to have a different call in previous version of this app
+	executable("flash")
 #endif
 {
 

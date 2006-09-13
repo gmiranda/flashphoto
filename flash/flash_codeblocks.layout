@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="linux_x86" />
+	<ActiveTarget name="linux_x86.release" />
 	<File name="src/CImg.h" open="0" top="0" tabpos="0">
 		<Cursor position="348" topLine="0" />
 	</File>
-	<File name="src/Decoupling.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4880" topLine="123" />
+	<File name="src/Decoupling.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="15804" topLine="522" />
 	</File>
 	<File name="src/Decoupling.h" open="0" top="0" tabpos="0">
-		<Cursor position="930" topLine="21" />
+		<Cursor position="890" topLine="12" />
 	</File>
-	<File name="src/Helper.h" open="0" top="0" tabpos="0">
-		<Cursor position="5831" topLine="166" />
+	<File name="src/Helper.h" open="1" top="0" tabpos="3">
+		<Cursor position="5779" topLine="166" />
 	</File>
 	<File name="src/Pixel.h" open="0" top="0" tabpos="0">
 		<Cursor position="923" topLine="15" />
 	</File>
 	<File name="src/Shadow.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="7233" topLine="247" />
+		<Cursor position="12890" topLine="0" />
 	</File>
-	<File name="src/Shadow.h" open="0" top="0" tabpos="0">
-		<Cursor position="846" topLine="0" />
+	<File name="src/Shadow.h" open="1" top="0" tabpos="2">
+		<Cursor position="1137" topLine="6" />
 	</File>
 	<File name="src/main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2317" topLine="51" />
+		<Cursor position="3079" topLine="90" />
 	</File>
 </CodeBlocks_layout_file>

@@ -2,7 +2,7 @@
 1137368887 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.cpp
 	"Shadow.h"
 
-1157375461 
+1157375460 
 
 1137406599 c:\documents and settings\punk guy\mis documentos\flash\src\shadow.h
 	"CImg/CImg.h"
@@ -345,6 +345,71 @@
 	<iostream>
 
 1157409302 source:/home/guille/flashphoto/trunk/flash/src/main.cpp
+	<iostream>
+	<memory>
+	"CImg.h"
+	"Decoupling.h"
+	"Helper.h"
+	"Shadow.h"
+
+1157394462 source:/home/guille/flashphoto/trunk/flash/src/Decoupling.cpp
+	"Decoupling.h"
+
+1158178161 /home/guille/flashphoto/trunk/flash/src/Decoupling.h
+	<iostream>
+	<cmath>
+	"CImg.h"
+	"Pixel.h"
+	"Helper.h"
+
+1158171057 /home/guille/flashphoto/trunk/flash/src/CImg.h
+	"CImg/CImg.h"
+
+1157375460 /home/guille/flashphoto/trunk/flash/src/CImg/CImg.h
+	<cstdio>
+	<cstdlib>
+	<cstdarg>
+	<cstring>
+	<cmath>
+	<ctime>
+	<sys/time.h>
+	<unistd.h>
+	<windows.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/keysym.h>
+	<pthread.h>
+	"png.h"
+	"jpeglib.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+	"CImg.h"
+
+1157040554 /home/guille/flashphoto/trunk/flash/src/Pixel.h
+	<cmath>
+
+1157045922 /home/guille/flashphoto/trunk/flash/src/Helper.h
+	<cmath>
+	"CImg.h"
+	<iostream>
+
+1157050526 source:/home/guille/flashphoto/trunk/flash/src/Shadow.cpp
+	"Shadow.h"
+
+1158178171 /home/guille/flashphoto/trunk/flash/src/Shadow.h
+	"CImg.h"
+	"Helper.h"
+	"Pixel.h"
+	<cmath>
+	<iostream>
+
+1158171057 source:/home/guille/flashphoto/trunk/flash/src/main.cpp
 	<iostream>
 	<memory>
 	"CImg.h"

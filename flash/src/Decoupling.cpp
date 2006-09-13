@@ -204,7 +204,7 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I)const{
 
 	// Para todas las Xs
 	for(int y=0;y<I.dimy();y++){
-		cerr << "\r" << y*100/I.dimy() << "%";
+		cout << "\r" << y*100/I.dimy() << "%";
 		// Para todas las Ys
 		for(int x=0;x<I.dimx();x++){
 			Pixel Is((float)x/I.dimx(),(float)y/I.dimy());
@@ -242,7 +242,7 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I)const{
 			(*J)(x,y)=sum/k;
 		}
 	}
-	cerr << endl;
+	cout << endl;
 
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
@@ -265,7 +265,7 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I, const CImg<
 
 	// Para todas las Ys
 	for(int y=0;y<I.dimy();y++){
-		cerr << "\r" << y*100/I.dimy() << "%";
+		cout << "\r" << y*100/I.dimy() << "%";
 		// Para todas las Xs
 		for(int x=0;x<I.dimx();x++){
 			Pixel Is((float)x/I.dimx(),(float)y/I.dimy());
@@ -309,7 +309,7 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I, const CImg<
 			(*J)(x,y)=sum/k;
 		}
 	}
-	cerr << endl;
+	cout << endl;
 
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
@@ -332,7 +332,7 @@ CImg<float>& DecouplingStable::crossBilateralFilter(const CImg<float>& iNF,const
 
 	// Para todas las ys
 	for(int y=0;y<iNF.dimy();y++){
-		cerr << "\rY=" << y;
+		cout << "\rY=" << y;
 		// Para todas las xs
 		for(int x=0;x<iNF.dimx();x++){
 			Pixel Is((float)x/iNF.dimx(),(float)y/iNF.dimy());
@@ -369,7 +369,7 @@ CImg<float>& DecouplingStable::crossBilateralFilter(const CImg<float>& iNF,const
 			(*J)(x,y)=sum/k;
 		}
 	}
-	cerr << endl;
+	cout << endl;
 
 	// Devolvemos una nueva imagen del mismo tamaño que la I
 	// pero con los valores calculados en bufferJ
@@ -448,7 +448,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I)const{
 
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
-		cerr << "\r" << (r+hwin)*100/(hwin*2) <<"%";
+		cout << "\r" << (r+hwin)*100/(hwin*2) <<"%";
 		// Para cada columna de la ventana
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
@@ -488,7 +488,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I)const{
 		}
 	}
 
-	cerr << endl;
+	cout << endl;
 
 	// Dividimos la imagen por el factor corrector K
 	(*J).div(K);
@@ -542,7 +542,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I, const
 
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
-		cerr << "\r" << (r+hwin)*100/(hwin*2) <<"%";
+		cout << "\r" << (r+hwin)*100/(hwin*2) <<"%";
 		// Para cada columna de la ventana
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
@@ -585,7 +585,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I, const
 		}
 	}
 
-	cerr << endl;
+	cout << endl;
 
 	// Dividimos la imagen por el factor corrector K
 	(*J).div(K);
@@ -639,7 +639,7 @@ CImg<float>& DecouplingExperimental::crossBilateralFilter(const CImg<float>& iNF
 
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
-		cerr << "\rR=" << r <<" ";
+		cout << "\rR=" << r <<" ";
 		// Para cada columna de la ventana
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
@@ -679,7 +679,7 @@ CImg<float>& DecouplingExperimental::crossBilateralFilter(const CImg<float>& iNF
 		}
 	}
 
-	cerr << endl;
+	cout << endl;
 
 	// Dividimos la imagen por el factor corrector K
 	(*J).div(K);

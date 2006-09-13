@@ -31,6 +31,7 @@ using namespace cimg_library;
 
 // Biblioteca estandar
 #include <iostream>
+using std::cout;
 using std::cerr;
 using std::endl;
 
