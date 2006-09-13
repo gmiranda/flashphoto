@@ -16,6 +16,13 @@
 #define cimg_plugin "../CImg_plugins.cpp"
 #define cimg_use_png
 #define cimg_use_jpeg
+/**
+ * Workaround: linking the universal flash binary to a non-fat
+ * X11 library
+ */
+#ifdef __MACH__
+#	define cimg_display_type 0
+#endif
 
 #include "CImg/CImg.h"
 
