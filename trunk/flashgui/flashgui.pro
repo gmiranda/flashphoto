@@ -3,7 +3,8 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET += 
+TARGET = FlashGUI
+TARGET +=
 DEPENDPATH += .
 INCLUDEPATH += .
 
@@ -14,7 +15,7 @@ SOURCES += Dialog.cpp main.cpp
 # Options
 macx {
 	QMAKE_MAC_SDK=/Developer/SDKs/MacOSX10.4u.sdk
-
+	TARGET = ../bin/FlashPhotography
 	CONFIG+=x86 ppc
 	ICON = ../bin/monkey.icns
 } 

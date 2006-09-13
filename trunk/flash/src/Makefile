@@ -23,7 +23,7 @@ MKDIR		= mkdir -p
 
 OBJECTS_DIR	= .objs
 DEST_DIR = ../../bin
-BUNDLE = $(DEST_DIR)/flashgui.app
+BUNDLE = $(DEST_DIR)/FlashPhotography.app
 
 # Source Files
 SOURCES		= Decoupling.cpp \
@@ -67,9 +67,9 @@ bundle:			$(TARGET) bundle_frameworks
 # This target will copy the libjpeg and libpng frameworks
 # See http://www.clanlib.org/download-binaries-osx-gcc40-universal.html
 bundle_frameworks:
-				@$(CHK_DIR_EXISTS) $(BUNDLE)/Contents/MacOS/Frameworks || $(MKDIR) $(BUNDLE)/Contents/MacOS/Frameworks
-				$(COPY_DIR) $(FJPEG) $(BUNDLE)/Contents/MacOS/Frameworks
-				$(COPY_DIR) $(FPNG) $(BUNDLE)/Contents/MacOS/Frameworks
+				@$(CHK_DIR_EXISTS) $(BUNDLE)/Contents/Frameworks || $(MKDIR) $(BUNDLE)/Contents/Frameworks
+				$(COPY_DIR) $(FJPEG) $(BUNDLE)/Contents/Frameworks
+				$(COPY_DIR) $(FPNG) $(BUNDLE)/Contents/Frameworks
 	
 
 # Housecleaning

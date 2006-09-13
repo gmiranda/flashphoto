@@ -211,8 +211,9 @@ void FlashDialog::launchFlashExec(){
 
 	// Construct command & parameters
 	std::stringstream ss;
+	ss << "\"";
 	ss << executable;
-	ss << " ";
+	ss << "\" ";
 	ss << parameters();
 	// We must add "" to the path, so C:\A Directory will be
 	// "C:\A Directory" and will be recognized as one single parameter
