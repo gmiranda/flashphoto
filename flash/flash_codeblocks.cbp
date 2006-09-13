@@ -31,6 +31,28 @@
 					<Add library="pthread" />
 				</Linker>
 			</Target>
+			<Target title="linux_x86.release">
+				<Option output="../bin/flash" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Compiler>
+					<Add option="-march=pentium3" />
+					<Add option="-O3" />
+					<Add option="-Wall" />
+					<Add option="-pipe" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-finline-functions" />
+					<Add option="-ffast-math" />
+					<Add option="-msse" />
+					<Add option="-mfpmath=sse" />
+				</Compiler>
+				<Linker>
+					<Add library="libjpeg" />
+					<Add library="X11" />
+					<Add library="pthread" />
+				</Linker>
+			</Target>
 			<Target title="win32">
 				<Option output="../bin/flash.exe" />
 				<Option type="1" />
@@ -55,13 +77,14 @@
 					<Add library="libjpeg" />
 				</Linker>
 			</Target>
-			<Target title="linux_x86.release">
-				<Option output="../bin/flash" />
+			<Target title="win32.release">
+				<Option output="../bin/flash.exe" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-march=pentium3" />
+					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
 					<Add option="-Wall" />
 					<Add option="-pipe" />
@@ -70,13 +93,14 @@
 					<Add option="-ffast-math" />
 					<Add option="-msse" />
 					<Add option="-mfpmath=sse" />
+					<Add option="-D_WIN32" />
 				</Compiler>
 				<Linker>
+					<Add library="gdi32" />
 					<Add library="libjpeg" />
-					<Add library="X11" />
-					<Add library="pthread" />
 				</Linker>
 			</Target>
+			
 		</Build>
 		<VirtualTargets>
 			<Add alias="All" targets="linux_x86;win32;" />
