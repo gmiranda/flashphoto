@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=4.0
+Type=Application
+Exec=FlashGUI
+Icon=
+Terminal=false
+Name[es_ES]=Fotografía Flash
+GenericName[es_ES]=FlashGUI
+Comment[es_ES]=Crea imágenes intermedias entre fotografías con flash y sin flash, con las ventajas de ambas. 
+Name=Flash Photography
+GenericName=FlashGUI
+Comment=Create intermediate images between flash and non-flash photographs, with the advantages of both of them.
+Categories=Qt;Application;Graphics;Photography;
+
