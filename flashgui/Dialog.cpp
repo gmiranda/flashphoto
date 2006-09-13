@@ -224,7 +224,7 @@ void FlashDialog::launchFlashExec(){
 	ss << '\"';
 
 	cerr << "Parameters: " << ss.str() << endl;
-	QMessageBox::information(this, "Launching", ss.str().c_str());
+	//QMessageBox::information(this, "Launching", ss.str().c_str());
 	// Launch
 	std::system(ss.str().c_str());
 
