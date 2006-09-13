@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B31155C60AB066DF002B3D8F /* CImg.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31155BD0AB066DF002B3D8F /* CImg.h */; };
+		B31155C70AB066DF002B3D8F /* Decoupling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31155BE0AB066DF002B3D8F /* Decoupling.cpp */; };
+		B31155C80AB066DF002B3D8F /* Decoupling.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31155BF0AB066DF002B3D8F /* Decoupling.h */; };
+		B31155C90AB066DF002B3D8F /* Helper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31155C00AB066DF002B3D8F /* Helper.h */; };
+		B31155CA0AB066DF002B3D8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31155C10AB066DF002B3D8F /* main.cpp */; };
+		B31155CB0AB066DF002B3D8F /* Pixel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31155C20AB066DF002B3D8F /* Pixel.h */; };
+		B31155CC0AB066DF002B3D8F /* Shadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31155C30AB066DF002B3D8F /* Shadow.cpp */; };
+		B31155CD0AB066DF002B3D8F /* Shadow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31155C40AB066DF002B3D8F /* Shadow.h */; };
+		B3DC366C0AB817F100122DA3 /* libjpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DC366A0AB817F100122DA3 /* libjpeg.framework */; };
+		B3DC366D0AB817F100122DA3 /* libpng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DC366B0AB817F100122DA3 /* libpng.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		014CEA460018CE2711CA2923 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		014CEA470018CE2711CA2923 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76F690486A84900D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				B31155C60AB066DF002B3D8F /* CImg.h in CopyFiles */,
+				B31155C80AB066DF002B3D8F /* Decoupling.h in CopyFiles */,
+				B31155C90AB066DF002B3D8F /* Helper.h in CopyFiles */,
+				B31155CB0AB066DF002B3D8F /* Pixel.h in CopyFiles */,
+				B31155CD0AB066DF002B3D8F /* Shadow.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DD76F6C0486A84900D96B5E /* flash */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = flash; sourceTree = BUILT_PRODUCTS_DIR; };
+		B31155BC0AB066DF002B3D8F /* CImg_plugins.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = CImg_plugins.cpp; path = src/CImg_plugins.cpp; sourceTree = "<group>"; };
+		B31155BD0AB066DF002B3D8F /* CImg.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CImg.h; path = src/CImg.h; sourceTree = "<group>"; };
+		B31155BE0AB066DF002B3D8F /* Decoupling.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Decoupling.cpp; path = src/Decoupling.cpp; sourceTree = "<group>"; };
+		B31155BF0AB066DF002B3D8F /* Decoupling.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Decoupling.h; path = src/Decoupling.h; sourceTree = "<group>"; };
+		B31155C00AB066DF002B3D8F /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = src/Helper.h; sourceTree = "<group>"; };
+		B31155C10AB066DF002B3D8F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		B31155C20AB066DF002B3D8F /* Pixel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Pixel.h; path = src/Pixel.h; sourceTree = "<group>"; };
+		B31155C30AB066DF002B3D8F /* Shadow.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Shadow.cpp; path = src/Shadow.cpp; sourceTree = "<group>"; };
+		B31155C40AB066DF002B3D8F /* Shadow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Shadow.h; path = src/Shadow.h; sourceTree = "<group>"; };
+		B3AA5A860AB0804500C75A26 /* libX11.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libX11.a; path = /Developer/SDKs/MacOSX10.4u.sdk/usr/X11R6/lib/libX11.a; sourceTree = "<absolute>"; };
+		B3DC366A0AB817F100122DA3 /* libjpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libjpeg.framework; path = /System/Library/Frameworks/libjpeg.framework; sourceTree = "<absolute>"; };
+		B3DC366B0AB817F100122DA3 /* libpng.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpng.framework; path = /System/Library/Frameworks/libpng.framework; sourceTree = "<absolute>"; };
+		C6859E8B029090EE04C91782 /* flash.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = flash.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F660486A84900D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3DC366C0AB817F100122DA3 /* libjpeg.framework in Frameworks */,
+				B3DC366D0AB817F100122DA3 /* libpng.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* flash */ = {
+			isa = PBXGroup;
+			children = (
+				B3DC366A0AB817F100122DA3 /* libjpeg.framework */,
+				B3DC366B0AB817F100122DA3 /* libpng.framework */,
+				B3AA5A860AB0804500C75A26 /* libX11.a */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6859E8C029090F304C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = flash;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B31155BC0AB066DF002B3D8F /* CImg_plugins.cpp */,
+				B31155BD0AB066DF002B3D8F /* CImg.h */,
+				B31155BE0AB066DF002B3D8F /* Decoupling.cpp */,
+				B31155BF0AB066DF002B3D8F /* Decoupling.h */,
+				B31155C00AB066DF002B3D8F /* Helper.h */,
+				B31155C10AB066DF002B3D8F /* main.cpp */,
+				B31155C20AB066DF002B3D8F /* Pixel.h */,
+				B31155C30AB066DF002B3D8F /* Shadow.cpp */,
+				B31155C40AB066DF002B3D8F /* Shadow.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76F6C0486A84900D96B5E /* flash */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6859E8C029090F304C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				C6859E8B029090EE04C91782 /* flash.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F620486A84900D96B5E /* flash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "flash" */;
+			buildPhases = (
+				8DD76F640486A84900D96B5E /* Sources */,
+				8DD76F660486A84900D96B5E /* Frameworks */,
+				8DD76F690486A84900D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+			};
+			dependencies = (
+			);
+			name = flash;
+			productInstallPath = "$(HOME)/bin";
+			productName = flash;
+			productReference = 8DD76F6C0486A84900D96B5E /* flash */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "flash" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				014CEA460018CE2711CA2923 /* Debug */,
+				014CEA470018CE2711CA2923 /* Release */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* flash */;
+			projectDirPath = "";
+			targets = (
+				8DD76F620486A84900D96B5E /* flash */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F640486A84900D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B31155C70AB066DF002B3D8F /* Decoupling.cpp in Sources */,
+				B31155CA0AB066DF002B3D8F /* main.cpp in Sources */,
+				B31155CC0AB066DF002B3D8F /* Shadow.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB923208733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LIBRARY_SEARCH_PATHS)",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/lib",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/X11R6/lib",
+					/sw/lib,
+					"$(SRCROOT)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = flash;
+				USER_HEADER_SEARCH_PATHS = "/sw/include/**";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB923308733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LIBRARY_SEARCH_PATHS)",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/lib",
+					"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/X11R6/lib",
+					/sw/lib,
+					"$(SRCROOT)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = flash;
+				USER_HEADER_SEARCH_PATHS = "/sw/include/**";
+			};
+			name = Release;
+		};
+		1DEB923608733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB923708733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "flash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923208733DC60010E9CD /* Debug */,
+				1DEB923308733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "flash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923608733DC60010E9CD /* Debug */,
+				1DEB923708733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

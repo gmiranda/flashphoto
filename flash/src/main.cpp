@@ -214,7 +214,13 @@ int main(int argc, char* argv[]){
 	cout << "Reconstrucing..." << endl;
 
 	CImg<> recons = deco->reconstruct(color,details,largeScaleNF);
+	/**
+	 * Workaround: linking the universal flash binary to a non-fat
+	 * X11 library
+	 */
+#ifndef __MACH__
 	recons.display("Reconstruction");
+#endif
 	// Preparamos para guardar como enteros
 	recons*=255.0f;
 	// If there are 5 arguments, number 5 must be the result file name
