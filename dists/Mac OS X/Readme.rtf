@@ -1,0 +1,117 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf410
+{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;\f2\fswiss\fcharset77 Helvetica-Oblique;
+\f3\fswiss\fcharset77 Helvetica-BoldOblique;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\b\fs24 \cf0 Flash Photography via Intrinsic Relightning\
+
+\f1\b0 \
+{\field{\*\fldinst{HYPERLINK "http://developer.berlios.de/projects/flashphoto"}}{\fldrslt http://developer.berlios.de/projects/flashphoto}}\
+\
+
+\f2\i by Guillermo Miranda \'e7lamo ({\field{\*\fldinst{HYPERLINK "mailto:gmiranda@users.berlios.de"}}{\fldrslt gmiranda@users.berlios.de}})
+\f1\i0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 This project focuses on implementing flash photography related algorithms. The first algorithm to be implemented is called "Flash Photography Enhancement via Intrinsic Relighting", presented in SIGGRAPH 2004, see {\field{\*\fldinst{HYPERLINK "http://artis.imag.fr/Publications/2004/ED04"}}{\fldrslt http://artis.imag.fr/Publications/2004/ED04}}\
+\
+
+\f0\b \ul What's this?\ulnone \
+
+\f1\b0 This program lets you create an image based on the information of 
+\f0\b two photographs
+\f1\b0 : a 
+\f2\i flash
+\f1\i0  one, and another photo 
+\f2\i without flash
+\f1\i0 . That means that you have to use a tripod or something.\
+\
+This program is 
+\f0\b released
+\f1\b0  under the 
+\f0\b GPL version 2 License
+\f1\b0 .\
+\
+
+\f0\b \ul How to use it\ulnone \
+
+\f1\b0 First, install the application (as usual, drag 
+\f2\i FlashPhotography
+\f1\i0  into your 
+\f2\i Applications
+\f1\i0  folder). Now run the application.\
+\
+Select the 
+\f0\b flash
+\f1\b0  photograph image (a file search dialog will pop up) and choose OK. Now repeat the process with the
+\f0\b  non flash
+\f1\b0  image. So now you will be seeing the two images scaled down. You have now to choose where to 
+\f0\b store
+\f1\b0  the 
+\f0\b result image
+\f1\b0 : push the 
+\f2\i Result image 
+\f1\i0 button, choose where do you want to save it.\
+\
+
+\f0\b Important note:
+\f1\b0  JPEG files are not working yet, please use another format to 
+\f0\b load
+\f1\b0  and 
+\f0\b save
+\f1\b0 . When 
+\f0\b saving the result image
+\f1\b0 , add manually the 
+\f0\b extension
+\f1\b0  (or 
+\f0\b format
+\f1\b0 ): if you want to save to 
+\f2\i results.png
+\f1\i0 , write clearly 
+\f2\i results
+\f3\b .png
+\f1\i0\b0  so the program will understand which file format you want.\
+\
+
+\f0\b \ul What images can I use?\ulnone \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\ql\qnatural\pardirnatural
+\ls1\ilvl0
+\f1\b0 \cf0 {\listtext	\'a5	}Almost every common file format (but JPEG on the Macintosh): BMP, PNG, TIFF, ...\
+{\listtext	\'a5	}The flash and no flash images 
+\f0\b must be
+\f1\b0  of the 
+\f0\b same resolution
+\f1\b0 .\
+{\listtext	\'a5	}And remember, use a 
+\f0\b tripod
+\f1\b0  if you want to try with your own photographs. The camera must be calibrated.\
+{\listtext	\'a5	}Please, use 
+\f0\b low resolution images
+\f1\b0 . The algorithm is 
+\f0\b experimental
+\f1\b0 , and still is 
+\f0\b slow
+\f1\b0 .\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+So 
+\f0\b if you just want to try this
+\f1\b0  use the 
+\f0\b two supplied images
+\f1\b0 . They were downloaded from the {\field{\*\fldinst{HYPERLINK "http://artis.imag.fr/Publications/2004/ED04"}}{\fldrslt ARTIS website}} (where you can find the original algorithm and more images), and scaled down.\
+\
+
+\f0\b \ul Any problems?\
+
+\f1\b0 \ulnone This experimental version isn't perfect: there will be some artifacts in the result image. In the stable version (not published) they aren't there, but an image that takes 1 minute to rebuild takes almost 2 hours using the stable algorithm.\
+\
+If you are experiencing any problem, or want to tell me what you think about this, please, 
+\f0\b feel free to contact me 
+\f1\b0 at {\field{\*\fldinst{HYPERLINK "mailto:gmiranda@users.berlios.de"}}{\fldrslt 
+\f0\b gmiranda@users.berlios.de}}\
+\
+Thank you!}
