@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Dialog.h'
 **
-** Created: mar sep 5 14:02:09 2006
-**      by: The Qt Meta Object Compiler version 59 (Qt 4.1.2)
+** Created: Thu Sep 7 14:01:27 2006
+**      by: The Qt Meta Object Compiler version 59 (Qt 4.1.4)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'Dialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 59
-#error "This file was generated using the moc from 4.1.2. It"
+#error "This file was generated using the moc from 4.1.4. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -27,16 +27,16 @@ static const uint qt_meta_data_FlashDialog[] = {
        0,    0, // enums/sets
 
  // slots: signature, parameters, type, tag, flags
-      13,   12,   12,   12, 0x08,
-      30,   12,   12,   12, 0x08,
-      49,   12,   12,   12, 0x08,
-      67,   12,   12,   12, 0x08,
+      12,   29,   29,   29, 0x08,
+      30,   29,   29,   29, 0x08,
+      49,   29,   29,   29, 0x08,
+      67,   29,   29,   29, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_FlashDialog[] = {
-    "FlashDialog\0\0openFlashImage()\0openNoFlashImage()\0saveResultImage()\0"
+    "FlashDialog\0openFlashImage()\0\0openNoFlashImage()\0saveResultImage()\0"
     "launchFlashExec()\0"
 };
 

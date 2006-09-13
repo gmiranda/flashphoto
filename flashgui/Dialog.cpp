@@ -2,6 +2,7 @@
 
 #include <QtGui>
 #include <QImage>
+#include <QCoreApplication>
 
 #include <iostream>
 #include <sstream>
@@ -17,6 +18,9 @@ FlashDialog::FlashDialog()
 	// The name of the executable
 #ifdef WIN32
 	executable("flash")
+#elif __MACH__
+	// Solve bundle path
+	executable((QCoreApplication::applicationDirPath() + "/flash").toStdString())
 #else
 	executable("./flash")
 #endif
@@ -63,6 +67,7 @@ FlashDialog::FlashDialog()
 	mainLayout->addLayout(buttonLayout);
     setLayout(mainLayout);
 	setWindowTitle(tr("Flash Photography GUI"));
+
 }
 
 /**
@@ -219,7 +224,7 @@ void FlashDialog::launchFlashExec(){
 	ss << '\"';
 
 	cerr << "Parameters: " << ss.str() << endl;
-
+	QMessageBox::information(this, "Launching", ss.str().c_str());
 	// Launch
 	std::system(ss.str().c_str());
 
