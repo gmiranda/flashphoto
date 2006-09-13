@@ -1,0 +1,20 @@
+Package: flashphoto
+Priority: extra
+Section: graphics
+Installed-Size: 630
+Maintainer: Guillermo Miranda Álamo <gmiranda@users.berlios.de>
+Architecture: i386
+Version: 4.0
+Depends: libqt4-core (>=4.1.2), libqt4-gui (>=4.1.2), libpng12-0 (>=1.2.8rel), libjpeg62, libx11-6, zlib1g (>=1:1.2.1)
+Description: Flash Photography via Intrinsic Relighting
+ This project focuses on implementing flash photography related algorithms.
+ The first algorithm to be implemented is called
+ "Flash Photography Enhancement via Intrinsic Relighting",
+ presented in SIGGRAPH 2004, see http://artis.imag.fr/Publications/2004/ED04
+ .
+ EXPERIMENTAL version. This package also provides a graphical frontend (FlashGUI).
+ .
+ NOTE: This package requires a processor with SSE support (Intel Pentium 3 or
+ AMD Athlon XP or higher)
+ .
+ Website: http://developer.berlios.de/projects/flashphoto
