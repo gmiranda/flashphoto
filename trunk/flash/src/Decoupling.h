@@ -18,6 +18,7 @@
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <iostream>
+using std::cout;
 using std::cerr;
 using std::endl;
 
@@ -60,7 +61,7 @@ public:
 	virtual CImg<float>& bilateralFilter(const CImg<float>& I)const=0;
 	virtual CImg<float>& bilateralFilter(const CImg<float>& I, const CImg<bool>& shadow)const=0;
 	virtual CImg<float>& crossBilateralFilter(const CImg<float>& iNF,const CImg<float>& iF)const=0;
-	
+
 	// Layer methods
 	CImg<float>& getIntensity(const CImg<float>& image)const;
 	CImg<float>& getColor(const CImg<float>& intensity)const;
@@ -68,7 +69,7 @@ public:
 
 	//! Reconstructs the image
 	CImg<float>& reconstruct(const CImg<>& color, const CImg<>& details, const CImg<> largeScaleNF)const;
-	
+
 	// Constructors & destructors
 	Decoupling(const CImg<>& imageFlash, const CImg<>& imageNoFlash);
 	virtual ~Decoupling();
@@ -94,7 +95,7 @@ public:
 
 	// Metodos para la reconstruccion
 	//CImg<float>& reconstruct(const CImg<>& color, const CImg<>& details, const CImg<> largeScaleNF)const;
-	
+
 	// Constructors & destructors
 	DecouplingStable(const CImg<>& imageFlash, const CImg<>& imageNoFlash);
 	virtual ~DecouplingStable();
@@ -117,7 +118,7 @@ public:
 	/*CImg<float>& getIntensity(const CImg<float>& image)const;
 	CImg<float>& getColor(const CImg<float>& intensity)const;
 	CImg<float>& getColor(const CImg<>& image, const CImg<float>& intensity)const;*/
-	
+
 	// Metodos para la reconstruccion
 	//CImg<float>& reconstruct(const CImg<>& color, const CImg<>& details, const CImg<> largeScaleNF)const;
 

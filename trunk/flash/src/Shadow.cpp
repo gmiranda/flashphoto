@@ -1,17 +1,17 @@
 #include "Shadow.h"
 
 // Copyright (C) 2005  Guillermo Miranda Alamo
-// 
+//
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation; either
 // version 2.1 of the License, or (at your option) any later version.
-// 
+//
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -32,7 +32,7 @@ float Shadow::umbraCandidate(const CImg<float>& histo){
 	float min = 127*0.2f;
 	// Obtenemos su puntero de datos
 	const float* ptr = histo.ptr();
-	
+
 	/*
 	 * Recorremos el histograma.
 	 * Recuerda que la i nos dice el valor del pixel,
@@ -61,18 +61,18 @@ CImg<bool>& Shadow::dischardPixels(const CImg<>& image, const float threshold){
 	// Creamos una imagen del mismo tamaño que image
 	// pero sin copiar los valores de los pixeles
 	CImg<bool>* res = new CImg<bool>(image,false);
-	
+
 	// Obtenemos su puntero de datos
 	const float* sourceData = image.ptr();
 	bool* newData = res->ptr();
-	
+
 	// Recorremos los pixeles
 	for(unsigned int i=0;i<image.size();i++){
 		// Los pixeles > threshold los ponemos a 1.0f para verlos.
 		newData[i]=(sourceData[i]>threshold)?false:true;
 	}
-	
-	return *res;	
+
+	return *res;
 }
 
 /**
@@ -84,7 +84,7 @@ CImg<bool>& Shadow::dischardPixels(const CImg<>& image, const float threshold){
 CImg<bool>& Shadow::umbra(const CImg<>& intenF, const CImg<>& intenNF){
 	// Creamos una nueva imagen con las dimensiones de intenF
 	CImg<bool>* umbra=new CImg<bool>(intenF,false);
-	
+
 	// Calculamos la diferencia de intensidades
 	CImg<> dI = (intenF-intenNF);
 	// Ahora el histograma, con 128 bins
@@ -92,12 +92,12 @@ CImg<bool>& Shadow::umbra(const CImg<>& intenF, const CImg<>& intenNF){
 	//histo.display("histograma 128");
 	// Suavizamos el histograma
 	histo.blur(2.0f);
-	
+
 	// Buscamos el minimo local menor que 0.2
 	float min = umbraCandidate(histo);
-	
+
 	//cerr << "Minimo="<<min<<endl;
-	
+
 	(*umbra) = dischardPixels(dI,min);
 	// Multiplicamos la delta por el mapa de umbra
 
@@ -114,7 +114,7 @@ CImg<bool>& Shadow::umbra(const CImg<>& intenF, const CImg<>& intenNF){
 CImg<bool> Shadow::penumbra(const CImg<>& intenF, const CImg<>& intenNF, const CImg<bool>& umbra){
 	/// Gradientes
 	// Vamos a ver el gradiente de If
-	CImg<> gF = Helper::get_magnitude_gradient(intenF); 
+	CImg<> gF = Helper::get_magnitude_gradient(intenF);
 	// Ahora suavizamos
 	gF.blur(2.0f);
 	// Gradiente de Inf
@@ -127,13 +127,13 @@ CImg<bool> Shadow::penumbra(const CImg<>& intenF, const CImg<>& intenNF, const C
 	CImg<bool> gDif(Helper::getTruncate(gF-gNF));
 	//CImg<float>(gDif).display("Diferencia de gradientes suavizados");
 
-	
+
 	/// Buscamos los pixeles de la penumbra cerca de la umbra
 	// Ahora habria que mirar, para esos pixeles, sus vecinos
 	// Creamos el box filter
 	CImg<> boxFilter = Helper::boxFilter();
 	//boxFilter.display("Box filter mask");
-	
+
 	// Convolvemos el mapa binario de umbra con el box filter
 	CImg<> mapConvolved = umbra.get_convolve(boxFilter);
 	//mapConvolved.display("Mapa binario de umbra convolved");
@@ -145,16 +145,16 @@ CImg<bool> Shadow::penumbra(const CImg<>& intenF, const CImg<>& intenNF, const C
 	// segun el 0.7% de la diagonal
 	CImg<> boxFilterTiny = Helper::boxFilter(intenNF,0.007f);
 	//boxFilterTiny.display("Box filter para objetos pequeños");
-	
+
 	// La convolucion
 	CImg<> mapConvolvedTiny = ((CImg<float>)gDif).get_convolve(boxFilterTiny);
 	//mapConvolvedTiny.display("Convolucion entre umbra y box tiny");
-	
+
 	// Nos quedamos solo con los pixeles con al menos el 80%
 	// de sus vecinos en la penumbra
 	mapConvolvedTiny=dischardPixels(mapConvolvedTiny,0.8f);
 
-	
+
 	/*
 	 * Devolvemos los pixeles con mayor gradiente en la imagen flash
 	 * y que tienen 1 vecino en la umbra, o los pixeles que solo
@@ -176,15 +176,15 @@ CImg<bool> Shadow::penumbra(const CImg<>& intenF, const CImg<>& intenNF, const C
 CImg<bool>& Shadow::shadow(const CImg<>& intenF, const CImg<>& intenNF){
 	// Calculamos la sombra en la penumbra
 	CImg<bool>* sombra = new CImg<bool>(Shadow::umbra(intenF,intenNF));
-	
+
 	// Ahora la penumbra, a partir de la sombra que ya tenemos (umbra)
 	CImg<bool> penumbra = Shadow::penumbra(intenF,intenNF,*sombra);
 	// Sumamos la penumbra y ya esta la sombra
 	// Nota: creo que la penumbra ya contiene todos los pixeles de la umbra
 	(*sombra)+=penumbra;
 
-	//intenF.get_mul(*sombra).display("If sombras");	
-	
+	//intenF.get_mul(*sombra).display("If sombras");
+
 	// Devolvemos la sombra
 	return *sombra;
 }
@@ -200,19 +200,19 @@ CImg<bool>& Shadow::shadow(const CImg<>& intenF, const CImg<>& intenNF){
 CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const CImg<bool>& shadow){
 	// Imagen resultante, mismas dimensiones que flash, sin copiar pixeles
 	CImg<>* color = new CImg<>(flash,false);
-	
+
 	// Las imagenes de color tienen que estar en Luv
 	const CImg<> noFlashLuv = noFlash.get_RGBtoLab();
 	const CImg<> flashLuv = flash.get_RGBtoLab();
-	
+
 	// Varianza f es el 2.5% de la diagonal de la imagen
 	const float sigmaF = 0.025f*Helper::diagonalLength(flash);
 	// La varianza f es 0.01
 	const float sigmaG = 0.01f;
-	
+
 	// Para todas las Ys
 	for(int y=0;y<color->dimy();y++){
-		cerr << "\r" << y*100/color->dimy() << "%";
+		cout << "\r" << y*100/color->dimy() << "%";
 		// Para todas las Xs
 		for(int x=0;x<color->dimx();x++){
 			// La intensidad la copiamos
@@ -232,7 +232,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 					if(shadow(x2,y2))
 						// No cuenta
 						continue;
-					
+
 					// Pixel con el que comparar el actual
 					Pixel Ip((float)x2/color->dimx(),(float)y2/color->dimy());
 					// Producto de las gaussianas
@@ -241,7 +241,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 					if(distancia==0.0f)
 						// No cuenta: saltamos, se acelera un poco
 						continue;
-					
+
 					// Otra opcion: multiplicar las gaussianas de intensidad (no funciona muy mal asi)
 					float prod =distancia*Helper::gaussianG(noFlashLuv(x2,y2,1)-noFlashLuv(x,y,1),sigmaG)*Helper::gaussianG(noFlashLuv(x2,y2,2)-noFlashLuv(x,y,2),sigmaG)*Helper::gaussianG(noFlashLuv(x2,y2,0)-noFlashLuv(x,y,0),sigmaG);
 
@@ -249,7 +249,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 					if(prod==0.0f)
 						// No cuenta: saltamos, se acelera un poco
 						continue;
-					
+
 					// Le sumamos el producto a K para la capa u
 					k+=prod;
 
@@ -268,7 +268,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 				(*color)(x,y,0)=flashLuv(x,y,0);
 				continue;
 			}
-			
+
 			// Ahora ya tenemos k(s) y el sumatorio:
 			// Para u...
 			(*color)(x,y,1)=sumU/k;
@@ -279,7 +279,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 
 		}
 	}
-	cerr << std::endl;
+	cout << std::endl;
 	//color->LabtoRGB();
 	return (*color).LabtoRGB();
 }
@@ -299,14 +299,14 @@ CImg<>& Shadow::detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& 
 	// Escalamos los detalles de la imagen no flash
 	CImg<> detailsNFscaled(detailsNoFlash);
 	// Image statistics (for min and max)
-	const CImgStats stats(detailsCorrected); 
-	
+	const CImgStats stats(detailsCorrected);
+
 	// Adjust the details image
 	detailsNFscaled.normalize(stats.min,stats.max);
-	
+
 	// La nueva imagen, no se le dan valores todavia
 	CImg<>* details = new CImg<>(/*detailsCorrected,false*/detailsNFscaled);
-	
+
 	// Recorremos todos los pixeles
 	/*for(int y=0;y<detailsCorrected.dimy();y++){
 		for(int x=0;x<detailsCorrected.dimx();x++){
@@ -321,7 +321,7 @@ CImg<>& Shadow::detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& 
 			(*details)(x,y)=detailsCorrected(x,y);
 		}
 }*/
-	
+
 	// Devolvemos la imagen resultante
 	return *details;
 }
@@ -344,25 +344,25 @@ CImg<>& Shadow::detailsCorrection(const CImg<>& detailsCorrected, const CImg<>& 
 CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const CImg<bool>& shadow){
 	// Imagen resultante, mismas dimensiones que flash, sin copiar pixeles
 	CImg<>* color = new CImg<>(flash,false);
-	
+
 	// Las imagenes de color tienen que estar en Luv
 	const CImg<> noFlashLuv = noFlash.get_RGBtoLab();
 	const CImg<> flashLuv = flash.get_RGBtoLab();
-	
+
 	// Varianza f es el 2.5% de la diagonal de la imagen
 	const float sigmaF = 0.025f*Helper::diagonalLength(flash);
 	// La varianza f es 0.01
 	const float sigmaG = 0.01f;
-	
+
 	// Esta c_r es para la varianza de intensidades
 	float c_r=1.0/(2.0f*(sigmaG*sigmaG));
 	// Y Esta para la espacial
 	float c_d=1.0/(2.0f*(sigmaF*sigmaF));
-	
+
 	// Esto es la mitad del tamaño de la ventana
 	int hwin=(int)Helper::max(1,std::ceil(2.1*sigmaF));
 	//cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
-	
+
 	// Construimos squares y gaussian a la vez
 	CImg<> gaussian(2*hwin+1);
 	for(unsigned int p=0;p<gaussian.size();p++){
@@ -372,45 +372,45 @@ CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& 
 	for(unsigned int p=0;p<gaussian.size();p++){
 		gaussian[p]=exp(-c_d*gaussian[p]);
 	}
-	
+
 	CImg<> gaussian_d=gaussian.get_transpose()*gaussian;
-	
+
 	// Creamos la imagen en blanco K, que se corresponde con la d
 	// del codigo original en matlab
 	CImg<> K(noFlash,false);
-	
+
 	// Para cada fila de la ventana
 	for(int r=-hwin;r<=hwin;r++){
-		cerr << "\r" << (r+hwin)*100/(hwin*2) <<"%";
+		cout << "\r" << (r+hwin)*100/(hwin*2) <<"%";
 		// Para cada columna de la ventana
 		for(int c=-hwin;c<=hwin;c++){
 			// En matlab se le suma 1 a las coordenadas xq el rango es de 1 a N
 			float g=gaussian_d(c+hwin,r+hwin);
-	
+
 			// Imagen con el producto
 			CImg<> s(noFlashLuv,false);
 			// Imagen con algo...
 			CImg<> is(noFlashLuv,false), isFlash(flashLuv,false);
-	
+
 			// Aqui tampoco sumamos 1
 			int rs=(int)Helper::max(0,r);
 			// Creo que tendria que restar -1
 			int re=flashLuv.dimy()+(int)Helper::min(0,r)-1;
 			int cs=(int)Helper::max(0,c);
 			int ce=flashLuv.dimx()+(int)Helper::min(0,c)-1;
-	
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					is(c2,r2,0)=noFlashLuv(c2-c,r2-r,0);
 					is(c2,r2,1)=noFlashLuv(c2-c,r2-r,1);
 					is(c2,r2,2)=noFlashLuv(c2-c,r2-r,2);
-					
+
 					isFlash(c2,r2,0)=flashLuv(c2-c,r2-r,0);
 					isFlash(c2,r2,1)=flashLuv(c2-c,r2-r,1);
 					isFlash(c2,r2,2)=flashLuv(c2-c,r2-r,2);
 				}
 			}
-	
+
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
 					// Compute difference for each channel
@@ -418,27 +418,25 @@ CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& 
 							diffU = noFlashLuv(c2,r2,1)-is(c2,r2,1),
 							diffV = noFlashLuv(c2,r2,2)-is(c2,r2,2);
 					// La gaussiana de la intensidad es e^(-c_r*diferencia cuadrada)
-					float prod = shadow(c2-c,r2-r)? Helper::fakezero 
+					float prod = shadow(c2-c,r2-r)? Helper::fakezero
 						: exp(-c_r*(diffL*diffL))
 							*exp(-c_r*(diffU*diffU))
 							*exp(-c_r*(diffV*diffV))*g;
 					s(c2,r2,0)= s(c2,r2,1)= s(c2,r2,2)= prod;
 				}
 			}
-	
+
 			// Ahora incrementamos la K
 			K+=s;
-			// Now multiply 
+			// Now multiply
 			(*color)+=s.mul(isFlash);
 		}
 	}
-	
-	cerr << endl;
-	
+
+	cout << endl;
+
 		// Dividimos la imagen por el factor corrector K
 	(*color).div(K);
-	
-	cerr << std::endl;
-	//color->LabtoRGB();
+		//color->LabtoRGB();
 	return (*color).LabtoRGB();
 }
