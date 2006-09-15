@@ -4,11 +4,12 @@
 #
 
 # Options
-WIXPATH	= %PROGRAMFILES%\Wix
+WIXPATH	= $(ProgramFiles)\Wix
 CANDLE	= $(WIXPATH)\candle.exe
 LIGHT		= $(WIXPATH)\light.exe
 VERSION	= 4.0
 TARGET	= msi
+
 
 # Source files
 SOURCES	= flashphoto.xml
