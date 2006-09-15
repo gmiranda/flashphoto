@@ -2,7 +2,7 @@
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
 	<Product Name='Flash Photography' Id='7D39F86A-ADA8-40E7-989C-970A706F436F'
 		UpgradeCode='640FF59B-E1D3-4516-BF14-41614C0015ED'
-		Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Guillermo Miranda Álamo'>
+		Language='1033' Codepage='1252' Version='4.0.0' Manufacturer='Guillermo Miranda Álamo'>
 		<Package Id='C4C17F56-6E99-42B6-9894-57C0F4018129' Keywords='Installer Flash Photography'
 			Description="Flash Photography with Frontend"
 			Comments='Version 1.0' Manufacturer='Guillermo Miranda Álamo'
@@ -36,10 +36,16 @@
 		</Directory>
 
 		<Feature Id='Complete' Level='1'>
-			<ComponentRef Id='Frontend' />
-			<!--<ComponentRef Id='FrontendShortcut' />-->
-			<ComponentRef Id='MainExecutable' />
-			<ComponentRef Id='Qt4Libs' />
+			<Feature Id='Program' Level='1'>
+				<ComponentRef Id='Frontend' />
+				<!--<ComponentRef Id='FrontendShortcut' />-->
+				<ComponentRef Id='MainExecutable' />
+			</Feature>
+			<Feature Id='Libraries' Level='1'>
+				<ComponentRef Id='Qt4Libs' />
+			</Feature>
+			<Feature Id='Documentation' Level='1'>
+			</Feature>
 		</Feature>
 
 
