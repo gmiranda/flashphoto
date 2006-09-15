@@ -14,6 +14,8 @@ TARGET	= msi
 # Source files
 SOURCES	= flashphoto.xml
 OBJECTS	= flashphoto.wixobj
+FLASHEXE	= ..\..\bin\flash.exe
+FLASHGUIEXE	= ..\..\bin\FlashGUI.exe
 
 # Implicit rules
 
@@ -25,5 +27,15 @@ OBJECTS	= flashphoto.wixobj
 # Build targets
 all:		$(TARGET)
 
-$(TARGET):	$(OBJECTS)
+# ToDo: automatically compile win32 flash
+flash:
+		copy $(FLASHEXE)
+flashGUI:
+		copy $(FLASHGUIEXE)
+
+qtlibs:	
+		copy $(QTDIR)\bin\QtCore4.dll
+		copy $(QTDIR)\bin\QtGui4.dll
+
+$(TARGET):	$(OBJECTS) qtlibs flash flashGUI
 		$(LIGHT) $(OBJECTS)

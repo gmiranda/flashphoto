@@ -1,62 +1,49 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-	<Product Name='Quake III Arena Cell Shading' Id='2EF85487-8B19-4F76-8B74-B102E7AA588F'
-		UpgradeCode='13D8CE1C-D48A-438A-B297-1FA38CAF9BD6'
-		Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='http://q3cellshading.sf.net'>
-		<Package Id='DB2D9F42-BC0A-441C-B74C-B386892038C9' Keywords='Installer'
-			Description="Quake III Arena Cell Shading"
-			Comments='Version 1.0' Manufacturer='Q3 Cell Shading Project'
+	<Product Name='Flash Photography' Id='7D39F86A-ADA8-40E7-989C-970A706F436F'
+		UpgradeCode='640FF59B-E1D3-4516-BF14-41614C0015ED'
+		Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Guillermo Miranda Álamo'>
+		<Package Id='C4C17F56-6E99-42B6-9894-57C0F4018129' Keywords='Installer Flash Photography'
+			Description="Flash Photography with Frontend"
+			Comments='Version 1.0' Manufacturer='Guillermo Miranda Álamo'
 			InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 		<Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
-		<Property Id='DiskPrompt' Value="Quake III Arena Cell Shading Installation [1]" />
-		<Property Id="INSTALLDIR">
-		<RegistrySearch Id='Q3ARegistry' Type='raw'
-			Root='HKLM' Key='SOFTWARE\Id\Quake III Arena' Name='INSTALLPATH' />
-		</Property>
+
+		<Property Id='DiskPrompt' Value="Flash Photography Installation [1]" />
+
 		<Directory Id='TARGETDIR' Name='SourceDir'>
-			<Directory Id='INSTALLDIR' Name='Quake III Arena Cell Shading'>
-				<Component Id='MainExecutable' Guid='F15C24DB-E3E6-45D9-B02C-B6DFA88AA9BF'>
-					<File Id='CellShadingEXE' Name='quake3-cel.exe' DiskId='1'
-						Source='quake3-cel.exe' Vital='yes'>
-						<Shortcut Id="startmenuCellShading" Directory="ProgramMenuFolder" Name="Quake III Arena Cell Shading"
-							WorkingDirectory='INSTALLDIR' Arguments='+set r_celshadalgo 1' Icon="cellshading.exe"
-							 IconIndex="0" Advertise='yes' />
-						<Shortcut Id="desktopCellShading" Directory="DesktopFolder" Name="Quake III Arena Cell Shading"
-							WorkingDirectory='INSTALLDIR' Icon="cellshading.exe" IconIndex="0" Advertise='yes' />
-					</File>
-					<File Id='CellShadingEXE2' Name='whiteCellShading' DiskId='1'
-						Source='quake3-cel.exe' Vital='yes'>
-						<Shortcut Id="startmenuWhiteCellShading" Directory="ProgramMenuFolder" Name="Quake III Arena White Cell Shading"
-							WorkingDirectory='INSTALLDIR' Arguments='+set r_celshadalgo 2'
-							Icon="cellshading.exe" IconIndex="0" Advertise='yes' />
-						<Shortcut Id="desktopWhiteCellShading" Directory="DesktopFolder" Name="Quake III Arena White Cell Shading"
-							WorkingDirectory='INSTALLDIR' Arguments='+set r_celshadalgo 2'
-							Icon="cellshading.exe" IconIndex="0" Advertise='yes' />
-					</File>
-				</Component>
+			<Directory Id='ProgramFilesFolder' Name='PFiles'>
+				<Directory Id='INSTALLDIR' Name='Flash Photography'>
+					<Component Id='Frontend' Guid='6A960707-6FF0-4B2A-AE59-77141686F617'>
+						<File Id='FrontendEXE' Name='flashgui.exe' DiskId='1'
+							Source='flashgui.exe' Vital='yes'>
+							<Shortcut Id="startmenuFrontend" Directory="ProgramMenuFolder" Name="Flash Photography"
+								WorkingDirectory='INSTALLDIR'   Advertise='yes' />
+								<!-- Icon="flashgui.exe" IconIndex="0" -->
+						</File>
+					</Component>
+					<Component Id='MainExecutable' Guid='E9F42B54-2307-4790-9700-BF9C149081E8'>
+						<File Id='MainEXE' Name='flash.exe' DiskId='1' Source='flashgui.exe' Vital='yes' />
+					</Component>
+					<Component Id='Qt4Libs' Guid='831267C1-91DF-4E0D-8B85-E4BE4FE64913'>
+						<File Id='QtCore4DLL' Name='QtCore4.dll' DiskId='1' Source='QtCore4.dll' Vital='no' />
+						<File Id='QtGui4DLL' Name='QtGui4.dll' DiskId='1' Source='QtGui4.dll' Vital='no' />
+					</Component>
+				</Directory>
 			</Directory>
 
-			<!--<Directory Id="ProgramMenuFolder" Name="Programs">
-				<Directory Id="ProgramMenuDir" Name="Quake III Arena Cell Shading" />
-						<Component Id='MainExecutableShortcut' Guid='F65EFD63-E072-4704-BDE7-9E5011AB59D8'>
-							<File Id='MenuShortcut' Name='cellshading.exe' DiskId='1' Source='cellshading.exe' Vital='yes'>
-								<Shortcut Id="startmenuCellShading" Directory="ProgramMenuFolder" Name="Quake III Arena Cell Shading"
-									WorkingDirectory='INSTALLDIR' Icon="cellshading.exe" IconIndex="0" Advertise='yes' />
-							</File>
-						<RemoveFile Id="ProgramMenuDir" Name="Quake III Arena Cell Shading" On="uninstall"/>
-					</Component>
-			</Directory>-->
 			<Directory Id="ProgramMenuFolder" Name="Programs" />
-			<Directory Id="DesktopFolder" Name="Desktop" />
 		</Directory>
 
 		<Feature Id='Complete' Level='1'>
+			<ComponentRef Id='Frontend' />
+			<!--<ComponentRef Id='FrontendShortcut' />-->
 			<ComponentRef Id='MainExecutable' />
-			<!--<ComponentRef Id='MainExecutableShortcut' />-->
+			<ComponentRef Id='Qt4Libs' />
 		</Feature>
 
 
 
-		<Icon Id="cellshading.exe" SourceFile="quake3-cel.exe" />
+		<!-- <Icon Id="FrontendEXE" SourceFile="flashgui.exe" /> -->
 	</Product>
 </Wix>
