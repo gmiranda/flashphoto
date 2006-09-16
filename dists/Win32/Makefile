@@ -7,8 +7,8 @@
 WIXPATH	= $(ProgramFiles)\Wix
 CANDLE	= $(WIXPATH)\candle.exe
 LIGHT		= $(WIXPATH)\light.exe
-VERSION	= 4.0
-TARGET	= msi
+VERSION	= 4_exp
+TARGET	= ..\flash_photo$(VERSION)_win32.msi
 
 
 # Source files
@@ -16,6 +16,7 @@ SOURCES	= flashphoto.xml
 OBJECTS	= flashphoto.wixobj
 FLASHEXE	= ..\..\bin\flash.exe
 FLASHGUIEXE	= ..\..\bin\FlashGUI.exe
+SAMPLEIMAGES	= ..\..\bin\images\*.png
 
 # Implicit rules
 
@@ -32,10 +33,12 @@ flash:
 		copy $(FLASHEXE)
 flashGUI:
 		copy $(FLASHGUIEXE)
+samples:
+		copy $(SAMPLEIMAGES)
 
-qtlibs:	
+libs:	
 		copy $(QTDIR)\bin\QtCore4.dll
 		copy $(QTDIR)\bin\QtGui4.dll
 
-$(TARGET):	$(OBJECTS) qtlibs flash flashGUI
-		$(LIGHT) $(OBJECTS)
+$(TARGET):	libs flash flashGUI samples $(OBJECTS)
+		$(LIGHT) $(OBJECTS) -out $(TARGET)

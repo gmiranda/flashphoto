@@ -25,30 +25,57 @@
 					<Component Id='MainExecutable' Guid='E9F42B54-2307-4790-9700-BF9C149081E8'>
 						<File Id='MainEXE' Name='flash.exe' DiskId='1' Source='flashgui.exe' Vital='yes' />
 					</Component>
+                    <Component Id='MinGWLibs' Guid='9261D9C4-F5FE-4E81-BA73-C07F741EF440'>
+						<File Id='Mmingwm10DLL' Name='mingwm10.dll' DiskId='1' Source='mingwm10.dll' Vital='yes' />
+					</Component>
 					<Component Id='Qt4Libs' Guid='831267C1-91DF-4E0D-8B85-E4BE4FE64913'>
 						<File Id='QtCore4DLL' Name='QtCore4.dll' DiskId='1' Source='QtCore4.dll' Vital='no' />
 						<File Id='QtGui4DLL' Name='QtGui4.dll' DiskId='1' Source='QtGui4.dll' Vital='no' />
 					</Component>
+                    <Component Id='Readme' Guid='A8A95FAA-CC84-43CD-9996-FD0388EB6C14'>
+                        <File Id='ReadmeRTF' Name='Readme.rtf' DiskId='1' Source='Readme.rtf' Vital='no' />
+                    </Component>
+                    <Component Id='License' Guid='5D7B086F-6872-4720-BDFF-CC61A76E6A8C'>
+                        <File Id='LicenseTXT' Name='LICENSE.TXT' DiskId='1' Source='LICENSE.TXT' Vital='yes' />
+                    </Component>
+                    <Component Id='SampleImages' Guid='7C518B4C-6CF2-4122-948D-57F3CC268210'>
+						<File Id='FlashPNG' Name='giantShadowFlashs.png' DiskId='1' Source='giantShadowFlashs.png' Vital='no' />
+						<File Id='NoflashPNG' Name='giantShadowNo-flashs.png' DiskId='1' Source='giantShadowNo-flashs.png' Vital='no' />
+					</Component>
 				</Directory>
 			</Directory>
 
-			<Directory Id="ProgramMenuFolder" Name="Programs" />
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+                <!--<Directory Id="FlashMenuFolder" Name="Flash Photography">
+                <Component Id='FlashMenuFolderComponent' Guid='EBC4E40D-6382-40DA-A5D1-9F0FFC3AA23C'>
+                    <File Id='FlashShortcutFile' 
+                    <Shortcut Id="startmenuFrontend" Directory="FlashMenuFolder" Name="Flash Photography"
+						WorkingDirectory='INSTALLDIR'   Advertise='yes' />
+                </Component>
+                </Directory>-->
+            </Directory>
 		</Directory>
 
-		<Feature Id='Complete' Level='1'>
+		<Feature Id='Complete' Title='Flash Photography 4.0' Description='The complete program'
+			Display='expand' Level='1' ConfigurableDirectory='INSTALLDIR'>
 			<Feature Id='Program' Level='1'>
 				<ComponentRef Id='Frontend' />
 				<!--<ComponentRef Id='FrontendShortcut' />-->
 				<ComponentRef Id='MainExecutable' />
+                <ComponentRef Id='License' />
+                <ComponentRef Id='MinGWLibs' />
 			</Feature>
-			<Feature Id='Libraries' Level='1'>
+			<Feature Id='Libraries' Title='Support Libraries' Description="You don't need them
+				if you already have installed QT 4.1" Level='3'>
 				<ComponentRef Id='Qt4Libs' />
 			</Feature>
-			<Feature Id='Documentation' Level='1'>
+			<Feature Id='Documentation' Title='Readme and manual' Description='Useful information' Level='1'>
+                <ComponentRef Id='Readme' />
+			</Feature>
+            <Feature Id='Images' Title='Sample Images' Description='Images ready to use with the program' Level='1'>
+                <ComponentRef Id='SampleImages' />
 			</Feature>
 		</Feature>
-
-
 
 		<!-- <Icon Id="FrontendEXE" SourceFile="flashgui.exe" /> -->
 	</Product>
