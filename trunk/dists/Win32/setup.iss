@@ -3,7 +3,7 @@
 
 #define MyAppName "Flash Photography"
 #define MyAppVerName "Flash Photography 4.0 Experimental"
-#define MyAppVersion "4.0"
+#define MyAppVersion "4.0.0"
 #define MyAppPublisher "Guillermo Miranda Álamo"
 #define MyAppURL "http://developer.berlios.de/projects/flashphoto"
 #define MyAppExeName "FlashGUI.exe"
