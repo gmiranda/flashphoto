@@ -20,7 +20,7 @@ FlashDialog::FlashDialog()
 	executable("flash.exe")
 #elif __MACH__
 	// Solve bundle path
-	executable("\"+(QCoreApplication::applicationDirPath() + "/flash" + "\").toStdString())
+	executable("\""+(QCoreApplication::applicationDirPath() + "/flash" + "\"").toStdString())
 #else
 	// Unix systems used to have a different call in previous version of this app
 	executable("flash")
