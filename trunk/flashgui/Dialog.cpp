@@ -17,10 +17,10 @@ FlashDialog::FlashDialog()
 :
 	// The name of the executable
 #ifdef WIN32
-	executable("flash")
+	executable("flash.exe")
 #elif __MACH__
 	// Solve bundle path
-	executable((QCoreApplication::applicationDirPath() + "/flash").toStdString())
+	executable("\"+(QCoreApplication::applicationDirPath() + "/flash" + "\").toStdString())
 #else
 	// Unix systems used to have a different call in previous version of this app
 	executable("flash")
@@ -211,9 +211,8 @@ void FlashDialog::launchFlashExec(){
 
 	// Construct command & parameters
 	std::stringstream ss;
-	ss << "\"";
 	ss << executable;
-	ss << "\" ";
+	ss << " ";
 	ss << parameters();
 	// We must add "" to the path, so C:\A Directory will be
 	// "C:\A Directory" and will be recognized as one single parameter
