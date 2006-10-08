@@ -32,7 +32,7 @@ Decoupling::Decoupling(const CImg<>& imageFlash, const CImg<>& imageNoFlash)
 	: _sigmaF(0.015f*Helper::diagonalLength(imageFlash)),_sigmaG(0.4f){
 	// Construimos la imagen miembro(que es float)
 	// a partir de la que nos pasan de parametro (ubyte)
-		_imageFlash = imageFlash;
+	_imageFlash = imageFlash;
 
 	// Lo mismo con la imagen sin flash
 	_imageNoFlash = imageNoFlash;
@@ -252,7 +252,7 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I)const{
 
 
 /**
- * Calcula el filtro bilateral, excluyendo los píxeles con sombra.
+ * Calcula el filtro bilateral, excluyendo los pixeles con sombra.
  * @param I Intesidad de la imagen
  * @param shadow Mapa binario de la sombra.
  * @return Imagen J, Large Scale calculada sin la sombra.
@@ -317,15 +317,15 @@ CImg<float>& DecouplingStable::bilateralFilter(const CImg<float>& I, const CImg<
 }
 
 /**
-* Calcula la imagen large scale usando Cross
-* Bilateral Filtering, para situaciones con muy poca iluminacion
-* @param iNF Intesidad de la imagen sin flash.
-* @param iF Intesidad de la imagen con flash.
-* @note ¡Esto implica que no se podra hacer correcion de sombras!
-* @return Imagen J, Large Scale.
-*
-* @ToDo: usar Fast Bilateral Filter.
-*/
+ * Calcula la imagen large scale usando Cross
+ * Bilateral Filtering, para situaciones con muy poca iluminacion
+ * @param iNF Intesidad de la imagen sin flash.
+ * @param iF Intesidad de la imagen con flash.
+ * @note �Esto implica que no se podra hacer correcion de sombras!
+ * @return Imagen J, Large Scale.
+ *
+ * @ToDo: usar Fast Bilateral Filter.
+ */
 CImg<float>& DecouplingStable::crossBilateralFilter(const CImg<float>& iNF,const CImg<float>& iF)const{
 	// La imagen J que devolvemos
 	CImg<float>* J = new CImg<float>(iNF,false);
