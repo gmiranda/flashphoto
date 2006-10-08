@@ -325,7 +325,7 @@ cerr << "done."<<endl<<"First 2 FOR loop...";
 				((I(x,y)-input_min) / _sigmaG + 0.5) + padding_z;
 
 			w(small_x,small_y,small_z)  += 1.0;
-			sw(small_x,small_y,small_z) += shadow(x,y);
+			sw(small_x,small_y,small_z) += !shadow(x,y);
 			iw(small_x,small_y,small_z) += I(x,y);
 
 		} // for x
