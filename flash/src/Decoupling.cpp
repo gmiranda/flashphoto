@@ -29,7 +29,7 @@
  * @ToDo: Check if they must be in Luv format.
  */
 Decoupling::Decoupling(const CImg<>& imageFlash, const CImg<>& imageNoFlash)
-	: _sigmaF(0.015f*Helper::diagonalLength(imageFlash)),_sigmaG(0.4f){
+	: _sigmaF(0.015f*imageFlash.diagonalLength()),_sigmaG(0.4f){
 	// Construimos la imagen miembro(que es float)
 	// a partir de la que nos pasan de parametro (ubyte)
 	_imageFlash = imageFlash;
@@ -423,7 +423,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I)const{
 	float c_d=1.0/(2.0f*(_sigmaF*_sigmaF));
 
 	// Esto es la mitad del tamaño de la ventana
-	int hwin=(int)Helper::max(1,std::ceil(2.1*_sigmaF));
+	int hwin=(int)std::max(1.0,std::ceil(2.1*_sigmaF));
 	//cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
 
 	// Construimos squares y gaussian a la vez
@@ -460,11 +460,11 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I)const{
 			CImg<> is(I,false);
 
 			// Aqui tampoco sumamos 1
-			int rs=(int)Helper::max(0,r);
+			int rs=(int)std::max(0,r);
 			// Creo que tendria que restar -1
-			int re=I.dimy()+(int)Helper::min(0,r)-1;
-			int cs=(int)Helper::max(0,c);
-			int ce=I.dimx()+(int)Helper::min(0,c)-1;
+			int re=I.dimy()+std::min(0,r)-1;
+			int cs=(int)std::max(0,c);
+			int ce=I.dimx()+std::min(0,c)-1;
 
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
@@ -521,7 +521,7 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I, const
 	float c_d=1.0/(2.0f*(_sigmaF*_sigmaF));
 
 	// Esto es la mitad del tamaño de la ventana
-	int hwin=(int)Helper::max(1,std::ceil(2.1*_sigmaF));
+	int hwin=(int)std::max(1.0,std::ceil(2.1*_sigmaF));
 	//cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
 
 	// Construimos squares y gaussian a la vez
@@ -554,11 +554,11 @@ CImg<float>& DecouplingExperimental::bilateralFilter(const CImg<float>& I, const
 			CImg<> is(I,false);
 
 			// Aqui tampoco sumamos 1
-			int rs=(int)Helper::max(0,r);
+			int rs=(int)std::max(0,r);
 			// Creo que tendria que restar -1
-			int re=I.dimy()+(int)Helper::min(0,r)-1;
-			int cs=(int)Helper::max(0,c);
-			int ce=I.dimx()+(int)Helper::min(0,c)-1;
+			int re=I.dimy()+std::min(0,r)-1;
+			int cs=(int)std::max(0,c);
+			int ce=I.dimx()+std::min(0,c)-1;
 
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
@@ -616,7 +616,7 @@ CImg<float>& DecouplingExperimental::crossBilateralFilter(const CImg<float>& iNF
 	float c_d=1.0/(2.0f*(_sigmaF*_sigmaF));
 
 	// Esto es la mitad del tamaño de la ventana
-	int hwin=(int)Helper::max(1,std::ceil(2.1*_sigmaF));
+	int hwin=std::max(1.0,std::ceil(2.1*_sigmaF));
 	cerr << "DecouplingExperimental::bilateralFilter hwin=" << hwin << endl;
 
 	// Construimos squares y gaussian a la vez
@@ -651,11 +651,11 @@ CImg<float>& DecouplingExperimental::crossBilateralFilter(const CImg<float>& iNF
 			CImg<> is(iNF,false);
 
 			// Aqui tampoco sumamos 1
-			int rs=(int)Helper::max(0,r);
+			int rs=std::max(0,r);
 			// Creo que tendria que restar -1
-			int re=iNF.dimy()+(int)Helper::min(0,r)-1;
-			int cs=(int)Helper::max(0,c);
-			int ce=iNF.dimx()+(int)Helper::min(0,c)-1;
+			int re=iNF.dimy()+std::min(0,r)-1;
+			int cs=std::max(0,c);
+			int ce=iNF.dimx()+std::min(0,c)-1;
 
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){
