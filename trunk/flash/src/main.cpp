@@ -31,6 +31,7 @@ using namespace cimg_library;
 
 //! Include Decoupling class
 #include "Decoupling.h"
+#include "FastDecoupling.h"
 
 //! Include Helper functions
 #include "Helper.h"
@@ -104,6 +105,7 @@ int main(int argc, char* argv[]){
 	// Preparamos Image Decoupling a partir de la imagen "image"
 	// Autopointer (it will be destroyed after function exit), use experimental algorithms
 	std::auto_ptr<Decoupling> deco(new DecouplingExperimental(image,imageNoFlash));
+	std::auto_ptr<Decoupling> fastDeco(new FastDecoupling(image,imageNoFlash));
 
 	//image.display("Fotografia con flash original");
 	//imageNoFlash.display("Fotografia sin flash original");
@@ -122,7 +124,9 @@ int main(int argc, char* argv[]){
 	intenNF+=Helper::fakezero;
 
 	// PRUEBAS
-
+	/*(intenNF*255).save("intenNF.ppm");
+	cerr << "SigmaF varianza espacial: "<<deco->_sigmaF<<endl;
+	cerr << "SigmaG influencia de la intensidad: "<<deco->_sigmaG << endl;*/
 
 
 
@@ -162,7 +166,7 @@ int main(int argc, char* argv[]){
 
 
 	// Correccion de la capa de color
-	if(OPTIONS!=CROSS){
+	/*if(OPTIONS!=CROSS){
 		cout << "Computing Color layer..." << endl;
 
 		CImg<float> colorNF = deco->getColor(imageNoFlash.get_log10(),intenNF.get_log10());
@@ -177,7 +181,7 @@ int main(int argc, char* argv[]){
 		//colorCor.display("correccion color");
 		color=colorCor;
 		color.log10();colorNF.log10();
-	}
+	}*/
 
 	// Hago la diferencia de inten y largeScale
 	CImg<float> details= (inten.get_log10()-largeScale.get_log10());
@@ -196,10 +200,10 @@ int main(int argc, char* argv[]){
 	else{
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
 		//largeScaleNF=CImg<>("largeScaleNF.bmp");largeScaleNF/=255.0f;
-		largeScaleNF= deco->bilateralFilter(intenNF);
+		largeScaleNF= fastDeco->bilateralFilter(intenNF);
 	}
-	//(largeScaleNF*255.0f).save("largeScaleNF.bmp");
-	//largeScaleNF.display("Large Scale no flash");
+	(largeScaleNF*255.0f).save("largeScaleNF.bmp");
+	largeScaleNF.display("Large Scale no flash");
 	// Convertimos la capa largeScale a log10
 	largeScaleNF.log10();
 

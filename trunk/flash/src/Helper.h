@@ -69,7 +69,7 @@ namespace Helper{
 	 * @return longitud de la diagonal.
 	 */
 	static float diagonalLength(const CImg<>& image){
-		return sqrt(image.dimx()*image.dimx()+image.dimy()*image.dimy());
+		return std::sqrt(image.dimx()*image.dimx()+image.dimy()*image.dimy());
 	}
 
 	/**
@@ -86,7 +86,7 @@ namespace Helper{
 	 */
 	static float gaussianF(const double dist, const float sigmaF){
 		// La gaussiana es e^(-1/2 *( ||u-x|| / sigma )^2 )
-		return (float)(1/(sigmaF*std::sqrt(2*PI)))*(exp(-0.5f*((dist/sigmaF)*(dist/sigmaF))));
+		return (float)(1.0/(sigmaF*std::sqrt(2*PI)))*(std::exp(-0.5f*((dist/sigmaF)*(dist/sigmaF))));
 
 	}
 
@@ -101,7 +101,7 @@ namespace Helper{
 	 * @ToDo optimizar.
 	 */
 	static float gaussianG(const float diff, const float sigmaG){
-		return (float)(1/(sigmaG*std::sqrt(2*PI)))*(exp(-0.5f*((fabs(diff)/sigmaG)*(fabs(diff)/sigmaG))));
+		return (float)(1.0/(sigmaG*std::sqrt(2*PI)))*(std::exp(-0.5f*((std::abs(diff)/sigmaG)*(std::abs(diff)/sigmaG))));
 		//return (float)exp(-0.5f*((fabs(diff)/sigmaG)*(fabs(diff)/sigmaG)));
 	}
 
