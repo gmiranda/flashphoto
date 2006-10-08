@@ -49,28 +49,6 @@ namespace Helper{
 	//! Dirty cheat to avoid NaNs (0/0)
 	static const float fakezero = 0.00000000001f;
 
-	/**
-	 * Devuelve el minimo de los dos numeros.
-	 */
-	static float min(const float a,const float b){
-		return a<=b?a:b;
-	}
-
-	/**
-	 * Devuelve el maximo de los dos numeros.
-	 */
-	static float max(const float a,const float b){
-		return a>=b?a:b;
-	}
-
-	/**
-	 * Calcula la longitud de la diagonal de la imagen.
-	 * @param image imagen fuente.
-	 * @return longitud de la diagonal.
-	 */
-	static float diagonalLength(const CImg<>& image){
-		return std::sqrt(image.dimx()*image.dimx()+image.dimy()*image.dimy());
-	}
 
 	/**
 	 * Funcion de gaussiana de proximidad entre dos pixeles.
@@ -86,7 +64,7 @@ namespace Helper{
 	 */
 	static float gaussianF(const double dist, const float sigmaF){
 		// La gaussiana es e^(-1/2 *( ||u-x|| / sigma )^2 )
-		return (float)(1.0/(sigmaF*std::sqrt(2*PI)))*(std::exp(-0.5f*((dist/sigmaF)*(dist/sigmaF))));
+		return (1.0/(sigmaF*std::sqrt(2*PI)))*(std::exp(-0.5f*((dist/sigmaF)*(dist/sigmaF))));
 
 	}
 
@@ -101,7 +79,7 @@ namespace Helper{
 	 * @ToDo optimizar.
 	 */
 	static float gaussianG(const float diff, const float sigmaG){
-		return (float)(1.0/(sigmaG*std::sqrt(2*PI)))*(std::exp(-0.5f*((std::abs(diff)/sigmaG)*(std::abs(diff)/sigmaG))));
+		return (1.0/(sigmaG*std::sqrt(2*PI)))*(std::exp(-0.5f*((std::abs(diff)/sigmaG)*(std::abs(diff)/sigmaG))));
 		//return (float)exp(-0.5f*((fabs(diff)/sigmaG)*(fabs(diff)/sigmaG)));
 	}
 
@@ -178,15 +156,15 @@ namespace Helper{
 	 * @param image Imagen origen.
 	 * @return Nueva imagen gradiente (magnitud).
 	 */
-	static CImg<>& get_magnitude_gradient(const CImg<>& image){
+	static CImg<> get_magnitude_gradient(const CImg<>& image){
 		// Calculamos el gradiente horizontal y vertical
 		CImgl<> gradiente = image.get_gradientXY();
 		gradiente[0].pow(2);
 		gradiente[1].pow(2);
 		// Y ahora un puntero al gradiente en magnitud
-		CImg<>* mag = new CImg<>((gradiente[0]+gradiente[1]).sqrt());
+		CImg<> mag ((gradiente[0]+gradiente[1]).sqrt());
 		// Devolvemos referencia
-		return *mag;
+		return mag;
 	}
 
 	/**
@@ -213,7 +191,7 @@ namespace Helper{
 	 */
 	static CImg<> boxFilter(const CImg<> image, float percentage){
 		// Obtenemos el tamaño de la diagonal
-		float diagonal = diagonalLength(image);
+		float diagonal = image.diagonalLength();
 
 		// Multiplicamos el tamaño de la diagonal por el porcentaje
 		// y redondeamos

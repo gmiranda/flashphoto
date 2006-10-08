@@ -206,7 +206,7 @@ CImg<>& Shadow::colorCorrection(const CImg<>& noFlash,const CImg<>& flash,const 
 	const CImg<> flashLuv = flash.get_RGBtoLab();
 
 	// Varianza f es el 2.5% de la diagonal de la imagen
-	const float sigmaF = 0.025f*Helper::diagonalLength(flash);
+	const float sigmaF = 0.025f*flash.diagonalLength();
 	// La varianza f es 0.01
 	const float sigmaG = 0.01f;
 
@@ -350,7 +350,7 @@ CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& 
 	const CImg<> flashLuv = flash.get_RGBtoLab();
 
 	// Varianza f es el 2.5% de la diagonal de la imagen
-	const float sigmaF = 0.025f*Helper::diagonalLength(flash);
+	const float sigmaF = 0.025f*flash.diagonalLength();
 	// La varianza f es 0.01
 	const float sigmaG = 0.01f;
 
@@ -360,7 +360,7 @@ CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& 
 	float c_d=1.0/(2.0f*(sigmaF*sigmaF));
 
 	// Esto es la mitad del tamaño de la ventana
-	int hwin=(int)Helper::max(1,std::ceil(2.1*sigmaF));
+	int hwin=static_cast<int>(std::max(1.0,std::ceil(2.1*sigmaF)));
 	//cerr << "Decoupling::bilateralFilterAlt hwin=" << hwin << endl;
 
 	// Construimos squares y gaussian a la vez
@@ -393,11 +393,11 @@ CImg<>& ShadowExperimental::colorCorrection(const CImg<>& noFlash,const CImg<>& 
 			CImg<> is(noFlashLuv,false), isFlash(flashLuv,false);
 
 			// Aqui tampoco sumamos 1
-			int rs=(int)Helper::max(0,r);
+			int rs=(int)std::max(0,r);
 			// Creo que tendria que restar -1
-			int re=flashLuv.dimy()+(int)Helper::min(0,r)-1;
-			int cs=(int)Helper::max(0,c);
-			int ce=flashLuv.dimx()+(int)Helper::min(0,c)-1;
+			int re=flashLuv.dimy()+(int)std::min(0,r)-1;
+			int cs=(int)std::max(0,c);
+			int ce=flashLuv.dimx()+(int)std::min(0,c)-1;
 
 			for(int r2=rs;r2<=re;r2++){
 				for(int c2=cs;c2<=ce;c2++){

@@ -148,18 +148,17 @@ int main(int argc, char* argv[]){
 		// Utilizamos la sombra para calcular la large scale
 		// Descomenta la siguiente linea para cargar de archivo y comenta la otra
 		//largeScale=CImg<>("largeScaleF.bmp");largeScale/=255.0f;
-		largeScale= deco->bilateralFilter(inten,shadow);
-		//largeScale.display("Large scale");
+		//largeScale= deco->bilateralFilter(inten,shadow);
+		largeScale= fastDeco->bilateralFilter(inten,shadow);
 	}
 	// Si lo hacemos
 	else{
 		// No podemos utilizar la sombra.
-		largeScale= deco->bilateralFilter(inten);
-		//largeScale= deco->bilateralFilterAlt(inten);
-		//largeScale.display("Large Scale");
+		//largeScale= deco->bilateralFilter(inten);
+		largeScale= fastDeco->bilateralFilter(inten);
 	}
-	//(largeScale*255.0f).save("largeScaleF.bmp");
-	//largeScale.display("Large Scale Flash");
+	(largeScale*255.0f).save("largeScaleF.bmp");
+	largeScale.display("Large Scale Flash");
 
 
 	CImg<float> color = deco->getColor(image.get_log10(),inten.get_log10());
