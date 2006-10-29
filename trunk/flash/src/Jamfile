@@ -1,0 +1,5 @@
+# src/Jamfile
+SubDir TOP src ;
+
+Main flash : Decoupling.cpp FastDecoupling.cpp main.cpp Shadow.cpp ;
+LINKLIBS on flash$(SUFEXE) = $(GRAPHICS_LIBS) ;
