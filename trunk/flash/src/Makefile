@@ -7,10 +7,11 @@ CXX			= c++
 DEFINES		=
 FPNG		= /Library/Frameworks/libpng.framework
 FJPEG		= /Library/Frameworks/libjpeg.framework
+FFFTW3		= /Library/Frameworks/FFTW3.framework
 CXXFLAGS	= -pipe -O3  -fomit-frame-pointer -finline-functions -Wall -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk  $(DEFINES)
-INCPATH		= -I$(FPNG)/Headers -I$(FJPEG)/Headers
+INCPATH		= -I$(FPNG)/Headers -I$(FJPEG)/Headers -I$(FFFTW3)/Headers
 LFLAGS		= -arch ppc -arch i386 -Wl,-syslibroot,/Developer/SDKs/MacOSX10.4u.sdk 
-LIBS		= -F/Library/Frameworks -lz -framework libpng -framework libjpeg -L/usr/X11R6/lib
+LIBS		= -F/Library/Frameworks -lz -framework libpng -framework libjpeg  -framework FFTW3 -L/usr/X11R6/lib
 
 COPY		= cp -f
 COPY_FILE	= cp -f
@@ -27,10 +28,14 @@ BUNDLE = $(DEST_DIR)/FlashPhotography.app
 
 # Source Files
 SOURCES		= Decoupling.cpp \
+			  fft_3D/support_3D.cpp \
+			  FastDecoupling.cpp \
 			  Shadow.cpp \
 			  main.cpp
 
 OBJECTS		= Decoupling.o \
+			  fft_3D/support_3D.o \
+			  FastDecoupling.o \
 			  Shadow.o \
 			  main.o
 
@@ -66,10 +71,13 @@ bundle:			$(TARGET) bundle_frameworks
 				$(COPY_FILE) $(TARGET) $(BUNDLE)/Contents/MacOS/
 # This target will copy the libjpeg and libpng frameworks
 # See http://www.clanlib.org/download-binaries-osx-gcc40-universal.html
+# And http://www.kyngchaos.com/software/unixport/frameworks (for FFTW3)
 bundle_frameworks:
 				@$(CHK_DIR_EXISTS) $(BUNDLE)/Contents/Frameworks || $(MKDIR) $(BUNDLE)/Contents/Frameworks
 				$(COPY_DIR) $(FJPEG) $(BUNDLE)/Contents/Frameworks
 				$(COPY_DIR) $(FPNG) $(BUNDLE)/Contents/Frameworks
+				$(COPY_DIR) $(FFFTW3) $(BUNDLE)/Contents/Frameworks
+
 	
 
 # Housecleaning
