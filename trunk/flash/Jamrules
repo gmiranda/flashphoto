@@ -1,0 +1,38 @@
+# Jamrules
+
+# OS-specific configuration
+switch $(OS)
+{
+	case MACOSX :
+		FPNG	= /Library/Frameworks/libpng.framework ;
+		FJPEG	= /Library/Frameworks/libjpeg.framework ;
+		FFFTW3	= /Library/Frameworks/FFTW3.framework ;
+		
+		HDRS	= $(FPNG)/Headers $(FJPEG)/Headers  $(FFFTW3)/Headers ;
+		GRAPHICS_LIBS = -F/Library/Frameworks -lz -framework libpng -framework libjpeg  -framework FFTW3 ;
+		
+		LINKFLAGS += -arch ppc -arch i386 -Wl,-syslibroot,/Developer/SDKs/MacOSX10.4u.sdk ;
+	case *	: GRAPHICS_LIBS = -ljpeg -lz -lpng ;
+}
+
+# OS X specific
+rule bundle
+{
+	Depends	exe	: $(<) ;
+	Depends	$(<): $(>) ;
+	Clean	clean : $(1) ../bin/ ;
+}
+
+actions bundle
+{
+	# ../dists/Mac OS X/
+	$(RM) $(<) ../bin/FlashPhotography.app && \
+	( 
+}
+
+# Compiler flags
+#C++		= g++ ;
+#CC			= $(C++) ;
+OPTIM	+= -pipe -O3  -fomit-frame-pointer -finline-functions -Wall -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk ;
+# Force linking with C++
+LINK		= $(C++) ;

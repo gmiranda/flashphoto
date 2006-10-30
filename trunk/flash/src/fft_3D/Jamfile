@@ -1,0 +1,8 @@
+# src/fft_3D/Jamfile
+SubDir TOP src fft_3D ;
+
+#Objects support_3D.cpp ;
+#Link <src>flash : support_3D.o ;
+#Library libfft3d : support_3D.cpp ;
+#LINKLIBS on flash$(SUFEXE) = $(GRAPHICS_LIBS) ;
+#echo "Linked support_3D with Flash" ;

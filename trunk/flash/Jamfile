@@ -1,0 +1,5 @@
+# src/Jamfile
+SubDir TOP ;
+
+# Include src
+SubInclude TOP src ;

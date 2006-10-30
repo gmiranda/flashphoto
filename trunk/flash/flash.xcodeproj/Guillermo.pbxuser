@@ -88,8 +88,16 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 179834281;
-			PBXWorkspaceStateSaveDate = 179834281;
+			PBXPerProjectTemplateStateSaveDate = 183846371;
+			PBXWorkspaceStateSaveDate = 183846371;
+		};
+		perUserProjectItems = {
+			B3BED1520AF565460089D7AF /* PBXTextBookmark */ = B3BED1520AF565460089D7AF /* PBXTextBookmark */;
+			B3BED1540AF565460089D7AF /* PBXTextBookmark */ = B3BED1540AF565460089D7AF /* PBXTextBookmark */;
+			B3BED1580AF565460089D7AF /* PBXTextBookmark */ = B3BED1580AF565460089D7AF /* PBXTextBookmark */;
+			B3BED15A0AF565460089D7AF /* PBXTextBookmark */ = B3BED15A0AF565460089D7AF /* PBXTextBookmark */;
+			B3BED15E0AF565460089D7AF /* PBXTextBookmark */ = B3BED15E0AF565460089D7AF /* PBXTextBookmark */;
+			B3BED1600AF565460089D7AF /* PBXTextBookmark */ = B3BED1600AF565460089D7AF /* PBXTextBookmark */;
 		};
 		sourceControlManager = B31155B80AB066A4002B3D8F /* Source Control */;
 		userBuildSettings = {
@@ -159,6 +167,114 @@
 			sepNavVisRect = "{{0, 3097}, {690, 541}}";
 			sepNavWindowFrame = "{{84, 23}, {735, 655}}";
 		};
+	};
+	B3BED1520AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED1530AF565460089D7AF /* Jamfile */;
+		rLen = 0;
+		rLoc = 2147483234;
+		rType = 0;
+	};
+	B3BED1530AF565460089D7AF /* Jamfile */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.jam;
+		name = Jamfile;
+		path = /Users/Guillermo/flashphoto/trunk/flash/src/Jamfile;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {690, 541}}";
+			sepNavSelRange = "{31, 0}";
+			sepNavVisRect = "{{0, 0}, {690, 541}}";
+			sepNavWindowFrame = "{{286, 48}, {735, 655}}";
+		};
+	};
+	B3BED1540AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED1550AF565460089D7AF /* Jamfile */;
+		name = "(null): 3";
+		rLen = 0;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 149;
+		vrLoc = 0;
+	};
+	B3BED1550AF565460089D7AF /* Jamfile */ = {
+		isa = PBXFileReference;
+		name = Jamfile;
+		path = /Users/Guillermo/flashphoto/trunk/flash/src/Jamfile;
+		sourceTree = "<absolute>";
+	};
+	B3BED1580AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED1590AF565460089D7AF /* Jamrules */;
+		rLen = 0;
+		rLoc = 2147483647;
+		rType = 0;
+	};
+	B3BED1590AF565460089D7AF /* Jamrules */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text;
+		name = Jamrules;
+		path = /Users/Guillermo/flashphoto/trunk/flash/Jamrules;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {690, 541}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {690, 541}}";
+			sepNavWindowFrame = "{{38, 65}, {735, 655}}";
+		};
+	};
+	B3BED15A0AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED15B0AF565460089D7AF /* Jamrules */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 402;
+		vrLoc = 0;
+	};
+	B3BED15B0AF565460089D7AF /* Jamrules */ = {
+		isa = PBXFileReference;
+		name = Jamrules;
+		path = /Users/Guillermo/flashphoto/trunk/flash/Jamrules;
+		sourceTree = "<absolute>";
+	};
+	B3BED15E0AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED15F0AF565460089D7AF /* Makefile */;
+		rLen = 0;
+		rLoc = 2147483647;
+		rType = 0;
+	};
+	B3BED15F0AF565460089D7AF /* Makefile */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.make;
+		name = Makefile;
+		path = /Users/Guillermo/flashphoto/trunk/flash/src/Makefile;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {690, 1365}}";
+			sepNavSelRange = "{542, 80}";
+			sepNavVisRect = "{{0, 0}, {690, 541}}";
+			sepNavWindowFrame = "{{61, 44}, {735, 655}}";
+		};
+	};
+	B3BED1600AF565460089D7AF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3BED1610AF565460089D7AF /* Makefile */;
+		name = "-F/Library/Frameworks -lz -framework libpng -framework libjpeg  -framework FFTW3";
+		rLen = 80;
+		rLoc = 542;
+		rType = 0;
+		vrLen = 989;
+		vrLoc = 0;
+	};
+	B3BED1610AF565460089D7AF /* Makefile */ = {
+		isa = PBXFileReference;
+		name = Makefile;
+		path = /Users/Guillermo/flashphoto/trunk/flash/src/Makefile;
+		sourceTree = "<absolute>";
 	};
 	B3DC37F60AB82EC100122DA3 /* XCBreakpointsBucket */ = {
 		isa = XCBreakpointsBucket;

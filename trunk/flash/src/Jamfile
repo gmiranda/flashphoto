@@ -1,5 +1,10 @@
 # src/Jamfile
 SubDir TOP src ;
 
-Main flash : Decoupling.cpp FastDecoupling.cpp main.cpp Shadow.cpp ;
-LINKLIBS on flash$(SUFEXE) = $(GRAPHICS_LIBS) ;
+
+Main flash : Decoupling.cpp FastDecoupling.cpp main.cpp Shadow.cpp fft_3D/support_3D.cpp ;
+LINKLIBS on flash$(SUFEXE) = -lstdc++ $(GRAPHICS_LIBS) ;
+#LinkLibraries flash : libfft3d ;
+
+# Include fft_3D
+SubInclude TOP src fft_3D ;
