@@ -330,6 +330,8 @@ cerr << "done."<<endl<<"First 2 FOR loop...";
 
 		} // for x
 	} // for y
+	w.display("w");
+	iw.display("iw");
 cerr << "done."<<endl;
 	CImg<> kernel(small_width,small_height,small_depth);
 
