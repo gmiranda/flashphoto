@@ -33,8 +33,10 @@
 
 #include <cmath>
 
-#include <errno.h>
-#include <stdio.h>
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>      // exit
+#include <cstring>      // memcpy
 
 #include <sstream>
 #include <string>
