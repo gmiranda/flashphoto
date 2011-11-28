@@ -24,6 +24,8 @@
 #	define cimg_display_type 0
 #endif
 
+// Avoid error
+#define HAVE_BOOLEAN
 #include "CImg/CImg.h"
 
 #endif
